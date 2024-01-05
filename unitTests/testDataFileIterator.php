@@ -112,15 +112,15 @@ class testDataFileIterator implements Iterator
                 unset($dataRow);
             } else {
                 switch (strtoupper($dataValue)) {
-                    case 'NULL':
-                        $dataValue = null;
-                        break;
-                    case 'TRUE':
-                        $dataValue = true;
-                        break;
-                    case 'FALSE':
-                        $dataValue = false;
-                        break;
+                case 'NULL':
+                    $dataValue = null;
+                    break;
+                case 'TRUE':
+                    $dataValue = true;
+                    break;
+                case 'FALSE':
+                    $dataValue = false;
+                    break;
                 }
             }
         } else {

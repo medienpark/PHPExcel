@@ -14,7 +14,7 @@ class AutofilterColumnTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
 
         $this->_mockAutoFilterObject = $this->getMockBuilder('PHPExcel_Worksheet_AutoFilter')
             ->disableOriginalConstructor()

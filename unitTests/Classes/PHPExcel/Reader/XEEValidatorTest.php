@@ -9,11 +9,11 @@ class XEEValidatorTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
     }
 
     /**
-     * @dataProvider providerInvalidXML
+     * @dataProvider      providerInvalidXML
      * @expectedException PHPExcel_Reader_Exception
      */
     public function testInvalidXML($filename)

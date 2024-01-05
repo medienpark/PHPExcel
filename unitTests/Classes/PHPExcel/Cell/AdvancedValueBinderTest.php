@@ -7,7 +7,7 @@ class AdvancedValueBinderTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
     }
 
     public function provider()
@@ -43,22 +43,22 @@ class AdvancedValueBinderTest extends PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $cache->expects($this->any())
-                 ->method('getParent')
-                 ->will($this->returnValue($sheet));
+            ->method('getParent')
+            ->will($this->returnValue($sheet));
 
         $sheet->expects($this->once())
-                 ->method('getStyle')
-                 ->will($this->returnSelf());
+            ->method('getStyle')
+            ->will($this->returnSelf());
         $sheet->expects($this->once())
-                 ->method('getNumberFormat')
-                 ->will($this->returnSelf());
+            ->method('getNumberFormat')
+            ->will($this->returnSelf());
         $sheet->expects($this->once())
-                 ->method('setFormatCode')
-                 ->with($format)
-                 ->will($this->returnSelf());
+            ->method('setFormatCode')
+            ->with($format)
+            ->will($this->returnSelf());
         $sheet->expects($this->any())
-                 ->method('getCellCacheController')
-                 ->will($this->returnValue($cache));
+            ->method('getCellCacheController')
+            ->will($this->returnValue($cache));
 
         PHPExcel_Shared_String::setCurrencyCode($currencyCode);
         PHPExcel_Shared_String::setDecimalSeparator($decimalSeparator);

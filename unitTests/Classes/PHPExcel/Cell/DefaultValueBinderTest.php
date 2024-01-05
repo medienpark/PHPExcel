@@ -11,7 +11,7 @@ class DefaultValueBinderTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
     }
 
     protected function createCellStub()
@@ -22,8 +22,8 @@ class DefaultValueBinderTest extends PHPUnit_Framework_TestCase
             ->getMock();
         // Configure the stub.
         $this->cellStub->expects($this->any())
-             ->method('setValueExplicit')
-             ->will($this->returnValue(true));
+            ->method('setValueExplicit')
+            ->will($this->returnValue(true));
 
     }
 

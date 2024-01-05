@@ -1,10 +1,12 @@
 {
-    "name": "phpoffice/phpexcel",
+    "name": "medienpark/phpexcel",
     "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
     "keywords": ["PHP","Excel","OpenXML","xlsx","xls","spreadsheet"],
     "homepage": "https://github.com/PHPOffice/PHPExcel",
     "type": "library",
     "license": "LGPL-2.1",
+    "minimum-stability": "stable",
+    "prefer-stable" : true,
     "authors": [
         {
             "name": "Maarten Balliauw",
@@ -23,7 +25,7 @@
         }
     ],
     "require": {
-        "php": "^5.2|^7.0",
+        "php": "^8.2",
         "ext-mbstring": "*",
         "ext-xml": "*",
         "ext-xmlwriter": "*"
