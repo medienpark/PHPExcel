@@ -36,100 +36,97 @@
 class PHPExcel_Shared_Font
 {
     /* Methods for resolving autosize value */
-    const AUTOSIZE_METHOD_APPROX    = 'approx';
-    const AUTOSIZE_METHOD_EXACT     = 'exact';
+    final public const AUTOSIZE_METHOD_APPROX    = 'approx';
+    final public const AUTOSIZE_METHOD_EXACT     = 'exact';
 
-    private static $autoSizeMethods = array(
-        self::AUTOSIZE_METHOD_APPROX,
-        self::AUTOSIZE_METHOD_EXACT,
-    );
+    private static $autoSizeMethods = [self::AUTOSIZE_METHOD_APPROX, self::AUTOSIZE_METHOD_EXACT];
 
     /**
  * Character set codes used by BIFF5-8 in Font records 
 */
-    const CHARSET_ANSI_LATIN                = 0x00;
-    const CHARSET_SYSTEM_DEFAULT            = 0x01;
-    const CHARSET_SYMBOL                    = 0x02;
-    const CHARSET_APPLE_ROMAN               = 0x4D;
-    const CHARSET_ANSI_JAPANESE_SHIFTJIS    = 0x80;
-    const CHARSET_ANSI_KOREAN_HANGUL        = 0x81;
-    const CHARSET_ANSI_KOREAN_JOHAB         = 0x82;
-    const CHARSET_ANSI_CHINESE_SIMIPLIFIED  = 0x86;        //    gb2312
-    const CHARSET_ANSI_CHINESE_TRADITIONAL  = 0x88;        //    big5
-    const CHARSET_ANSI_GREEK                = 0xA1;
-    const CHARSET_ANSI_TURKISH              = 0xA2;
-    const CHARSET_ANSI_VIETNAMESE           = 0xA3;
-    const CHARSET_ANSI_HEBREW               = 0xB1;
-    const CHARSET_ANSI_ARABIC               = 0xB2;
-    const CHARSET_ANSI_BALTIC               = 0xBA;
-    const CHARSET_ANSI_CYRILLIC             = 0xCC;
-    const CHARSET_ANSI_THAI                 = 0xDD;
-    const CHARSET_ANSI_LATIN_II             = 0xEE;
-    const CHARSET_OEM_LATIN_I               = 0xFF;
+    final public const CHARSET_ANSI_LATIN                = 0x00;
+    final public const CHARSET_SYSTEM_DEFAULT            = 0x01;
+    final public const CHARSET_SYMBOL                    = 0x02;
+    final public const CHARSET_APPLE_ROMAN               = 0x4D;
+    final public const CHARSET_ANSI_JAPANESE_SHIFTJIS    = 0x80;
+    final public const CHARSET_ANSI_KOREAN_HANGUL        = 0x81;
+    final public const CHARSET_ANSI_KOREAN_JOHAB         = 0x82;
+    final public const CHARSET_ANSI_CHINESE_SIMIPLIFIED  = 0x86;        //    gb2312
+    final public const CHARSET_ANSI_CHINESE_TRADITIONAL  = 0x88;        //    big5
+    final public const CHARSET_ANSI_GREEK                = 0xA1;
+    final public const CHARSET_ANSI_TURKISH              = 0xA2;
+    final public const CHARSET_ANSI_VIETNAMESE           = 0xA3;
+    final public const CHARSET_ANSI_HEBREW               = 0xB1;
+    final public const CHARSET_ANSI_ARABIC               = 0xB2;
+    final public const CHARSET_ANSI_BALTIC               = 0xBA;
+    final public const CHARSET_ANSI_CYRILLIC             = 0xCC;
+    final public const CHARSET_ANSI_THAI                 = 0xDD;
+    final public const CHARSET_ANSI_LATIN_II             = 0xEE;
+    final public const CHARSET_OEM_LATIN_I               = 0xFF;
 
     //  XXX: Constants created!
     /**
  * Font filenames 
 */
-    const ARIAL                             = 'arial.ttf';
-    const ARIAL_BOLD                        = 'arialbd.ttf';
-    const ARIAL_ITALIC                      = 'ariali.ttf';
-    const ARIAL_BOLD_ITALIC                 = 'arialbi.ttf';
+    final public const ARIAL                             = 'arial.ttf';
+    final public const ARIAL_BOLD                        = 'arialbd.ttf';
+    final public const ARIAL_ITALIC                      = 'ariali.ttf';
+    final public const ARIAL_BOLD_ITALIC                 = 'arialbi.ttf';
 
-    const CALIBRI                           = 'CALIBRI.TTF';
-    const CALIBRI_BOLD                      = 'CALIBRIB.TTF';
-    const CALIBRI_ITALIC                    = 'CALIBRII.TTF';
-    const CALIBRI_BOLD_ITALIC               = 'CALIBRIZ.TTF';
+    final public const CALIBRI                           = 'CALIBRI.TTF';
+    final public const CALIBRI_BOLD                      = 'CALIBRIB.TTF';
+    final public const CALIBRI_ITALIC                    = 'CALIBRII.TTF';
+    final public const CALIBRI_BOLD_ITALIC               = 'CALIBRIZ.TTF';
 
-    const COMIC_SANS_MS                     = 'comic.ttf';
-    const COMIC_SANS_MS_BOLD                = 'comicbd.ttf';
+    final public const COMIC_SANS_MS                     = 'comic.ttf';
+    final public const COMIC_SANS_MS_BOLD                = 'comicbd.ttf';
 
-    const COURIER_NEW                       = 'cour.ttf';
-    const COURIER_NEW_BOLD                  = 'courbd.ttf';
-    const COURIER_NEW_ITALIC                = 'couri.ttf';
-    const COURIER_NEW_BOLD_ITALIC           = 'courbi.ttf';
+    final public const COURIER_NEW                       = 'cour.ttf';
+    final public const COURIER_NEW_BOLD                  = 'courbd.ttf';
+    final public const COURIER_NEW_ITALIC                = 'couri.ttf';
+    final public const COURIER_NEW_BOLD_ITALIC           = 'courbi.ttf';
 
-    const GEORGIA                           = 'georgia.ttf';
-    const GEORGIA_BOLD                      = 'georgiab.ttf';
-    const GEORGIA_ITALIC                    = 'georgiai.ttf';
-    const GEORGIA_BOLD_ITALIC               = 'georgiaz.ttf';
+    final public const GEORGIA                           = 'georgia.ttf';
+    final public const GEORGIA_BOLD                      = 'georgiab.ttf';
+    final public const GEORGIA_ITALIC                    = 'georgiai.ttf';
+    final public const GEORGIA_BOLD_ITALIC               = 'georgiaz.ttf';
 
-    const IMPACT                            = 'impact.ttf';
+    final public const IMPACT                            = 'impact.ttf';
 
-    const LIBERATION_SANS                   = 'LiberationSans-Regular.ttf';
-    const LIBERATION_SANS_BOLD              = 'LiberationSans-Bold.ttf';
-    const LIBERATION_SANS_ITALIC            = 'LiberationSans-Italic.ttf';
-    const LIBERATION_SANS_BOLD_ITALIC       = 'LiberationSans-BoldItalic.ttf';
+    final public const LIBERATION_SANS                   = 'LiberationSans-Regular.ttf';
+    final public const LIBERATION_SANS_BOLD              = 'LiberationSans-Bold.ttf';
+    final public const LIBERATION_SANS_ITALIC            = 'LiberationSans-Italic.ttf';
+    final public const LIBERATION_SANS_BOLD_ITALIC       = 'LiberationSans-BoldItalic.ttf';
 
-    const LUCIDA_CONSOLE                    = 'lucon.ttf';
-    const LUCIDA_SANS_UNICODE               = 'l_10646.ttf';
+    final public const LUCIDA_CONSOLE                    = 'lucon.ttf';
+    final public const LUCIDA_SANS_UNICODE               = 'l_10646.ttf';
 
-    const MICROSOFT_SANS_SERIF              = 'micross.ttf';
+    final public const MICROSOFT_SANS_SERIF              = 'micross.ttf';
 
-    const PALATINO_LINOTYPE                 = 'pala.ttf';
-    const PALATINO_LINOTYPE_BOLD            = 'palab.ttf';
-    const PALATINO_LINOTYPE_ITALIC          = 'palai.ttf';
-    const PALATINO_LINOTYPE_BOLD_ITALIC     = 'palabi.ttf';
+    final public const PALATINO_LINOTYPE                 = 'pala.ttf';
+    final public const PALATINO_LINOTYPE_BOLD            = 'palab.ttf';
+    final public const PALATINO_LINOTYPE_ITALIC          = 'palai.ttf';
+    final public const PALATINO_LINOTYPE_BOLD_ITALIC     = 'palabi.ttf';
 
-    const SYMBOL                            = 'symbol.ttf';
+    final public const SYMBOL                            = 'symbol.ttf';
 
-    const TAHOMA                            = 'tahoma.ttf';
-    const TAHOMA_BOLD                       = 'tahomabd.ttf';
+    final public const TAHOMA                            = 'tahoma.ttf';
+    final public const TAHOMA_BOLD                       = 'tahomabd.ttf';
 
-    const TIMES_NEW_ROMAN                   = 'times.ttf';
-    const TIMES_NEW_ROMAN_BOLD              = 'timesbd.ttf';
-    const TIMES_NEW_ROMAN_ITALIC            = 'timesi.ttf';
-    const TIMES_NEW_ROMAN_BOLD_ITALIC       = 'timesbi.ttf';
+    final public const TIMES_NEW_ROMAN                   = 'times.ttf';
+    final public const TIMES_NEW_ROMAN_BOLD              = 'timesbd.ttf';
+    final public const TIMES_NEW_ROMAN_ITALIC            = 'timesi.ttf';
+    final public const TIMES_NEW_ROMAN_BOLD_ITALIC       = 'timesbi.ttf';
 
-    const TREBUCHET_MS                      = 'trebuc.ttf';
-    const TREBUCHET_MS_BOLD                 = 'trebucbd.ttf';
-    const TREBUCHET_MS_ITALIC               = 'trebucit.ttf';
-    const TREBUCHET_MS_BOLD_ITALIC          = 'trebucbi.ttf';
+    final public const TREBUCHET_MS                      = 'trebuc.ttf';
+    final public const TREBUCHET_MS_BOLD                 = 'trebucbd.ttf';
+    final public const TREBUCHET_MS_ITALIC               = 'trebucit.ttf';
+    final public const TREBUCHET_MS_BOLD_ITALIC          = 'trebucbi.ttf';
 
-    const VERDANA                           = 'verdana.ttf';
-    const VERDANA_BOLD                      = 'verdanab.ttf';
-    const VERDANA_ITALIC                    = 'verdanai.ttf';
-    const VERDANA_BOLD_ITALIC               = 'verdanaz.ttf';
+    final public const VERDANA                           = 'verdana.ttf';
+    final public const VERDANA_BOLD                      = 'verdanab.ttf';
+    final public const VERDANA_ITALIC                    = 'verdanai.ttf';
+    final public const VERDANA_BOLD_ITALIC               = 'verdanaz.ttf';
 
     /**
      * AutoSize method
@@ -152,45 +149,7 @@ class PHPExcel_Shared_Font
      *
      * @var array
      */
-    public static $defaultColumnWidths = array(
-        'Arial' => array(
-             1 => array('px' => 24, 'width' => 12.00000000),
-             2 => array('px' => 24, 'width' => 12.00000000),
-             3 => array('px' => 32, 'width' => 10.66406250),
-             4 => array('px' => 32, 'width' => 10.66406250),
-             5 => array('px' => 40, 'width' => 10.00000000),
-             6 => array('px' => 48, 'width' =>  9.59765625),
-             7 => array('px' => 48, 'width' =>  9.59765625),
-             8 => array('px' => 56, 'width' =>  9.33203125),
-             9 => array('px' => 64, 'width' =>  9.14062500),
-            10 => array('px' => 64, 'width' =>  9.14062500),
-        ),
-        'Calibri' => array(
-             1 => array('px' => 24, 'width' => 12.00000000),
-             2 => array('px' => 24, 'width' => 12.00000000),
-             3 => array('px' => 32, 'width' => 10.66406250),
-             4 => array('px' => 32, 'width' => 10.66406250),
-             5 => array('px' => 40, 'width' => 10.00000000),
-             6 => array('px' => 48, 'width' =>  9.59765625),
-             7 => array('px' => 48, 'width' =>  9.59765625),
-             8 => array('px' => 56, 'width' =>  9.33203125),
-             9 => array('px' => 56, 'width' =>  9.33203125),
-            10 => array('px' => 64, 'width' =>  9.14062500),
-            11 => array('px' => 64, 'width' =>  9.14062500),
-        ),
-        'Verdana' => array(
-             1 => array('px' => 24, 'width' => 12.00000000),
-             2 => array('px' => 24, 'width' => 12.00000000),
-             3 => array('px' => 32, 'width' => 10.66406250),
-             4 => array('px' => 32, 'width' => 10.66406250),
-             5 => array('px' => 40, 'width' => 10.00000000),
-             6 => array('px' => 48, 'width' =>  9.59765625),
-             7 => array('px' => 48, 'width' =>  9.59765625),
-             8 => array('px' => 64, 'width' =>  9.14062500),
-             9 => array('px' => 72, 'width' =>  9.00000000),
-            10 => array('px' => 72, 'width' =>  9.00000000),
-        ),
-    );
+    public static $defaultColumnWidths = ['Arial' => [1 => ['px' => 24, 'width' => 12.00000000], 2 => ['px' => 24, 'width' => 12.00000000], 3 => ['px' => 32, 'width' => 10.66406250], 4 => ['px' => 32, 'width' => 10.66406250], 5 => ['px' => 40, 'width' => 10.00000000], 6 => ['px' => 48, 'width' =>  9.59765625], 7 => ['px' => 48, 'width' =>  9.59765625], 8 => ['px' => 56, 'width' =>  9.33203125], 9 => ['px' => 64, 'width' =>  9.14062500], 10 => ['px' => 64, 'width' =>  9.14062500]], 'Calibri' => [1 => ['px' => 24, 'width' => 12.00000000], 2 => ['px' => 24, 'width' => 12.00000000], 3 => ['px' => 32, 'width' => 10.66406250], 4 => ['px' => 32, 'width' => 10.66406250], 5 => ['px' => 40, 'width' => 10.00000000], 6 => ['px' => 48, 'width' =>  9.59765625], 7 => ['px' => 48, 'width' =>  9.59765625], 8 => ['px' => 56, 'width' =>  9.33203125], 9 => ['px' => 56, 'width' =>  9.33203125], 10 => ['px' => 64, 'width' =>  9.14062500], 11 => ['px' => 64, 'width' =>  9.14062500]], 'Verdana' => [1 => ['px' => 24, 'width' => 12.00000000], 2 => ['px' => 24, 'width' => 12.00000000], 3 => ['px' => 32, 'width' => 10.66406250], 4 => ['px' => 32, 'width' => 10.66406250], 5 => ['px' => 40, 'width' => 10.00000000], 6 => ['px' => 48, 'width' =>  9.59765625], 7 => ['px' => 48, 'width' =>  9.59765625], 8 => ['px' => 64, 'width' =>  9.14062500], 9 => ['px' => 72, 'width' =>  9.00000000], 10 => ['px' => 72, 'width' =>  9.00000000]]];
 
     /**
      * Set autoSize method
@@ -261,9 +220,9 @@ class PHPExcel_Shared_Font
         }
 
         // Special case if there are one or more newline characters ("\n")
-        if (strpos($cellText, "\n") !== false) {
+        if (str_contains($cellText, "\n")) {
             $lineTexts = explode("\n", $cellText);
-            $lineWidths = array();
+            $lineWidths = [];
             foreach ($lineTexts as $lineText) {
                 $lineWidths[] = self::calculateColumnWidth($font, $lineText, $rotation = 0, $defaultFont);
             }
@@ -278,7 +237,7 @@ class PHPExcel_Shared_Font
                 // Width of text in pixels excl. padding
                 // and addition because Excel adds some padding, just use approx width of 'n' glyph
                 $columnWidth = self::getTextWidthPixelsExact($cellText, $font, $rotation) + $columnWidthAdjust;
-            } catch (PHPExcel_Exception $e) {
+            } catch (PHPExcel_Exception) {
                 $approximate = true;
             }
         }
@@ -291,7 +250,7 @@ class PHPExcel_Shared_Font
         }
 
         // Convert from pixel width to column width
-        $columnWidth = PHPExcel_Shared_Drawing::pixelsToCellDimension($columnWidth, $defaultFont);
+        $columnWidth = PHPExcel_Shared_Drawing::pixelsToCellDimension($defaultFont, $columnWidth);
 
         // Return
         return round($columnWidth, 6);
@@ -337,7 +296,6 @@ class PHPExcel_Shared_Font
      * Get approximate width in pixels for a string of text in a certain font at a certain rotation angle
      *
      * @param  string              $columnText
-     * @param  PHPExcel_Style_Font $font
      * @param  int                 $rotation
      * @return int Text width in pixels (no padding added)
      */

@@ -24,21 +24,21 @@ class SingularValueDecomposition
      *
      * @var array
      */
-    private $U = array();
+    private $U = [];
 
     /**
      *    Internal storage of V.
      *
      * @var array
      */
-    private $V = array();
+    private $V = [];
 
     /**
      *    Internal storage of singular values.
      *
      * @var array
      */
-    private $s = array();
+    private $s = [];
 
     /**
      *    Row dimension.
@@ -69,8 +69,8 @@ class SingularValueDecomposition
         $this->m = $Arg->getRowDimension();
         $this->n = $Arg->getColumnDimension();
         $nu      = min($this->m, $this->n);
-        $e       = array();
-        $work    = array();
+        $e       = [];
+        $work    = [];
         $wantu   = true;
         $wantv   = true;
         $nct = min($this->m - 1, $this->n);
@@ -242,7 +242,7 @@ class SingularValueDecomposition
         // Main iteration loop for the singular values.
         $pp   = $p - 1;
         $iter = 0;
-        $eps  = pow(2.0, -52.0);
+        $eps  = 2.0 ** (-52.0);
 
         while ($p > 0) {
             // Here is where a test for too many iterations would go.
@@ -520,7 +520,7 @@ class SingularValueDecomposition
      */
     public function rank()
     {
-        $eps = pow(2.0, -52.0);
+        $eps = 2.0 ** (-52.0);
         $tol = max($this->m, $this->n) * $this->s[0] * $eps;
         $r = 0;
         for ($i = 0; $i < count($this->s); ++$i) {

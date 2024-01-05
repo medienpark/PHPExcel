@@ -28,13 +28,6 @@
 class PHPExcel_Writer_CSV extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
 {
     /**
-     * PHPExcel object
-     *
-     * @var PHPExcel
-     */
-    private $phpExcel;
-
-    /**
      * Delimiter
      *
      * @var string
@@ -89,9 +82,13 @@ class PHPExcel_Writer_CSV extends PHPExcel_Writer_Abstract implements PHPExcel_W
      *
      * @param PHPExcel $phpExcel PHPExcel object
      */
-    public function __construct(PHPExcel $phpExcel)
+    public function __construct(
+        /**
+         * PHPExcel object
+         */
+        private readonly PHPExcel $phpExcel
+    )
     {
-        $this->phpExcel    = $phpExcel;
     }
 
     /**
@@ -317,7 +314,7 @@ class PHPExcel_Writer_CSV extends PHPExcel_Writer_Abstract implements PHPExcel_W
      * @param  array $pValues     Array containing values in a row
      * @throws PHPExcel_Writer_Exception
      */
-    private function writeLine($pFileHandle = null, $pValues = null)
+    private function writeLine(mixed $pFileHandle = null, $pValues = null)
     {
         if (is_array($pValues)) {
             // No leading delimiter

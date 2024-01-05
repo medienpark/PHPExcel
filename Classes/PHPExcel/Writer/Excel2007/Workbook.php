@@ -30,7 +30,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
     /**
      * Write workbook to XML format
      *
-     * @param  PHPExcel $pPHPExcel
      * @param  boolean  $recalcRequired Indicate whether formulas should be recalculated before writing
      * @return string         XML Output
      * @throws PHPExcel_Writer_Exception
@@ -122,7 +121,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write BookViews
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel                  $pPHPExcel
      * @throws PHPExcel_Writer_Exception
      */
     private function writeBookViews(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel $pPHPExcel = null)
@@ -152,7 +150,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write WorkbookProtection
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel                  $pPHPExcel
      * @throws PHPExcel_Writer_Exception
      */
     private function writeWorkbookProtection(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel $pPHPExcel = null)
@@ -202,7 +199,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write sheets
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel                  $pPHPExcel
      * @throws PHPExcel_Writer_Exception
      */
     private function writeSheets(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel $pPHPExcel = null)
@@ -255,7 +251,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write Defined Names
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel                  $pPHPExcel
      * @throws PHPExcel_Writer_Exception
      */
     private function writeDefinedNames(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel $pPHPExcel = null)
@@ -266,7 +261,7 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
         // Named ranges
         if (count($pPHPExcel->getNamedRanges()) > 0) {
             // Named ranges
-            $this->writeNamedRanges($objWriter, $pPHPExcel);
+            $this->writeNamedRanges($pPHPExcel, $objWriter);
         }
 
         // Other defined names
@@ -289,15 +284,14 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write named ranges
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel                  $pPHPExcel
      * @throws PHPExcel_Writer_Exception
      */
-    private function writeNamedRanges(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel $pPHPExcel)
+    private function writeNamedRanges(PHPExcel $pPHPExcel, PHPExcel_Shared_XMLWriter $objWriter = null)
     {
         // Loop named ranges
         $namedRanges = $pPHPExcel->getNamedRanges();
         foreach ($namedRanges as $namedRange) {
-            $this->writeDefinedNameForNamedRange($objWriter, $namedRange);
+            $this->writeDefinedNameForNamedRange($namedRange, $objWriter);
         }
     }
 
@@ -305,10 +299,9 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write Defined Name for named range
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter   XML Writer
-     * @param  PHPExcel_NamedRange       $pNamedRange
      * @throws PHPExcel_Writer_Exception
      */
-    private function writeDefinedNameForNamedRange(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_NamedRange $pNamedRange)
+    private function writeDefinedNameForNamedRange(PHPExcel_NamedRange $pNamedRange, PHPExcel_Shared_XMLWriter $objWriter = null)
     {
         // definedName for named range
         $objWriter->startElement('definedName');
@@ -336,7 +329,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write Defined Name for autoFilter
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel_Worksheet        $pSheet
      * @param  int                       $pSheetId
      * @throws PHPExcel_Writer_Exception
      */
@@ -354,8 +346,8 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
             $range = PHPExcel_Cell::splitRange($autoFilterRange);
             $range = $range[0];
             //    Strip any worksheet ref so we can make the cell ref absolute
-            if (strpos($range[0], '!') !== false) {
-                list($ws, $range[0]) = explode('!', $range[0]);
+            if (str_contains($range[0], '!')) {
+                [$ws, $range[0]] = explode('!', $range[0]);
             }
 
             $range[0] = PHPExcel_Cell::absoluteCoordinate($range[0]);
@@ -372,7 +364,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write Defined Name for PrintTitles
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel_Worksheet        $pSheet
      * @param  int                       $pSheetId
      * @throws PHPExcel_Writer_Exception
      */
@@ -415,7 +406,6 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
      * Write Defined Name for PrintTitles
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
-     * @param  PHPExcel_Worksheet        $pSheet
      * @param  int                       $pSheetId
      * @throws PHPExcel_Writer_Exception
      */
@@ -433,7 +423,7 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
             // Print area
             $printArea = PHPExcel_Cell::splitRange($pSheet->getPageSetup()->getPrintArea());
 
-            $chunks = array();
+            $chunks = [];
             foreach ($printArea as $printAreaRect) {
                 $printAreaRect[0] = PHPExcel_Cell::absoluteReference($printAreaRect[0]);
                 $printAreaRect[1] = PHPExcel_Cell::absoluteReference($printAreaRect[1]);

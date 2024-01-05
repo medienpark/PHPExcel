@@ -50,7 +50,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @var PHPExcel_Writer_Excel2007_WriterPart[]
      */
-    private $writerParts    = array();
+    private $writerParts    = [];
 
     /**
      * Private PHPExcel
@@ -64,7 +64,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
      *
      * @var string[]
      */
-    private $stringTable    = array();
+    private $stringTable    = [];
 
     /**
      * Private unique PHPExcel_Style_Conditional HashTable
@@ -117,28 +117,13 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
 
     /**
      * Create a new PHPExcel_Writer_Excel2007
-     *
-     * @param PHPExcel $pPHPExcel
      */
     public function __construct(PHPExcel $pPHPExcel = null)
     {
         // Assign PHPExcel
         $this->setPHPExcel($pPHPExcel);
 
-        $writerPartsArray = array(  'stringtable'       => 'PHPExcel_Writer_Excel2007_StringTable',
-                                    'contenttypes'      => 'PHPExcel_Writer_Excel2007_ContentTypes',
-                                    'docprops'          => 'PHPExcel_Writer_Excel2007_DocProps',
-                                    'rels'              => 'PHPExcel_Writer_Excel2007_Rels',
-                                    'theme'             => 'PHPExcel_Writer_Excel2007_Theme',
-                                    'style'             => 'PHPExcel_Writer_Excel2007_Style',
-                                    'workbook'          => 'PHPExcel_Writer_Excel2007_Workbook',
-                                    'worksheet'         => 'PHPExcel_Writer_Excel2007_Worksheet',
-                                    'drawing'           => 'PHPExcel_Writer_Excel2007_Drawing',
-                                    'comments'          => 'PHPExcel_Writer_Excel2007_Comments',
-                                    'chart'             => 'PHPExcel_Writer_Excel2007_Chart',
-                                    'relsvba'           => 'PHPExcel_Writer_Excel2007_RelsVBA',
-                                    'relsribbonobjects' => 'PHPExcel_Writer_Excel2007_RelsRibbon'
-                                 );
+        $writerPartsArray = ['stringtable'       => 'PHPExcel_Writer_Excel2007_StringTable', 'contenttypes'      => 'PHPExcel_Writer_Excel2007_ContentTypes', 'docprops'          => 'PHPExcel_Writer_Excel2007_DocProps', 'rels'              => 'PHPExcel_Writer_Excel2007_Rels', 'theme'             => 'PHPExcel_Writer_Excel2007_Theme', 'style'             => 'PHPExcel_Writer_Excel2007_Style', 'workbook'          => 'PHPExcel_Writer_Excel2007_Workbook', 'worksheet'         => 'PHPExcel_Writer_Excel2007_Worksheet', 'drawing'           => 'PHPExcel_Writer_Excel2007_Drawing', 'comments'          => 'PHPExcel_Writer_Excel2007_Comments', 'chart'             => 'PHPExcel_Writer_Excel2007_Chart', 'relsvba'           => 'PHPExcel_Writer_Excel2007_RelsVBA', 'relsribbonobjects' => 'PHPExcel_Writer_Excel2007_RelsRibbon'];
 
         //    Initialise writer parts
         //        and Assign their parent IWriters
@@ -146,10 +131,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
             $this->writerParts[$writer] = new $class($this);
         }
 
-        $hashTablesArray = array( 'stylesConditionalHashTable',    'fillHashTable',        'fontHashTable',
-                                  'bordersHashTable',                'numFmtHashTable',        'drawingHashTable',
-                                  'styleHashTable'
-                                );
+        $hashTablesArray = ['stylesConditionalHashTable', 'fillHashTable', 'fontHashTable', 'bordersHashTable', 'numFmtHashTable', 'drawingHashTable', 'styleHashTable'];
 
         // Set HashTable variables
         foreach ($hashTablesArray as $tableName) {
@@ -199,7 +181,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
             PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
 
             // Create string lookup table
-            $this->stringTable = array();
+            $this->stringTable = [];
             for ($i = 0; $i < $this->spreadSheet->getSheetCount(); ++$i) {
                 $this->stringTable = $this->getWriterPart('StringTable')->createStringTable($this->spreadSheet->getSheet($i), $this->stringTable);
             }
@@ -354,7 +336,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
                 if ($this->getDrawingHashTable()->getByIndex($i) instanceof PHPExcel_Worksheet_Drawing) {
                     $imageContents = null;
                     $imagePath = $this->getDrawingHashTable()->getByIndex($i)->getPath();
-                    if (strpos($imagePath, 'zip://') !== false) {
+                    if (str_contains($imagePath, 'zip://')) {
                         $imagePath = substr($imagePath, 6);
                         $imagePathSplitted = explode('#', $imagePath);
 

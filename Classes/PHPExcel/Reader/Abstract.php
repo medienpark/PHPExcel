@@ -175,13 +175,13 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
      *
      * @return PHPExcel_Reader_IReader
      */
-    public function setLoadSheetsOnly($value = null)
+    public function setLoadSheetsOnly(mixed $value = null)
     {
         if ($value === null) {
             return $this->setLoadAllSheets();
         }
 
-        $this->loadSheetsOnly = is_array($value) ? $value : array($value);
+        $this->loadSheetsOnly = is_array($value) ? $value : [$value];
         return $this;
     }
 
@@ -210,7 +210,6 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
     /**
      * Set read filter
      *
-     * @param  PHPExcel_Reader_IReadFilter $pValue
      * @return PHPExcel_Reader_IReader
      */
     public function setReadFilter(PHPExcel_Reader_IReadFilter $pValue)
@@ -252,7 +251,7 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
         // Check if file exists
         try {
             $this->openFile($pFilename);
-        } catch (Exception $e) {
+        } catch (Exception) {
             return false;
         }
 

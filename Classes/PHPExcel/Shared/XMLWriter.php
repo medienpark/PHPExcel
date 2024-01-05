@@ -38,8 +38,8 @@ class PHPExcel_Shared_XMLWriter extends XMLWriter
     /**
  * Temporary storage method 
 */
-    const STORAGE_MEMORY    = 1;
-    const STORAGE_DISK      = 2;
+    final public const STORAGE_MEMORY    = 1;
+    final public const STORAGE_DISK      = 2;
 
     /**
      * Temporary filename

@@ -32,7 +32,7 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
      *
      * @var PHPExcel_Writer_OpenDocument_WriterPart[]
      */
-    private $writerParts = array();
+    private $writerParts = [];
 
     /**
      * Private PHPExcel
@@ -43,22 +43,12 @@ class PHPExcel_Writer_OpenDocument extends PHPExcel_Writer_Abstract implements P
 
     /**
      * Create a new PHPExcel_Writer_OpenDocument
-     *
-     * @param PHPExcel $pPHPExcel
      */
     public function __construct(PHPExcel $pPHPExcel = null)
     {
         $this->setPHPExcel($pPHPExcel);
 
-        $writerPartsArray = array(
-            'content'    => 'PHPExcel_Writer_OpenDocument_Content',
-            'meta'       => 'PHPExcel_Writer_OpenDocument_Meta',
-            'meta_inf'   => 'PHPExcel_Writer_OpenDocument_MetaInf',
-            'mimetype'   => 'PHPExcel_Writer_OpenDocument_Mimetype',
-            'settings'   => 'PHPExcel_Writer_OpenDocument_Settings',
-            'styles'     => 'PHPExcel_Writer_OpenDocument_Styles',
-            'thumbnails' => 'PHPExcel_Writer_OpenDocument_Thumbnails'
-        );
+        $writerPartsArray = ['content'    => 'PHPExcel_Writer_OpenDocument_Content', 'meta'       => 'PHPExcel_Writer_OpenDocument_Meta', 'meta_inf'   => 'PHPExcel_Writer_OpenDocument_MetaInf', 'mimetype'   => 'PHPExcel_Writer_OpenDocument_Mimetype', 'settings'   => 'PHPExcel_Writer_OpenDocument_Settings', 'styles'     => 'PHPExcel_Writer_OpenDocument_Styles', 'thumbnails' => 'PHPExcel_Writer_OpenDocument_Thumbnails'];
 
         foreach ($writerPartsArray as $writer => $class) {
             $this->writerParts[$writer] = new $class($this);

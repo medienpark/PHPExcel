@@ -30,7 +30,6 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
     /**
      * Write relationships to XML format
      *
-     * @param  PHPExcel $pPHPExcel
      * @return string         XML Output
      * @throws PHPExcel_Writer_Exception
      */
@@ -104,7 +103,6 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
     /**
      * Write workbook relationships to XML format
      *
-     * @param  PHPExcel $pPHPExcel
      * @return string         XML Output
      * @throws PHPExcel_Writer_Exception
      */
@@ -183,7 +181,6 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
      *     rId1                 - Drawings
      *  rId_hyperlink_x     - Hyperlinks
      *
-     * @param  PHPExcel_Worksheet $pWorksheet
      * @param  int                $pWorksheetId
      * @param  boolean            $includeCharts Flag indicating if we should write charts
      * @return string                 XML Output
@@ -211,7 +208,7 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
         if ($includeCharts) {
             $charts = $pWorksheet->getChartCollection();
         } else {
-            $charts = array();
+            $charts = [];
         }
         if (($pWorksheet->getDrawingCollection()->count() > 0) 
             || (count($charts) > 0)
@@ -292,13 +289,12 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
     /**
      * Write drawing relationships to XML format
      *
-     * @param  PHPExcel_Worksheet $pWorksheet
      * @param  int                &$chartRef     Chart ID
      * @param  boolean            $includeCharts Flag indicating if we should write charts
      * @return string                 XML Output
      * @throws PHPExcel_Writer_Exception
      */
-    public function writeDrawingRelationships(PHPExcel_Worksheet $pWorksheet = null, &$chartRef, $includeCharts = false)
+    public function writeDrawingRelationships(&$chartRef, PHPExcel_Worksheet $pWorksheet = null, $includeCharts = false)
     {
         // Create XML writer
         $objWriter = null;
@@ -358,7 +354,6 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
     /**
      * Write header/footer drawing relationships to XML format
      *
-     * @param  PHPExcel_Worksheet $pWorksheet
      * @return string                         XML Output
      * @throws PHPExcel_Writer_Exception
      */

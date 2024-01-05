@@ -236,7 +236,7 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
         //    Flush the WinCache cache
         $this->__destruct();
 
-        $this->cellCache = array();
+        $this->cellCache = [];
 
         //    detach ourself from the worksheet, so that it can then delete this object successfully
         $this->parent = null;
@@ -250,7 +250,7 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
      */
     public function __construct(PHPExcel_Worksheet $parent, $arguments)
     {
-        $cacheTime    = (isset($arguments['cacheTime']))    ? $arguments['cacheTime']    : 600;
+        $cacheTime    = $arguments['cacheTime'] ?? 600;
 
         if (is_null($this->cachePrefix)) {
             $baseUnique = $this->getUniqueID();

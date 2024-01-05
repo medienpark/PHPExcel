@@ -18,14 +18,14 @@
  */
 class PHPExcel_Shared_JAMA_QRDecomposition
 {
-    const MATRIX_RANK_EXCEPTION  = "Can only perform operation on full-rank matrix.";
+    final public const MATRIX_RANK_EXCEPTION  = "Can only perform operation on full-rank matrix.";
 
     /**
      *    Array for internal storage of decomposition.
      *
      * @var array
      */
-    private $QR = array();
+    private $QR = [];
 
     /**
      *    Row dimension.
@@ -46,7 +46,7 @@ class PHPExcel_Shared_JAMA_QRDecomposition
      *
      * @var array
      */
-    private $Rdiag = array();
+    private $Rdiag = [];
 
 
     /**

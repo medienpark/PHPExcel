@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/Complex.php';
+require_once __DIR__.'/Complex.php';
 
 class complexAssert
 {
@@ -8,7 +8,7 @@ class complexAssert
 
     public function assertComplexEquals($expected, $actual, $delta = 0)
     {
-        if ($expected{0} === '#') {
+        if ($expected[0] === '#') {
             //    Expecting an error, so we do a straight string comparison
             if ($expected === $actual) {
                 return true;

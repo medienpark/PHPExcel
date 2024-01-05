@@ -7,7 +7,7 @@ if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
      */
-    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    define('PHPEXCEL_ROOT', __DIR__ . '/../../');
     include PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
 }
 
@@ -206,7 +206,7 @@ class PHPExcel_Calculation_Logical
      * @param    mixed $logical A value or expression that can be evaluated to TRUE or FALSE
      * @return   boolean        The boolean inverse of the argument.
      */
-    public static function NOT($logical = false)
+    public static function NOT(mixed $logical = false)
     {
         $logical = PHPExcel_Calculation_Functions::flattenSingleValue($logical);
         if (is_string($logical)) {
@@ -255,7 +255,7 @@ class PHPExcel_Calculation_Logical
      * @param    mixed $returnIfFalse Optional value to return when condition is false
      * @return   mixed    The value of returnIfTrue or returnIfFalse determined by condition
      */
-    public static function STATEMENT_IF($condition = true, $returnIfTrue = 0, $returnIfFalse = false)
+    public static function STATEMENT_IF(mixed $condition = true, mixed $returnIfTrue = 0, mixed $returnIfFalse = false)
     {
         $condition     = (is_null($condition))     ? true :  (boolean) PHPExcel_Calculation_Functions::flattenSingleValue($condition);
         $returnIfTrue  = (is_null($returnIfTrue))  ? 0 :     PHPExcel_Calculation_Functions::flattenSingleValue($returnIfTrue);
@@ -277,7 +277,7 @@ class PHPExcel_Calculation_Logical
      * @param    mixed $errorpart Value to return when testValue is an error condition
      * @return   mixed    The value of errorpart or testValue determined by error condition
      */
-    public static function IFERROR($testValue = '', $errorpart = '')
+    public static function IFERROR(mixed $testValue = '', mixed $errorpart = '')
     {
         $testValue = (is_null($testValue)) ? '' : PHPExcel_Calculation_Functions::flattenSingleValue($testValue);
         $errorpart = (is_null($errorpart)) ? '' : PHPExcel_Calculation_Functions::flattenSingleValue($errorpart);

@@ -20,15 +20,15 @@
  */
 class PHPExcel_Shared_JAMA_LUDecomposition
 {
-    const MATRIX_SINGULAR_EXCEPTION    = "Can only perform operation on singular matrix.";
-    const MATRIX_SQUARE_EXCEPTION      = "Mismatched Row dimension";
+    final public const MATRIX_SINGULAR_EXCEPTION    = "Can only perform operation on singular matrix.";
+    final public const MATRIX_SQUARE_EXCEPTION      = "Mismatched Row dimension";
 
     /**
      *    Decomposition storage
      *
      * @var array
      */
-    private $LU = array();
+    private $LU = [];
 
     /**
      *    Row dimension.
@@ -56,7 +56,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition
      *
      * @var array
      */
-    private $piv = array();
+    private $piv = [];
 
     /**
      *    LU Decomposition constructor.
@@ -75,7 +75,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition
                 $this->piv[$i] = $i;
             }
             $this->pivsign = 1;
-            $LUrowi = $LUcolj = array();
+            $LUrowi = $LUcolj = [];
 
             // Outer loop.
             for ($j = 0; $j < $this->n; ++$j) {

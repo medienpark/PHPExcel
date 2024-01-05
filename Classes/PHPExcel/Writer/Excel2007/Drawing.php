@@ -30,13 +30,12 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
     /**
      * Write drawings to XML format
      *
-     * @param  PHPExcel_Worksheet $pWorksheet
      * @param  int                &$chartRef     Chart ID
      * @param  boolean            $includeCharts Flag indicating if we should include drawing details for charts
      * @return string                 XML Output
      * @throws PHPExcel_Writer_Exception
      */
-    public function writeDrawings(PHPExcel_Worksheet $pWorksheet = null, &$chartRef, $includeCharts = false)
+    public function writeDrawings(&$chartRef, PHPExcel_Worksheet $pWorksheet = null, $includeCharts = false)
     {
         // Create XML writer
         $objWriter = null;
@@ -84,7 +83,6 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
      * Write drawings to XML format
      *
      * @param  PHPExcel_Shared_XMLWriter $objWriter   XML Writer
-     * @param  PHPExcel_Chart            $pChart
      * @param  int                       $pRelationId
      * @throws PHPExcel_Writer_Exception
      */
@@ -156,7 +154,6 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
      * Write drawings to XML format
      *
      * @param  PHPExcel_Shared_XMLWriter      $objWriter   XML Writer
-     * @param  PHPExcel_Worksheet_BaseDrawing $pDrawing
      * @param  int                            $pRelationId
      * @throws PHPExcel_Writer_Exception
      */
@@ -373,7 +370,6 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
     /**
      * Write VML header/footer images to XML format
      *
-     * @param  PHPExcel_Worksheet $pWorksheet
      * @return string                                 XML Output
      * @throws PHPExcel_Writer_Exception
      */
@@ -563,14 +559,13 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
     /**
      * Get an array of all drawings
      *
-     * @param  PHPExcel $pPHPExcel
      * @return PHPExcel_Worksheet_Drawing[]        All drawings in PHPExcel
      * @throws PHPExcel_Writer_Exception
      */
     public function allDrawings(PHPExcel $pPHPExcel = null)
     {
         // Get an array of all drawings
-        $aDrawings    = array();
+        $aDrawings    = [];
 
         // Loop through PHPExcel
         $sheetCount = $pPHPExcel->getSheetCount();

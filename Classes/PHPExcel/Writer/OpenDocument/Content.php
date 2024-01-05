@@ -36,13 +36,12 @@
  */
 class PHPExcel_Writer_OpenDocument_Content extends PHPExcel_Writer_OpenDocument_WriterPart
 {
-    const NUMBER_COLS_REPEATED_MAX = 1024;
-    const NUMBER_ROWS_REPEATED_MAX = 1048576;
+    final public const NUMBER_COLS_REPEATED_MAX = 1024;
+    final public const NUMBER_ROWS_REPEATED_MAX = 1_048_576;
 
     /**
      * Write content.xml to XML format
      *
-     * @param  PHPExcel $pPHPExcel
      * @return string                     XML Output
      * @throws PHPExcel_Writer_Exception
      */
@@ -116,8 +115,6 @@ class PHPExcel_Writer_OpenDocument_Content extends PHPExcel_Writer_OpenDocument_
 
     /**
      * Write sheets
-     *
-     * @param PHPExcel_Shared_XMLWriter $objWriter
      */
     private function writeSheets(PHPExcel_Shared_XMLWriter $objWriter)
     {
@@ -139,9 +136,6 @@ class PHPExcel_Writer_OpenDocument_Content extends PHPExcel_Writer_OpenDocument_
 
     /**
      * Write rows of the specified sheet
-     *
-     * @param PHPExcel_Shared_XMLWriter $objWriter
-     * @param PHPExcel_Worksheet        $sheet
      */
     private function writeRows(PHPExcel_Shared_XMLWriter $objWriter, PHPExcel_Worksheet $sheet)
     {
@@ -176,8 +170,6 @@ class PHPExcel_Writer_OpenDocument_Content extends PHPExcel_Writer_OpenDocument_
     /**
      * Write cells of the specified row
      *
-     * @param  PHPExcel_Shared_XMLWriter $objWriter
-     * @param  PHPExcel_Worksheet_Row    $row
      * @throws PHPExcel_Writer_Exception
      */
     private function writeCells(PHPExcel_Shared_XMLWriter $objWriter, PHPExcel_Worksheet_Row $row)
@@ -206,7 +198,7 @@ class PHPExcel_Writer_OpenDocument_Content extends PHPExcel_Writer_OpenDocument_
             case PHPExcel_Cell_DataType::TYPE_FORMULA:
                 try {
                     $formula_value = $cell->getCalculatedValue();
-                } catch (Exception $e) {
+                } catch (Exception) {
                     $formula_value = $cell->getValue();
                 }
                 $objWriter->writeAttribute('table:formula', 'of:' . $cell->getValue());
@@ -254,7 +246,6 @@ class PHPExcel_Writer_OpenDocument_Content extends PHPExcel_Writer_OpenDocument_
     /**
      * Write span
      *
-     * @param PHPExcel_Shared_XMLWriter $objWriter
      * @param integer                   $curColumn
      * @param integer                   $prevColumn
      */

@@ -60,14 +60,14 @@ class PHPExcel_Shared_Escher_DggContainer
      *
      * @var array
      */
-    private $OPT = array();
+    private $OPT = [];
 
     /**
      * Array of identifier clusters containg information about the maximum shape identifiers
      *
      * @var array
      */
-    private $IDCLs = array();
+    private $IDCLs = [];
 
     /**
      * Get maximum shape index of all shapes in all drawings (plus one)
@@ -153,9 +153,8 @@ class PHPExcel_Shared_Escher_DggContainer
      * Set an option for the drawing group
      *
      * @param int   $property The number specifies the option
-     * @param mixed $value
      */
-    public function setOPT($property, $value)
+    public function setOPT($property, mixed $value)
     {
         $this->OPT[$property] = $value;
     }
@@ -168,10 +167,7 @@ class PHPExcel_Shared_Escher_DggContainer
      */
     public function getOPT($property)
     {
-        if (isset($this->OPT[$property])) {
-            return $this->OPT[$property];
-        }
-        return null;
+        return $this->OPT[$property] ?? null;
     }
 
     /**
