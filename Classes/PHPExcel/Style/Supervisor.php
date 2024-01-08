@@ -19,21 +19,14 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Style
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Style
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 abstract class PHPExcel_Style_Supervisor
 {
-    /**
-     * Supervisor?
-     *
-     * @var boolean
-     */
-    protected $isSupervisor;
-
     /**
      * Parent. Only used for supervisor
      *
@@ -44,20 +37,23 @@ abstract class PHPExcel_Style_Supervisor
     /**
      * Create a new PHPExcel_Style_Alignment
      *
-     * @param    boolean    $isSupervisor    Flag indicating if this is a supervisor or not
-     *                                    Leave this value at default unless you understand exactly what
-     *                                        its ramifications are
+     * @param boolean $isSupervisor Flag indicating if this is a supervisor or not
+     *                              Leave this value at default unless you
+     *                              understand exactly what its ramifications are
      */
-    public function __construct($isSupervisor = false)
+    public function __construct(
+        /**
+         * Supervisor?
+         */
+        protected $isSupervisor = false
+    )
     {
-        // Supervisor?
-        $this->isSupervisor = $isSupervisor;
     }
 
     /**
      * Bind parent. Only used for supervisor
      *
-     * @param PHPExcel $parent
+     * @param  PHPExcel $parent
      * @return PHPExcel_Style_Supervisor
      */
     public function bindParent($parent, $parentPropertyName = null)

@@ -19,24 +19,24 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared_Escher
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared_Escher
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE
 {
-    const BLIPTYPE_ERROR    = 0x00;
-    const BLIPTYPE_UNKNOWN  = 0x01;
-    const BLIPTYPE_EMF      = 0x02;
-    const BLIPTYPE_WMF      = 0x03;
-    const BLIPTYPE_PICT     = 0x04;
-    const BLIPTYPE_JPEG     = 0x05;
-    const BLIPTYPE_PNG      = 0x06;
-    const BLIPTYPE_DIB      = 0x07;
-    const BLIPTYPE_TIFF     = 0x11;
-    const BLIPTYPE_CMYKJPEG = 0x12;
+    final public const BLIPTYPE_ERROR    = 0x00;
+    final public const BLIPTYPE_UNKNOWN  = 0x01;
+    final public const BLIPTYPE_EMF      = 0x02;
+    final public const BLIPTYPE_WMF      = 0x03;
+    final public const BLIPTYPE_PICT     = 0x04;
+    final public const BLIPTYPE_JPEG     = 0x05;
+    final public const BLIPTYPE_PNG      = 0x06;
+    final public const BLIPTYPE_DIB      = 0x07;
+    final public const BLIPTYPE_TIFF     = 0x11;
+    final public const BLIPTYPE_CMYKJPEG = 0x12;
 
     /**
      * The parent BLIP Store Entry Container

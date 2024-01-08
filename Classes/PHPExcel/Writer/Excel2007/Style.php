@@ -19,20 +19,19 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel2007
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Writer_Excel2007
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPart
 {
     /**
      * Write styles to XML format
      *
-     * @param     PHPExcel    $pPHPExcel
-     * @return     string         XML Output
-     * @throws     PHPExcel_Writer_Exception
+     * @return string         XML Output
+     * @throws PHPExcel_Writer_Exception
      */
     public function writeStyles(PHPExcel $pPHPExcel = null)
     {
@@ -160,15 +159,16 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Fill
      *
-     * @param     PHPExcel_Shared_XMLWriter     $objWriter         XML Writer
-     * @param     PHPExcel_Style_Fill            $pFill            Fill style
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  PHPExcel_Style_Fill       $pFill     Fill style
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeFill(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style_Fill $pFill = null)
     {
         // Check if this is a pattern type or gradient type
-        if ($pFill->getFillType() === PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR ||
-            $pFill->getFillType() === PHPExcel_Style_Fill::FILL_GRADIENT_PATH) {
+        if ($pFill->getFillType() === PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR 
+            || $pFill->getFillType() === PHPExcel_Style_Fill::FILL_GRADIENT_PATH
+        ) {
             // Gradient fill
             $this->writeGradientFill($objWriter, $pFill);
         } elseif ($pFill->getFillType() !== null) {
@@ -180,9 +180,9 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Gradient Fill
      *
-     * @param     PHPExcel_Shared_XMLWriter     $objWriter         XML Writer
-     * @param     PHPExcel_Style_Fill            $pFill            Fill style
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  PHPExcel_Style_Fill       $pFill     Fill style
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeGradientFill(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style_Fill $pFill = null)
     {
@@ -224,9 +224,9 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Pattern Fill
      *
-     * @param     PHPExcel_Shared_XMLWriter            $objWriter         XML Writer
-     * @param     PHPExcel_Style_Fill                    $pFill            Fill style
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  PHPExcel_Style_Fill       $pFill     Fill style
+     * @throws PHPExcel_Writer_Exception
      */
     private function writePatternFill(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style_Fill $pFill = null)
     {
@@ -262,9 +262,9 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Font
      *
-     * @param     PHPExcel_Shared_XMLWriter        $objWriter         XML Writer
-     * @param     PHPExcel_Style_Font                $pFont            Font style
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  PHPExcel_Style_Font       $pFont     Font style
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeFont(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style_Font $pFont = null)
     {
@@ -342,9 +342,9 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Border
      *
-     * @param     PHPExcel_Shared_XMLWriter            $objWriter         XML Writer
-     * @param     PHPExcel_Style_Borders                $pBorders        Borders style
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  PHPExcel_Style_Borders    $pBorders  Borders style
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeBorder(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style_Borders $pBorders = null)
     {
@@ -352,18 +352,18 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
         $objWriter->startElement('border');
         // Diagonal?
         switch ($pBorders->getDiagonalDirection()) {
-            case PHPExcel_Style_Borders::DIAGONAL_UP:
-                $objWriter->writeAttribute('diagonalUp', 'true');
-                $objWriter->writeAttribute('diagonalDown', 'false');
-                break;
-            case PHPExcel_Style_Borders::DIAGONAL_DOWN:
-                $objWriter->writeAttribute('diagonalUp', 'false');
-                $objWriter->writeAttribute('diagonalDown', 'true');
-                break;
-            case PHPExcel_Style_Borders::DIAGONAL_BOTH:
-                $objWriter->writeAttribute('diagonalUp', 'true');
-                $objWriter->writeAttribute('diagonalDown', 'true');
-                break;
+        case PHPExcel_Style_Borders::DIAGONAL_UP:
+            $objWriter->writeAttribute('diagonalUp', 'true');
+            $objWriter->writeAttribute('diagonalDown', 'false');
+            break;
+        case PHPExcel_Style_Borders::DIAGONAL_DOWN:
+            $objWriter->writeAttribute('diagonalUp', 'false');
+            $objWriter->writeAttribute('diagonalDown', 'true');
+            break;
+        case PHPExcel_Style_Borders::DIAGONAL_BOTH:
+            $objWriter->writeAttribute('diagonalUp', 'true');
+            $objWriter->writeAttribute('diagonalDown', 'true');
+            break;
         }
 
         // BorderPr
@@ -378,10 +378,10 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Cell Style Xf
      *
-     * @param     PHPExcel_Shared_XMLWriter            $objWriter         XML Writer
-     * @param     PHPExcel_Style                        $pStyle            Style
-     * @param     PHPExcel                            $pPHPExcel        Workbook
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  PHPExcel_Style            $pStyle    Style
+     * @param  PHPExcel                  $pPHPExcel Workbook
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeCellStyleXf(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style $pStyle = null, PHPExcel $pPHPExcel = null)
     {
@@ -454,9 +454,9 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write Cell Style Dxf
      *
-     * @param     PHPExcel_Shared_XMLWriter         $objWriter         XML Writer
-     * @param     PHPExcel_Style                    $pStyle            Style
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  PHPExcel_Style            $pStyle    Style
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeCellStyleDxf(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style $pStyle = null)
     {
@@ -497,15 +497,18 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
 
         // protection
         if (($pStyle->getProtection()->getLocked() !== null) || ($pStyle->getProtection()->getHidden() !== null)) {
-            if ($pStyle->getProtection()->getLocked() !== PHPExcel_Style_Protection::PROTECTION_INHERIT ||
-                $pStyle->getProtection()->getHidden() !== PHPExcel_Style_Protection::PROTECTION_INHERIT) {
+            if ($pStyle->getProtection()->getLocked() !== PHPExcel_Style_Protection::PROTECTION_INHERIT 
+                || $pStyle->getProtection()->getHidden() !== PHPExcel_Style_Protection::PROTECTION_INHERIT
+            ) {
                 $objWriter->startElement('protection');
-                if (($pStyle->getProtection()->getLocked() !== null) &&
-                    ($pStyle->getProtection()->getLocked() !== PHPExcel_Style_Protection::PROTECTION_INHERIT)) {
+                if (($pStyle->getProtection()->getLocked() !== null) 
+                    && ($pStyle->getProtection()->getLocked() !== PHPExcel_Style_Protection::PROTECTION_INHERIT)
+                ) {
                     $objWriter->writeAttribute('locked', ($pStyle->getProtection()->getLocked() == PHPExcel_Style_Protection::PROTECTION_PROTECTED ? 'true' : 'false'));
                 }
-                if (($pStyle->getProtection()->getHidden() !== null) &&
-                    ($pStyle->getProtection()->getHidden() !== PHPExcel_Style_Protection::PROTECTION_INHERIT)) {
+                if (($pStyle->getProtection()->getHidden() !== null) 
+                    && ($pStyle->getProtection()->getHidden() !== PHPExcel_Style_Protection::PROTECTION_INHERIT)
+                ) {
                     $objWriter->writeAttribute('hidden', ($pStyle->getProtection()->getHidden() == PHPExcel_Style_Protection::PROTECTION_PROTECTED ? 'true' : 'false'));
                 }
                 $objWriter->endElement();
@@ -518,10 +521,10 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write BorderPr
      *
-     * @param     PHPExcel_Shared_XMLWriter        $objWriter         XML Writer
-     * @param     string                            $pName            Element name
-     * @param     PHPExcel_Style_Border            $pBorder        Border style
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter $objWriter XML Writer
+     * @param  string                    $pName     Element name
+     * @param  PHPExcel_Style_Border     $pBorder   Border style
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeBorderPr(PHPExcel_Shared_XMLWriter $objWriter = null, $pName = 'left', PHPExcel_Style_Border $pBorder = null)
     {
@@ -542,10 +545,10 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Write NumberFormat
      *
-     * @param     PHPExcel_Shared_XMLWriter            $objWriter         XML Writer
-     * @param     PHPExcel_Style_NumberFormat            $pNumberFormat    Number Format
-     * @param     int                                    $pId            Number Format identifier
-     * @throws     PHPExcel_Writer_Exception
+     * @param  PHPExcel_Shared_XMLWriter   $objWriter     XML Writer
+     * @param  PHPExcel_Style_NumberFormat $pNumberFormat Number Format
+     * @param  int                         $pId           Number Format identifier
+     * @throws PHPExcel_Writer_Exception
      */
     private function writeNumFmt(PHPExcel_Shared_XMLWriter $objWriter = null, PHPExcel_Style_NumberFormat $pNumberFormat = null, $pId = 0)
     {
@@ -564,9 +567,8 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Get an array of all styles
      *
-     * @param     PHPExcel                $pPHPExcel
-     * @return     PHPExcel_Style[]        All styles in PHPExcel
-     * @throws     PHPExcel_Writer_Exception
+     * @return PHPExcel_Style[]        All styles in PHPExcel
+     * @throws PHPExcel_Writer_Exception
      */
     public function allStyles(PHPExcel $pPHPExcel = null)
     {
@@ -576,14 +578,13 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Get an array of all conditional styles
      *
-     * @param     PHPExcel                            $pPHPExcel
-     * @return     PHPExcel_Style_Conditional[]        All conditional styles in PHPExcel
-     * @throws     PHPExcel_Writer_Exception
+     * @return PHPExcel_Style_Conditional[]        All conditional styles in PHPExcel
+     * @throws PHPExcel_Writer_Exception
      */
     public function allConditionalStyles(PHPExcel $pPHPExcel = null)
     {
         // Get an array of all styles
-        $aStyles = array();
+        $aStyles = [];
 
         $sheetCount = $pPHPExcel->getSheetCount();
         for ($i = 0; $i < $sheetCount; ++$i) {
@@ -600,14 +601,13 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Get an array of all fills
      *
-     * @param     PHPExcel                        $pPHPExcel
-     * @return     PHPExcel_Style_Fill[]        All fills in PHPExcel
-     * @throws     PHPExcel_Writer_Exception
+     * @return PHPExcel_Style_Fill[]        All fills in PHPExcel
+     * @throws PHPExcel_Writer_Exception
      */
     public function allFills(PHPExcel $pPHPExcel = null)
     {
         // Get an array of unique fills
-        $aFills = array();
+        $aFills = [];
 
         // Two first fills are predefined
         $fill0 = new PHPExcel_Style_Fill();
@@ -631,14 +631,13 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Get an array of all fonts
      *
-     * @param     PHPExcel                        $pPHPExcel
-     * @return     PHPExcel_Style_Font[]        All fonts in PHPExcel
-     * @throws     PHPExcel_Writer_Exception
+     * @return PHPExcel_Style_Font[]        All fonts in PHPExcel
+     * @throws PHPExcel_Writer_Exception
      */
     public function allFonts(PHPExcel $pPHPExcel = null)
     {
         // Get an array of unique fonts
-        $aFonts = array();
+        $aFonts = [];
         $aStyles = $this->allStyles($pPHPExcel);
 
         foreach ($aStyles as $style) {
@@ -653,14 +652,13 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Get an array of all borders
      *
-     * @param     PHPExcel                        $pPHPExcel
-     * @return     PHPExcel_Style_Borders[]        All borders in PHPExcel
-     * @throws     PHPExcel_Writer_Exception
+     * @return PHPExcel_Style_Borders[]        All borders in PHPExcel
+     * @throws PHPExcel_Writer_Exception
      */
     public function allBorders(PHPExcel $pPHPExcel = null)
     {
         // Get an array of unique borders
-        $aBorders = array();
+        $aBorders = [];
         $aStyles = $this->allStyles($pPHPExcel);
 
         foreach ($aStyles as $style) {
@@ -675,14 +673,13 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
     /**
      * Get an array of all number formats
      *
-     * @param     PHPExcel                                $pPHPExcel
-     * @return     PHPExcel_Style_NumberFormat[]        All number formats in PHPExcel
-     * @throws     PHPExcel_Writer_Exception
+     * @return PHPExcel_Style_NumberFormat[]        All number formats in PHPExcel
+     * @throws PHPExcel_Writer_Exception
      */
     public function allNumberFormats(PHPExcel $pPHPExcel = null)
     {
         // Get an array of unique number formats
-        $aNumFmts = array();
+        $aNumFmts = [];
         $aStyles = $this->allStyles($pPHPExcel);
 
         foreach ($aStyles as $style) {

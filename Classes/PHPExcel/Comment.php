@@ -19,13 +19,13 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
-class PHPExcel_Comment implements PHPExcel_IComparable
+class PHPExcel_Comment implements PHPExcel_IComparable, \Stringable
 {
     /**
      * Author
@@ -117,7 +117,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set Author
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_Comment
      */
     public function setAuthor($pValue = '')
@@ -139,7 +139,6 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set Rich text comment
      *
-     * @param PHPExcel_RichText $pValue
      * @return PHPExcel_Comment
      */
     public function setText(PHPExcel_RichText $pValue)
@@ -161,7 +160,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set comment width (CSS style, i.e. XXpx or YYpt)
      *
-     * @param string $value
+     * @param  string $value
      * @return PHPExcel_Comment
      */
     public function setWidth($value = '96pt')
@@ -183,7 +182,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set comment height (CSS style, i.e. XXpx or YYpt)
      *
-     * @param string $value
+     * @param  string $value
      * @return PHPExcel_Comment
      */
     public function setHeight($value = '55.5pt')
@@ -205,7 +204,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set left margin (CSS style, i.e. XXpx or YYpt)
      *
-     * @param string $value
+     * @param  string $value
      * @return PHPExcel_Comment
      */
     public function setMarginLeft($value = '59.25pt')
@@ -227,7 +226,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set top margin (CSS style, i.e. XXpx or YYpt)
      *
-     * @param string $value
+     * @param  string $value
      * @return PHPExcel_Comment
      */
     public function setMarginTop($value = '1.5pt')
@@ -249,7 +248,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set comment default visibility
      *
-     * @param boolean $value
+     * @param  boolean $value
      * @return PHPExcel_Comment
      */
     public function setVisible($value = false)
@@ -271,7 +270,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
     /**
      * Set Alignment
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_Comment
      */
     public function setAlignment($pValue = PHPExcel_Style_Alignment::HORIZONTAL_GENERAL)
@@ -307,7 +306,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
             ($this->visible ? 1 : 0) .
             $this->fillColor->getHashCode() .
             $this->alignment .
-            __CLASS__
+            self::class
         );
     }
 
@@ -331,7 +330,7 @@ class PHPExcel_Comment implements PHPExcel_IComparable
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->text->getPlainText();
     }

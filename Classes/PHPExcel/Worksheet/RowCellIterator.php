@@ -19,21 +19,14 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Worksheet
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Worksheet
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator implements Iterator
 {
-    /**
-     * Row index
-     *
-     * @var int
-     */
-    protected $rowIndex;
-
     /**
      * Start position
      *
@@ -51,16 +44,18 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
     /**
      * Create a new column iterator
      *
-     * @param    PHPExcel_Worksheet    $subject        The worksheet to iterate over
-     * @param   integer             $rowIndex       The row that we want to iterate
-     * @param    string                $startColumn    The column address at which to start iterating
-     * @param    string                $endColumn        Optionally, the column address at which to stop iterating
+     * @param PHPExcel_Worksheet $subject     The worksheet to iterate over
+     * @param integer            $rowIndex    The row that we want to iterate
+     * @param string             $startColumn The column address at which to start iterating
+     * @param string             $endColumn   Optionally, the column address at which to stop iterating
      */
-    public function __construct(PHPExcel_Worksheet $subject = null, $rowIndex = 1, $startColumn = 'A', $endColumn = null)
+    public function __construct(PHPExcel_Worksheet $subject = null, /**
+     * Row index
+     */
+    protected $rowIndex = 1, $startColumn = 'A', $endColumn = null)
     {
         // Set subject and row index
         $this->subject = $subject;
-        $this->rowIndex = $rowIndex;
         $this->resetEnd($endColumn);
         $this->resetStart($startColumn);
     }
@@ -76,7 +71,7 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
     /**
      * (Re)Set the start column and the current column pointer
      *
-     * @param integer    $startColumn    The column address at which to start iterating
+     * @param  integer $startColumn The column address at which to start iterating
      * @return PHPExcel_Worksheet_RowCellIterator
      * @throws PHPExcel_Exception
      */
@@ -93,13 +88,13 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
     /**
      * (Re)Set the end column
      *
-     * @param string    $endColumn    The column address at which to stop iterating
+     * @param  string $endColumn The column address at which to stop iterating
      * @return PHPExcel_Worksheet_RowCellIterator
      * @throws PHPExcel_Exception
      */
     public function resetEnd($endColumn = null)
     {
-        $endColumn = ($endColumn) ? $endColumn : $this->subject->getHighestColumn();
+        $endColumn = $endColumn ?: $this->subject->getHighestColumn();
         $this->endColumn = PHPExcel_Cell::columnIndexFromString($endColumn) - 1;
         $this->adjustForExistingOnlyRange();
 
@@ -109,7 +104,7 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
     /**
      * Set the column pointer to the selected column
      *
-     * @param string    $column    The column address to set the current pointer at
+     * @param  string $column The column address to set the current pointer at
      * @return PHPExcel_Worksheet_RowCellIterator
      * @throws PHPExcel_Exception
      */

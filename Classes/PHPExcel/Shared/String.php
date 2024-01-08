@@ -19,18 +19,22 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Shared_String
 {
-    /**    Constants                */
-    /**    Regular Expressions        */
+    /**
+    * Constants                
+*/
+    /**
+    * Regular Expressions        
+*/
     //    Fraction
-    const STRING_REGEXP_FRACTION    = '(-?)(\d+)\s+(\d+\/\d+)';
+    final public const STRING_REGEXP_FRACTION    = '(-?)(\d+)\s+(\d+\/\d+)';
 
 
     /**
@@ -38,14 +42,14 @@ class PHPExcel_Shared_String
      *
      * @var string[]
      */
-    private static $controlCharacters = array();
+    private static $controlCharacters = [];
 
     /**
      * SYLK Characters array
      *
      * $var array
      */
-    private static $SYLKCharacters = array();
+    private static $SYLKCharacters = [];
 
     /**
      * Decimal separator
@@ -101,7 +105,7 @@ class PHPExcel_Shared_String
      */
     private static function buildSYLKCharacters()
     {
-        self::$SYLKCharacters = array(
+        self::$SYLKCharacters = [
             "\x1B 0"  => chr(0),
             "\x1B 1"  => chr(1),
             "\x1B 2"  => chr(2),
@@ -135,130 +139,252 @@ class PHPExcel_Shared_String
             "\x1B!>"  => chr(30),
             "\x1B!?"  => chr(31),
             "\x1B'?"  => chr(127),
-            "\x1B(0"  => '€', // 128 in CP1252
-            "\x1B(2"  => '‚', // 130 in CP1252
-            "\x1B(3"  => 'ƒ', // 131 in CP1252
-            "\x1B(4"  => '„', // 132 in CP1252
-            "\x1B(5"  => '…', // 133 in CP1252
-            "\x1B(6"  => '†', // 134 in CP1252
-            "\x1B(7"  => '‡', // 135 in CP1252
-            "\x1B(8"  => 'ˆ', // 136 in CP1252
-            "\x1B(9"  => '‰', // 137 in CP1252
-            "\x1B(:"  => 'Š', // 138 in CP1252
-            "\x1B(;"  => '‹', // 139 in CP1252
-            "\x1BNj"  => 'Œ', // 140 in CP1252
-            "\x1B(>"  => 'Ž', // 142 in CP1252
-            "\x1B)1"  => '‘', // 145 in CP1252
-            "\x1B)2"  => '’', // 146 in CP1252
-            "\x1B)3"  => '“', // 147 in CP1252
-            "\x1B)4"  => '”', // 148 in CP1252
-            "\x1B)5"  => '•', // 149 in CP1252
-            "\x1B)6"  => '–', // 150 in CP1252
-            "\x1B)7"  => '—', // 151 in CP1252
-            "\x1B)8"  => '˜', // 152 in CP1252
-            "\x1B)9"  => '™', // 153 in CP1252
-            "\x1B):"  => 'š', // 154 in CP1252
-            "\x1B);"  => '›', // 155 in CP1252
-            "\x1BNz"  => 'œ', // 156 in CP1252
-            "\x1B)>"  => 'ž', // 158 in CP1252
-            "\x1B)?"  => 'Ÿ', // 159 in CP1252
-            "\x1B*0"  => ' ', // 160 in CP1252
-            "\x1BN!"  => '¡', // 161 in CP1252
-            "\x1BN\"" => '¢', // 162 in CP1252
-            "\x1BN#"  => '£', // 163 in CP1252
-            "\x1BN("  => '¤', // 164 in CP1252
-            "\x1BN%"  => '¥', // 165 in CP1252
-            "\x1B*6"  => '¦', // 166 in CP1252
-            "\x1BN'"  => '§', // 167 in CP1252
-            "\x1BNH " => '¨', // 168 in CP1252
-            "\x1BNS"  => '©', // 169 in CP1252
-            "\x1BNc"  => 'ª', // 170 in CP1252
-            "\x1BN+"  => '«', // 171 in CP1252
-            "\x1B*<"  => '¬', // 172 in CP1252
-            "\x1B*="  => '­', // 173 in CP1252
-            "\x1BNR"  => '®', // 174 in CP1252
-            "\x1B*?"  => '¯', // 175 in CP1252
-            "\x1BN0"  => '°', // 176 in CP1252
-            "\x1BN1"  => '±', // 177 in CP1252
-            "\x1BN2"  => '²', // 178 in CP1252
-            "\x1BN3"  => '³', // 179 in CP1252
-            "\x1BNB " => '´', // 180 in CP1252
-            "\x1BN5"  => 'µ', // 181 in CP1252
-            "\x1BN6"  => '¶', // 182 in CP1252
-            "\x1BN7"  => '·', // 183 in CP1252
-            "\x1B+8"  => '¸', // 184 in CP1252
-            "\x1BNQ"  => '¹', // 185 in CP1252
-            "\x1BNk"  => 'º', // 186 in CP1252
-            "\x1BN;"  => '»', // 187 in CP1252
-            "\x1BN<"  => '¼', // 188 in CP1252
-            "\x1BN="  => '½', // 189 in CP1252
-            "\x1BN>"  => '¾', // 190 in CP1252
-            "\x1BN?"  => '¿', // 191 in CP1252
-            "\x1BNAA" => 'À', // 192 in CP1252
-            "\x1BNBA" => 'Á', // 193 in CP1252
-            "\x1BNCA" => 'Â', // 194 in CP1252
-            "\x1BNDA" => 'Ã', // 195 in CP1252
-            "\x1BNHA" => 'Ä', // 196 in CP1252
-            "\x1BNJA" => 'Å', // 197 in CP1252
-            "\x1BNa"  => 'Æ', // 198 in CP1252
-            "\x1BNKC" => 'Ç', // 199 in CP1252
-            "\x1BNAE" => 'È', // 200 in CP1252
-            "\x1BNBE" => 'É', // 201 in CP1252
-            "\x1BNCE" => 'Ê', // 202 in CP1252
-            "\x1BNHE" => 'Ë', // 203 in CP1252
-            "\x1BNAI" => 'Ì', // 204 in CP1252
-            "\x1BNBI" => 'Í', // 205 in CP1252
-            "\x1BNCI" => 'Î', // 206 in CP1252
-            "\x1BNHI" => 'Ï', // 207 in CP1252
-            "\x1BNb"  => 'Ð', // 208 in CP1252
-            "\x1BNDN" => 'Ñ', // 209 in CP1252
-            "\x1BNAO" => 'Ò', // 210 in CP1252
-            "\x1BNBO" => 'Ó', // 211 in CP1252
-            "\x1BNCO" => 'Ô', // 212 in CP1252
-            "\x1BNDO" => 'Õ', // 213 in CP1252
-            "\x1BNHO" => 'Ö', // 214 in CP1252
-            "\x1B-7"  => '×', // 215 in CP1252
-            "\x1BNi"  => 'Ø', // 216 in CP1252
-            "\x1BNAU" => 'Ù', // 217 in CP1252
-            "\x1BNBU" => 'Ú', // 218 in CP1252
-            "\x1BNCU" => 'Û', // 219 in CP1252
-            "\x1BNHU" => 'Ü', // 220 in CP1252
-            "\x1B-="  => 'Ý', // 221 in CP1252
-            "\x1BNl"  => 'Þ', // 222 in CP1252
-            "\x1BN{"  => 'ß', // 223 in CP1252
-            "\x1BNAa" => 'à', // 224 in CP1252
-            "\x1BNBa" => 'á', // 225 in CP1252
-            "\x1BNCa" => 'â', // 226 in CP1252
-            "\x1BNDa" => 'ã', // 227 in CP1252
-            "\x1BNHa" => 'ä', // 228 in CP1252
-            "\x1BNJa" => 'å', // 229 in CP1252
-            "\x1BNq"  => 'æ', // 230 in CP1252
-            "\x1BNKc" => 'ç', // 231 in CP1252
-            "\x1BNAe" => 'è', // 232 in CP1252
-            "\x1BNBe" => 'é', // 233 in CP1252
-            "\x1BNCe" => 'ê', // 234 in CP1252
-            "\x1BNHe" => 'ë', // 235 in CP1252
-            "\x1BNAi" => 'ì', // 236 in CP1252
-            "\x1BNBi" => 'í', // 237 in CP1252
-            "\x1BNCi" => 'î', // 238 in CP1252
-            "\x1BNHi" => 'ï', // 239 in CP1252
-            "\x1BNs"  => 'ð', // 240 in CP1252
-            "\x1BNDn" => 'ñ', // 241 in CP1252
-            "\x1BNAo" => 'ò', // 242 in CP1252
-            "\x1BNBo" => 'ó', // 243 in CP1252
-            "\x1BNCo" => 'ô', // 244 in CP1252
-            "\x1BNDo" => 'õ', // 245 in CP1252
-            "\x1BNHo" => 'ö', // 246 in CP1252
-            "\x1B/7"  => '÷', // 247 in CP1252
-            "\x1BNy"  => 'ø', // 248 in CP1252
-            "\x1BNAu" => 'ù', // 249 in CP1252
-            "\x1BNBu" => 'ú', // 250 in CP1252
-            "\x1BNCu" => 'û', // 251 in CP1252
-            "\x1BNHu" => 'ü', // 252 in CP1252
-            "\x1B/="  => 'ý', // 253 in CP1252
-            "\x1BN|"  => 'þ', // 254 in CP1252
-            "\x1BNHy" => 'ÿ', // 255 in CP1252
-        );
+            "\x1B(0"  => '€',
+            // 128 in CP1252
+            "\x1B(2"  => '‚',
+            // 130 in CP1252
+            "\x1B(3"  => 'ƒ',
+            // 131 in CP1252
+            "\x1B(4"  => '„',
+            // 132 in CP1252
+            "\x1B(5"  => '…',
+            // 133 in CP1252
+            "\x1B(6"  => '†',
+            // 134 in CP1252
+            "\x1B(7"  => '‡',
+            // 135 in CP1252
+            "\x1B(8"  => 'ˆ',
+            // 136 in CP1252
+            "\x1B(9"  => '‰',
+            // 137 in CP1252
+            "\x1B(:"  => 'Š',
+            // 138 in CP1252
+            "\x1B(;"  => '‹',
+            // 139 in CP1252
+            "\x1BNj"  => 'Œ',
+            // 140 in CP1252
+            "\x1B(>"  => 'Ž',
+            // 142 in CP1252
+            "\x1B)1"  => '‘',
+            // 145 in CP1252
+            "\x1B)2"  => '’',
+            // 146 in CP1252
+            "\x1B)3"  => '“',
+            // 147 in CP1252
+            "\x1B)4"  => '”',
+            // 148 in CP1252
+            "\x1B)5"  => '•',
+            // 149 in CP1252
+            "\x1B)6"  => '–',
+            // 150 in CP1252
+            "\x1B)7"  => '—',
+            // 151 in CP1252
+            "\x1B)8"  => '˜',
+            // 152 in CP1252
+            "\x1B)9"  => '™',
+            // 153 in CP1252
+            "\x1B):"  => 'š',
+            // 154 in CP1252
+            "\x1B);"  => '›',
+            // 155 in CP1252
+            "\x1BNz"  => 'œ',
+            // 156 in CP1252
+            "\x1B)>"  => 'ž',
+            // 158 in CP1252
+            "\x1B)?"  => 'Ÿ',
+            // 159 in CP1252
+            "\x1B*0"  => ' ',
+            // 160 in CP1252
+            "\x1BN!"  => '¡',
+            // 161 in CP1252
+            "\x1BN\"" => '¢',
+            // 162 in CP1252
+            "\x1BN#"  => '£',
+            // 163 in CP1252
+            "\x1BN("  => '¤',
+            // 164 in CP1252
+            "\x1BN%"  => '¥',
+            // 165 in CP1252
+            "\x1B*6"  => '¦',
+            // 166 in CP1252
+            "\x1BN'"  => '§',
+            // 167 in CP1252
+            "\x1BNH " => '¨',
+            // 168 in CP1252
+            "\x1BNS"  => '©',
+            // 169 in CP1252
+            "\x1BNc"  => 'ª',
+            // 170 in CP1252
+            "\x1BN+"  => '«',
+            // 171 in CP1252
+            "\x1B*<"  => '¬',
+            // 172 in CP1252
+            "\x1B*="  => '­',
+            // 173 in CP1252
+            "\x1BNR"  => '®',
+            // 174 in CP1252
+            "\x1B*?"  => '¯',
+            // 175 in CP1252
+            "\x1BN0"  => '°',
+            // 176 in CP1252
+            "\x1BN1"  => '±',
+            // 177 in CP1252
+            "\x1BN2"  => '²',
+            // 178 in CP1252
+            "\x1BN3"  => '³',
+            // 179 in CP1252
+            "\x1BNB " => '´',
+            // 180 in CP1252
+            "\x1BN5"  => 'µ',
+            // 181 in CP1252
+            "\x1BN6"  => '¶',
+            // 182 in CP1252
+            "\x1BN7"  => '·',
+            // 183 in CP1252
+            "\x1B+8"  => '¸',
+            // 184 in CP1252
+            "\x1BNQ"  => '¹',
+            // 185 in CP1252
+            "\x1BNk"  => 'º',
+            // 186 in CP1252
+            "\x1BN;"  => '»',
+            // 187 in CP1252
+            "\x1BN<"  => '¼',
+            // 188 in CP1252
+            "\x1BN="  => '½',
+            // 189 in CP1252
+            "\x1BN>"  => '¾',
+            // 190 in CP1252
+            "\x1BN?"  => '¿',
+            // 191 in CP1252
+            "\x1BNAA" => 'À',
+            // 192 in CP1252
+            "\x1BNBA" => 'Á',
+            // 193 in CP1252
+            "\x1BNCA" => 'Â',
+            // 194 in CP1252
+            "\x1BNDA" => 'Ã',
+            // 195 in CP1252
+            "\x1BNHA" => 'Ä',
+            // 196 in CP1252
+            "\x1BNJA" => 'Å',
+            // 197 in CP1252
+            "\x1BNa"  => 'Æ',
+            // 198 in CP1252
+            "\x1BNKC" => 'Ç',
+            // 199 in CP1252
+            "\x1BNAE" => 'È',
+            // 200 in CP1252
+            "\x1BNBE" => 'É',
+            // 201 in CP1252
+            "\x1BNCE" => 'Ê',
+            // 202 in CP1252
+            "\x1BNHE" => 'Ë',
+            // 203 in CP1252
+            "\x1BNAI" => 'Ì',
+            // 204 in CP1252
+            "\x1BNBI" => 'Í',
+            // 205 in CP1252
+            "\x1BNCI" => 'Î',
+            // 206 in CP1252
+            "\x1BNHI" => 'Ï',
+            // 207 in CP1252
+            "\x1BNb"  => 'Ð',
+            // 208 in CP1252
+            "\x1BNDN" => 'Ñ',
+            // 209 in CP1252
+            "\x1BNAO" => 'Ò',
+            // 210 in CP1252
+            "\x1BNBO" => 'Ó',
+            // 211 in CP1252
+            "\x1BNCO" => 'Ô',
+            // 212 in CP1252
+            "\x1BNDO" => 'Õ',
+            // 213 in CP1252
+            "\x1BNHO" => 'Ö',
+            // 214 in CP1252
+            "\x1B-7"  => '×',
+            // 215 in CP1252
+            "\x1BNi"  => 'Ø',
+            // 216 in CP1252
+            "\x1BNAU" => 'Ù',
+            // 217 in CP1252
+            "\x1BNBU" => 'Ú',
+            // 218 in CP1252
+            "\x1BNCU" => 'Û',
+            // 219 in CP1252
+            "\x1BNHU" => 'Ü',
+            // 220 in CP1252
+            "\x1B-="  => 'Ý',
+            // 221 in CP1252
+            "\x1BNl"  => 'Þ',
+            // 222 in CP1252
+            "\x1BN{"  => 'ß',
+            // 223 in CP1252
+            "\x1BNAa" => 'à',
+            // 224 in CP1252
+            "\x1BNBa" => 'á',
+            // 225 in CP1252
+            "\x1BNCa" => 'â',
+            // 226 in CP1252
+            "\x1BNDa" => 'ã',
+            // 227 in CP1252
+            "\x1BNHa" => 'ä',
+            // 228 in CP1252
+            "\x1BNJa" => 'å',
+            // 229 in CP1252
+            "\x1BNq"  => 'æ',
+            // 230 in CP1252
+            "\x1BNKc" => 'ç',
+            // 231 in CP1252
+            "\x1BNAe" => 'è',
+            // 232 in CP1252
+            "\x1BNBe" => 'é',
+            // 233 in CP1252
+            "\x1BNCe" => 'ê',
+            // 234 in CP1252
+            "\x1BNHe" => 'ë',
+            // 235 in CP1252
+            "\x1BNAi" => 'ì',
+            // 236 in CP1252
+            "\x1BNBi" => 'í',
+            // 237 in CP1252
+            "\x1BNCi" => 'î',
+            // 238 in CP1252
+            "\x1BNHi" => 'ï',
+            // 239 in CP1252
+            "\x1BNs"  => 'ð',
+            // 240 in CP1252
+            "\x1BNDn" => 'ñ',
+            // 241 in CP1252
+            "\x1BNAo" => 'ò',
+            // 242 in CP1252
+            "\x1BNBo" => 'ó',
+            // 243 in CP1252
+            "\x1BNCo" => 'ô',
+            // 244 in CP1252
+            "\x1BNDo" => 'õ',
+            // 245 in CP1252
+            "\x1BNHo" => 'ö',
+            // 246 in CP1252
+            "\x1B/7"  => '÷',
+            // 247 in CP1252
+            "\x1BNy"  => 'ø',
+            // 248 in CP1252
+            "\x1BNAu" => 'ù',
+            // 249 in CP1252
+            "\x1BNBu" => 'ú',
+            // 250 in CP1252
+            "\x1BNCu" => 'û',
+            // 251 in CP1252
+            "\x1BNHu" => 'ü',
+            // 252 in CP1252
+            "\x1B/="  => 'ý',
+            // 253 in CP1252
+            "\x1BN|"  => 'þ',
+            // 254 in CP1252
+            "\x1BNHy" => 'ÿ',
+        ];
     }
 
     /**
@@ -340,8 +466,8 @@ class PHPExcel_Shared_String
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param     string    $value    Value to unescape
-     * @return     string
+     * @param  string $value Value to unescape
+     * @return string
      */
     public static function ControlCharacterOOXML2PHP($value = '')
     {
@@ -359,8 +485,8 @@ class PHPExcel_Shared_String
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param     string    $value    Value to escape
-     * @return     string
+     * @param  string $value Value to escape
+     * @return string
      */
     public static function ControlCharacterPHP2OOXML($value = '')
     {
@@ -370,7 +496,7 @@ class PHPExcel_Shared_String
     /**
      * Try to sanitize UTF8, stripping invalid byte sequences. Not perfect. Does not surrogate characters.
      *
-     * @param string $value
+     * @param  string $value
      * @return string
      */
     public static function SanitizeUTF8($value)
@@ -392,7 +518,7 @@ class PHPExcel_Shared_String
     /**
      * Check if a string contains UTF8 data
      *
-     * @param string $value
+     * @param  string $value
      * @return boolean
      */
     public static function IsUTF8($value = '')
@@ -404,10 +530,9 @@ class PHPExcel_Shared_String
      * Formats a numeric value as a string for output in various output writers forcing
      * point as decimal separator in case locale is other than English.
      *
-     * @param mixed $value
      * @return string
      */
-    public static function FormatNumber($value)
+    public static function FormatNumber(mixed $value)
     {
         if (is_float($value)) {
             return str_replace(',', '.', $value);
@@ -422,11 +547,11 @@ class PHPExcel_Shared_String
      * although this will give wrong results for non-ASCII strings
      * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
      *
-     * @param string  $value    UTF-8 encoded string
-     * @param mixed[] $arrcRuns Details of rich text runs in $value
+     * @param  string  $value    UTF-8 encoded string
+     * @param  mixed[] $arrcRuns Details of rich text runs in $value
      * @return string
      */
-    public static function UTF8toBIFF8UnicodeShort($value, $arrcRuns = array())
+    public static function UTF8toBIFF8UnicodeShort($value, $arrcRuns = [])
     {
         // character count
         $ln = self::CountCharacters($value, 'UTF-8');
@@ -457,7 +582,7 @@ class PHPExcel_Shared_String
      * although this will give wrong results for non-ASCII strings
      * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
      *
-     * @param string $value UTF-8 encoded string
+     * @param  string $value UTF-8 encoded string
      * @return string
      */
     public static function UTF8toBIFF8UnicodeLong($value)
@@ -479,9 +604,9 @@ class PHPExcel_Shared_String
     /**
      * Convert string from one encoding to another. First try mbstring, then iconv, finally strlen
      *
-     * @param string $value
-     * @param string $to Encoding to convert to, e.g. 'UTF-8'
-     * @param string $from Encoding to convert from, e.g. 'UTF-16LE'
+     * @param  string $value
+     * @param  string $to    Encoding to convert to, e.g. 'UTF-8'
+     * @param  string $from  Encoding to convert from, e.g. 'UTF-16LE'
      * @return string
      */
     public static function ConvertEncoding($value, $to, $from)
@@ -511,20 +636,20 @@ class PHPExcel_Shared_String
      * This function was taken from http://php.net/manual/en/function.utf8-decode.php
      * and $bom_be parameter added.
      *
-     * @param   string  $str  UTF-16 encoded data to decode.
+     * @param   string $str UTF-16 encoded data to decode.
      * @return  string  UTF-8 / ISO encoded data.
      * @access  public
      * @version 0.2 / 2010-05-13
      * @author  Rasmus Andersson {@link http://rasmusandersson.se/}
-     * @author vadik56
+     * @author  vadik56
      */
     public static function utf16_decode($str, $bom_be = true)
     {
         if (strlen($str) < 2) {
             return $str;
         }
-        $c0 = ord($str{0});
-        $c1 = ord($str{1});
+        $c0 = ord($str[0]);
+        $c1 = ord($str[1]);
         if ($c0 == 0xfe && $c1 == 0xff) {
             $str = substr($str, 2);
         } elseif ($c0 == 0xff && $c1 == 0xfe) {
@@ -535,11 +660,11 @@ class PHPExcel_Shared_String
         $newstr = '';
         for ($i=0; $i<$len; $i+=2) {
             if ($bom_be) {
-                $val = ord($str{$i})   << 4;
-                $val += ord($str{$i+1});
+                $val = ord($str[$i])   << 4;
+                $val += ord($str[$i+1]);
             } else {
-                $val = ord($str{$i+1}) << 4;
-                $val += ord($str{$i});
+                $val = ord($str[$i+1]) << 4;
+                $val += ord($str[$i]);
             }
             $newstr .= ($val == 0x228) ? "\n" : chr($val);
         }
@@ -549,8 +674,8 @@ class PHPExcel_Shared_String
     /**
      * Get character count. First try mbstring, then iconv, finally strlen
      *
-     * @param string $value
-     * @param string $enc Encoding
+     * @param  string $value
+     * @param  string $enc   Encoding
      * @return int Character count
      */
     public static function CountCharacters($value, $enc = 'UTF-8')
@@ -570,9 +695,9 @@ class PHPExcel_Shared_String
     /**
      * Get a substring of a UTF-8 encoded string. First try mbstring, then iconv, finally strlen
      *
-     * @param string $pValue UTF-8 encoded string
-     * @param int $pStart Start offset
-     * @param int $pLength Maximum number of characters in substring
+     * @param  string $pValue  UTF-8 encoded string
+     * @param  int    $pStart  Start offset
+     * @param  int    $pLength Maximum number of characters in substring
      * @return string
      */
     public static function Substring($pValue = '', $pStart = 0, $pLength = 0)
@@ -592,7 +717,7 @@ class PHPExcel_Shared_String
     /**
      * Convert a UTF-8 encoded string to upper case
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrToUpper($pValue = '')
@@ -606,7 +731,7 @@ class PHPExcel_Shared_String
     /**
      * Convert a UTF-8 encoded string to lower case
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrToLower($pValue = '')
@@ -621,7 +746,7 @@ class PHPExcel_Shared_String
      * Convert a UTF-8 encoded string to title/proper case
      *    (uppercase every first character in each word, lower case all other characters)
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrToTitle($pValue = '')
@@ -639,8 +764,8 @@ class PHPExcel_Shared_String
 
     public static function mb_str_split($string)
     {
-        # Split at all position not after the start: ^
-        # and not before the end: $
+        // Split at all position not after the start: ^
+        // and not before the end: $
         return preg_split('/(?<!^)(?!$)/u', $string);
     }
 
@@ -648,7 +773,7 @@ class PHPExcel_Shared_String
      * Reverse the case of a string, so that all uppercase characters become lowercase
      *    and all lowercase characters become uppercase
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrCaseReverse($pValue = '')
@@ -671,7 +796,7 @@ class PHPExcel_Shared_String
      * Identify whether a string contains a fractional numeric value,
      *    and convert it to a numeric if it is
      *
-     * @param string &$operand string value to test
+     * @param  string &$operand string value to test
      * @return boolean
      */
     public static function convertToNumberIfFraction(&$operand)
@@ -784,13 +909,13 @@ class PHPExcel_Shared_String
     /**
      * Convert SYLK encoded string to UTF-8
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return string UTF-8 encoded string
      */
     public static function SYLKtoUTF8($pValue = '')
     {
         // If there is no escape character in the string there is nothing to do
-        if (strpos($pValue, '') === false) {
+        if (!str_contains($pValue, '')) {
             return $pValue;
         }
 
@@ -805,8 +930,8 @@ class PHPExcel_Shared_String
      * Retrieve any leading numeric part of a string, or return the full string if no leading numeric
      *    (handles basic integer or float, but not exponent or non decimal)
      *
-     * @param    string    $value
-     * @return    mixed    string or only the leading numeric part of the string
+     * @param  string $value
+     * @return mixed    string or only the leading numeric part of the string
      */
     public static function testStringAsNumeric($value)
     {

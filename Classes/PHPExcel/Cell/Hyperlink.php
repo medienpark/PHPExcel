@@ -19,39 +19,31 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Cell
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Cell
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Cell_Hyperlink
 {
     /**
-     * URL to link the cell to
-     *
-     * @var string
-     */
-    private $url;
-
-    /**
-     * Tooltip to display on the hyperlink
-     *
-     * @var string
-     */
-    private $tooltip;
-
-    /**
      * Create a new PHPExcel_Cell_Hyperlink
      *
-     * @param  string  $pUrl      Url to link the cell to
-     * @param  string  $pTooltip  Tooltip to display on the hyperlink
+     * @param string $url Url to link the cell to
+     * @param string $tooltip Tooltip to display on the hyperlink
      */
-    public function __construct($pUrl = '', $pTooltip = '')
+    public function __construct(
+        /**
+         * URL to link the cell to
+         */
+        private $url = '',
+        /**
+         * Tooltip to display on the hyperlink
+         */
+        private $tooltip = ''
+    )
     {
-        // Initialise member variables
-        $this->url     = $pUrl;
-        $this->tooltip = $pTooltip;
     }
 
     /**
@@ -67,7 +59,7 @@ class PHPExcel_Cell_Hyperlink
     /**
      * Set URL
      *
-     * @param  string    $value
+     * @param  string $value
      * @return PHPExcel_Cell_Hyperlink
      */
     public function setUrl($value = '')
@@ -89,7 +81,7 @@ class PHPExcel_Cell_Hyperlink
     /**
      * Set tooltip
      *
-     * @param  string    $value
+     * @param  string $value
      * @return PHPExcel_Cell_Hyperlink
      */
     public function setTooltip($value = '')
@@ -105,7 +97,7 @@ class PHPExcel_Cell_Hyperlink
      */
     public function isInternal()
     {
-        return strpos($this->url, 'sheet://') !== false;
+        return str_contains($this->url, 'sheet://');
     }
 
     /**
@@ -118,7 +110,7 @@ class PHPExcel_Cell_Hyperlink
         return md5(
             $this->url .
             $this->tooltip .
-            __CLASS__
+            self::class
         );
     }
 }

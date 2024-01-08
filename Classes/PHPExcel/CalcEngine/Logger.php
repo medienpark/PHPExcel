@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Calculation
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_CalcEngine_Logger
 {
@@ -51,29 +51,24 @@ class PHPExcel_CalcEngine_Logger
      *
      * @var string[]
      */
-    private $debugLog = array();
-
-    /**
-     * The calculation engine cell reference stack
-     *
-     * @var PHPExcel_CalcEngine_CyclicReferenceStack
-     */
-    private $cellStack;
+    private $debugLog = [];
 
     /**
      * Instantiate a Calculation engine logger
-     *
-     * @param  PHPExcel_CalcEngine_CyclicReferenceStack $stack
      */
-    public function __construct(PHPExcel_CalcEngine_CyclicReferenceStack $stack)
+    public function __construct(
+        /**
+         * The calculation engine cell reference stack
+         */
+        private readonly PHPExcel_CalcEngine_CyclicReferenceStack $cellStack
+    )
     {
-        $this->cellStack = $stack;
     }
 
     /**
      * Enable/Disable Calculation engine logging
      *
-     * @param  boolean $pValue
+     * @param boolean $pValue
      */
     public function setWriteDebugLog($pValue = false)
     {
@@ -83,7 +78,7 @@ class PHPExcel_CalcEngine_Logger
     /**
      * Return whether calculation engine logging is enabled or disabled
      *
-     * @return  boolean
+     * @return boolean
      */
     public function getWriteDebugLog()
     {
@@ -93,7 +88,7 @@ class PHPExcel_CalcEngine_Logger
     /**
      * Enable/Disable echoing of debug log information
      *
-     * @param  boolean $pValue
+     * @param boolean $pValue
      */
     public function setEchoDebugLog($pValue = false)
     {
@@ -103,7 +98,7 @@ class PHPExcel_CalcEngine_Logger
     /**
      * Return whether echoing of debug log information is enabled or disabled
      *
-     * @return  boolean
+     * @return boolean
      */
     public function getEchoDebugLog()
     {
@@ -117,7 +112,7 @@ class PHPExcel_CalcEngine_Logger
     {
         //    Only write the debug log if logging is enabled
         if ($this->writeDebugLog) {
-            $message = implode(func_get_args());
+            $message = implode('', func_get_args());
             $cellReference = implode(' -> ', $this->cellStack->showStack());
             if ($this->echoDebugLog) {
                 echo $cellReference,
@@ -136,13 +131,13 @@ class PHPExcel_CalcEngine_Logger
      */
     public function clearLog()
     {
-        $this->debugLog = array();
+        $this->debugLog = [];
     }
 
     /**
      * Return the calculation engine debug log
      *
-     * @return  string[]
+     * @return string[]
      */
     public function getLog()
     {

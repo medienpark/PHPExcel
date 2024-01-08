@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_HashTable
 {
@@ -32,20 +32,20 @@ class PHPExcel_HashTable
      *
      * @var array
      */
-    protected $items = array();
+    protected $items = [];
 
     /**
      * HashTable key map
      *
      * @var array
      */
-    protected $keyMap = array();
+    protected $keyMap = [];
 
     /**
      * Create a new PHPExcel_HashTable
      *
-     * @param    PHPExcel_IComparable[] $pSource    Optional source array to create HashTable from
-     * @throws    PHPExcel_Exception
+     * @param  PHPExcel_IComparable[] $pSource Optional source array to create HashTable from
+     * @throws PHPExcel_Exception
      */
     public function __construct($pSource = null)
     {
@@ -58,8 +58,8 @@ class PHPExcel_HashTable
     /**
      * Add HashTable items from source
      *
-     * @param    PHPExcel_IComparable[] $pSource    Source array to create HashTable from
-     * @throws    PHPExcel_Exception
+     * @param  PHPExcel_IComparable[] $pSource Source array to create HashTable from
+     * @throws PHPExcel_Exception
      */
     public function addFromSource($pSource = null)
     {
@@ -78,8 +78,8 @@ class PHPExcel_HashTable
     /**
      * Add HashTable item
      *
-     * @param    PHPExcel_IComparable $pSource    Item to add
-     * @throws    PHPExcel_Exception
+     * @param  PHPExcel_IComparable $pSource Item to add
+     * @throws PHPExcel_Exception
      */
     public function add(PHPExcel_IComparable $pSource = null)
     {
@@ -93,8 +93,8 @@ class PHPExcel_HashTable
     /**
      * Remove HashTable item
      *
-     * @param    PHPExcel_IComparable $pSource    Item to remove
-     * @throws    PHPExcel_Exception
+     * @param  PHPExcel_IComparable $pSource Item to remove
+     * @throws PHPExcel_Exception
      */
     public function remove(PHPExcel_IComparable $pSource = null)
     {
@@ -118,12 +118,11 @@ class PHPExcel_HashTable
 
     /**
      * Clear HashTable
-     *
      */
     public function clear()
     {
-        $this->items = array();
-        $this->keyMap = array();
+        $this->items = [];
+        $this->keyMap = [];
     }
 
     /**
@@ -139,8 +138,8 @@ class PHPExcel_HashTable
     /**
      * Get index for hash code
      *
-     * @param    string    $pHashCode
-     * @return    int    Index
+     * @param  string $pHashCode
+     * @return int    Index
      */
     public function getIndexForHashCode($pHashCode = '')
     {
@@ -150,9 +149,8 @@ class PHPExcel_HashTable
     /**
      * Get by index
      *
-     * @param    int    $pIndex
-     * @return    PHPExcel_IComparable
-     *
+     * @param  int $pIndex
+     * @return PHPExcel_IComparable
      */
     public function getByIndex($pIndex = 0)
     {
@@ -166,17 +164,12 @@ class PHPExcel_HashTable
     /**
      * Get by hashcode
      *
-     * @param    string    $pHashCode
-     * @return    PHPExcel_IComparable
-     *
+     * @param  string $pHashCode
+     * @return PHPExcel_IComparable
      */
     public function getByHashCode($pHashCode = '')
     {
-        if (isset($this->items[$pHashCode])) {
-            return $this->items[$pHashCode];
-        }
-
-        return null;
+        return $this->items[$pHashCode] ?? null;
     }
 
     /**

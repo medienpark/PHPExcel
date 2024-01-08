@@ -18,11 +18,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 defined('IDENTIFIER_OLE') ||
@@ -33,33 +33,33 @@ class PHPExcel_Shared_OLERead
     private $data = '';
 
     // OLE identifier
-    const IDENTIFIER_OLE                    = IDENTIFIER_OLE;
+    final public const IDENTIFIER_OLE                    = IDENTIFIER_OLE;
 
     // Size of a sector = 512 bytes
-    const BIG_BLOCK_SIZE                    = 0x200;
+    final public const BIG_BLOCK_SIZE                    = 0x200;
 
     // Size of a short sector = 64 bytes
-    const SMALL_BLOCK_SIZE                  = 0x40;
+    final public const SMALL_BLOCK_SIZE                  = 0x40;
 
     // Size of a directory entry always = 128 bytes
-    const PROPERTY_STORAGE_BLOCK_SIZE       = 0x80;
+    final public const PROPERTY_STORAGE_BLOCK_SIZE       = 0x80;
 
     // Minimum size of a standard stream = 4096 bytes, streams smaller than this are stored as short streams
-    const SMALL_BLOCK_THRESHOLD             = 0x1000;
+    final public const SMALL_BLOCK_THRESHOLD             = 0x1000;
 
     // header offsets
-    const NUM_BIG_BLOCK_DEPOT_BLOCKS_POS    = 0x2c;
-    const ROOT_START_BLOCK_POS              = 0x30;
-    const SMALL_BLOCK_DEPOT_BLOCK_POS       = 0x3c;
-    const EXTENSION_BLOCK_POS               = 0x44;
-    const NUM_EXTENSION_BLOCK_POS           = 0x48;
-    const BIG_BLOCK_DEPOT_BLOCKS_POS        = 0x4c;
+    final public const NUM_BIG_BLOCK_DEPOT_BLOCKS_POS    = 0x2c;
+    final public const ROOT_START_BLOCK_POS              = 0x30;
+    final public const SMALL_BLOCK_DEPOT_BLOCK_POS       = 0x3c;
+    final public const EXTENSION_BLOCK_POS               = 0x44;
+    final public const NUM_EXTENSION_BLOCK_POS           = 0x48;
+    final public const BIG_BLOCK_DEPOT_BLOCKS_POS        = 0x4c;
 
     // property storage offsets (directory offsets)
-    const SIZE_OF_NAME_POS                  = 0x40;
-    const TYPE_POS                          = 0x42;
-    const START_BLOCK_POS                   = 0x74;
-    const SIZE_POS                          = 0x78;
+    final public const SIZE_OF_NAME_POS                  = 0x40;
+    final public const TYPE_POS                          = 0x42;
+    final public const START_BLOCK_POS                   = 0x74;
+    final public const SIZE_POS                          = 0x78;
 
 
 
@@ -71,7 +71,7 @@ class PHPExcel_Shared_OLERead
     /**
      * Read the file
      *
-     * @param $sFileName string Filename
+     * @param  $sFileName string Filename
      * @throws PHPExcel_Reader_Exception
      */
     public function read($sFileName)
@@ -108,7 +108,7 @@ class PHPExcel_Shared_OLERead
         // Total number of sectors used by MSAT
         $this->numExtensionBlocks = self::getInt4d($this->data, self::NUM_EXTENSION_BLOCK_POS);
 
-        $bigBlockDepotBlocks = array();
+        $bigBlockDepotBlocks = [];
         $pos = self::BIG_BLOCK_DEPOT_BLOCKS_POS;
 
         $bbdBlocks = $this->numBigBlockDepotBlocks;
@@ -217,7 +217,7 @@ class PHPExcel_Shared_OLERead
     /**
      * Read a standard stream (by joining sectors using information from SAT)
      *
-     * @param int $bl Sector ID where the stream starts
+     * @param  int $bl Sector ID where the stream starts
      * @return string Data for standard stream
      */
     private function _readData($bl)
@@ -260,12 +260,7 @@ class PHPExcel_Shared_OLERead
 
             $name = str_replace("\x00", "", substr($d, 0, $nameSize));
 
-            $this->props[] = array(
-                'name' => $name,
-                'type' => $type,
-                'startBlock' => $startBlock,
-                'size' => $size
-            );
+            $this->props[] = ['name' => $name, 'type' => $type, 'startBlock' => $startBlock, 'size' => $size];
 
             // tmp helper to simplify checks
             $upName = strtoupper($name);
@@ -280,13 +275,13 @@ class PHPExcel_Shared_OLERead
 
             // Summary information
             if ($name == chr(5) . 'SummaryInformation') {
-//                echo 'Summary Information<br />';
+                //                echo 'Summary Information<br />';
                 $this->summaryInformation = count($this->props) - 1;
             }
 
             // Additional Document Summary information
             if ($name == chr(5) . 'DocumentSummaryInformation') {
-//                echo 'Document Summary Information<br />';
+                //                echo 'Document Summary Information<br />';
                 $this->documentSummaryInformation = count($this->props) - 1;
             }
 
@@ -297,8 +292,8 @@ class PHPExcel_Shared_OLERead
     /**
      * Read 4 bytes of data at specified position
      *
-     * @param string $data
-     * @param int $pos
+     * @param  string $data
+     * @param  int    $pos
      * @return int
      */
     private static function getInt4d($data, $pos)

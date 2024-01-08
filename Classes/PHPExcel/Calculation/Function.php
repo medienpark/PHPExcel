@@ -19,26 +19,26 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Calculation
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Calculation_Function
 {
     /* Function categories */
-    const CATEGORY_CUBE                 = 'Cube';
-    const CATEGORY_DATABASE             = 'Database';
-    const CATEGORY_DATE_AND_TIME        = 'Date and Time';
-    const CATEGORY_ENGINEERING          = 'Engineering';
-    const CATEGORY_FINANCIAL            = 'Financial';
-    const CATEGORY_INFORMATION          = 'Information';
-    const CATEGORY_LOGICAL              = 'Logical';
-    const CATEGORY_LOOKUP_AND_REFERENCE = 'Lookup and Reference';
-    const CATEGORY_MATH_AND_TRIG        = 'Math and Trig';
-    const CATEGORY_STATISTICAL          = 'Statistical';
-    const CATEGORY_TEXT_AND_DATA        = 'Text and Data';
+    final public const CATEGORY_CUBE                 = 'Cube';
+    final public const CATEGORY_DATABASE             = 'Database';
+    final public const CATEGORY_DATE_AND_TIME        = 'Date and Time';
+    final public const CATEGORY_ENGINEERING          = 'Engineering';
+    final public const CATEGORY_FINANCIAL            = 'Financial';
+    final public const CATEGORY_INFORMATION          = 'Information';
+    final public const CATEGORY_LOGICAL              = 'Logical';
+    final public const CATEGORY_LOOKUP_AND_REFERENCE = 'Lookup and Reference';
+    final public const CATEGORY_MATH_AND_TRIG        = 'Math and Trig';
+    final public const CATEGORY_STATISTICAL          = 'Statistical';
+    final public const CATEGORY_TEXT_AND_DATA        = 'Text and Data';
 
     /**
      * Category (represented by CATEGORY_*)
@@ -64,10 +64,10 @@ class PHPExcel_Calculation_Function
     /**
      * Create a new PHPExcel_Calculation_Function
      *
-     * @param     string        $pCategory         Category (represented by CATEGORY_*)
-     * @param     string        $pExcelName        Excel function name
-     * @param     string        $pPHPExcelName    PHPExcel function mapping
-     * @throws     PHPExcel_Calculation_Exception
+     * @param  string $pCategory     Category (represented by CATEGORY_*)
+     * @param  string $pExcelName    Excel function name
+     * @param  string $pPHPExcelName PHPExcel function mapping
+     * @throws PHPExcel_Calculation_Exception
      */
     public function __construct($pCategory = null, $pExcelName = null, $pPHPExcelName = null)
     {
@@ -94,8 +94,8 @@ class PHPExcel_Calculation_Function
     /**
      * Set Category (represented by CATEGORY_*)
      *
-     * @param     string        $value
-     * @throws     PHPExcel_Calculation_Exception
+     * @param  string $value
+     * @throws PHPExcel_Calculation_Exception
      */
     public function setCategory($value = null)
     {
@@ -119,7 +119,7 @@ class PHPExcel_Calculation_Function
     /**
      * Set Excel name
      *
-     * @param string    $value
+     * @param string $value
      */
     public function setExcelName($value)
     {
@@ -139,7 +139,7 @@ class PHPExcel_Calculation_Function
     /**
      * Set PHPExcel name
      *
-     * @param string    $value
+     * @param string $value
      */
     public function setPHPExcelName($value)
     {

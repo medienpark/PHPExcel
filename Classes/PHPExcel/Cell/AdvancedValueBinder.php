@@ -1,12 +1,14 @@
 <?php
 
-/** PHPExcel root directory */
+/**
+ * PHPExcel root directory 
+ */
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
      */
-    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
-    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+    define('PHPEXCEL_ROOT', __DIR__ . '/../../');
+    include PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
 }
 
 /**
@@ -28,19 +30,19 @@ if (!defined('PHPEXCEL_ROOT')) {
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Cell
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Cell
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder implements PHPExcel_Cell_IValueBinder
 {
     /**
      * Bind value to a cell
      *
-     * @param  PHPExcel_Cell  $cell  Cell to bind value to
-     * @param  mixed $value          Value to bind in cell
+     * @param  PHPExcel_Cell $cell  Cell to bind value to
+     * @param  mixed         $value Value to bind in cell
      * @return boolean
      */
     public function bindValue(PHPExcel_Cell $cell, $value = null)
@@ -112,7 +114,7 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
             $thousandsSeparator = PHPExcel_Shared_String::getThousandsSeparator();
             if (preg_match('/^'.preg_quote($currencyCode).' *(\d{1,3}('.preg_quote($thousandsSeparator).'\d{3})*|(\d+))('.preg_quote($decimalSeparator).'\d{2})?$/', $value)) {
                 // Convert value to number
-                $value = (float) trim(str_replace(array($currencyCode, $thousandsSeparator, $decimalSeparator), array('', '', '.'), $value));
+                $value = (float) trim(str_replace([$currencyCode, $thousandsSeparator, $decimalSeparator], ['', '', '.'], $value));
                 $cell->setValueExplicit($value, PHPExcel_Cell_DataType::TYPE_NUMERIC);
                 // Set style
                 $cell->getWorksheet()->getStyle($cell->getCoordinate())
@@ -122,7 +124,7 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
                 return true;
             } elseif (preg_match('/^\$ *(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/', $value)) {
                 // Convert value to number
-                $value = (float) trim(str_replace(array('$',','), '', $value));
+                $value = (float) trim(str_replace(['$', ','], '', $value));
                 $cell->setValueExplicit($value, PHPExcel_Cell_DataType::TYPE_NUMERIC);
                 // Set style
                 $cell->getWorksheet()->getStyle($cell->getCoordinate())
@@ -133,7 +135,7 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
             // Check for time without seconds e.g. '9:45', '09:45'
             if (preg_match('/^(\d|[0-1]\d|2[0-3]):[0-5]\d$/', $value)) {
                 // Convert value to number
-                list($h, $m) = explode(':', $value);
+                [$h, $m] = explode(':', $value);
                 $days = $h / 24 + $m / 1440;
                 $cell->setValueExplicit($days, PHPExcel_Cell_DataType::TYPE_NUMERIC);
                 // Set style
@@ -145,7 +147,7 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
             // Check for time with seconds '9:45:59', '09:45:59'
             if (preg_match('/^(\d|[0-1]\d|2[0-3]):[0-5]\d:[0-5]\d$/', $value)) {
                 // Convert value to number
-                list($h, $m, $s) = explode(':', $value);
+                [$h, $m, $s] = explode(':', $value);
                 $days = $h / 24 + $m / 1440 + $s / 86400;
                 // Convert value to number
                 $cell->setValueExplicit($days, PHPExcel_Cell_DataType::TYPE_NUMERIC);
@@ -160,7 +162,7 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
                 // Convert value to number
                 $cell->setValueExplicit($d, PHPExcel_Cell_DataType::TYPE_NUMERIC);
                 // Determine style. Either there is a time part or not. Look for ':'
-                if (strpos($value, ':') !== false) {
+                if (str_contains($value, ':')) {
                     $formatCode = 'yyyy-mm-dd h:mm';
                 } else {
                     $formatCode = 'yyyy-mm-dd';
@@ -171,7 +173,7 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
             }
 
             // Check for newline character "\n"
-            if (strpos($value, "\n") !== false) {
+            if (str_contains($value, "\n")) {
                 $value = PHPExcel_Shared_String::SanitizeUTF8($value);
                 $cell->setValueExplicit($value, PHPExcel_Cell_DataType::TYPE_STRING);
                 // Set style

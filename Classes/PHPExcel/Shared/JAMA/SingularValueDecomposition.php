@@ -1,6 +1,6 @@
 <?php
 /**
- *    @package JAMA
+ * @package JAMA
  *
  *    For an m-by-n matrix A with m >= n, the singular value decomposition is
  *    an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
@@ -13,39 +13,44 @@
  *    never fail.  The matrix condition number and the effective numerical
  *    rank can be computed from this decomposition.
  *
- *    @author  Paul Meagher
- *    @license PHP v3.0
- *    @version 1.1
+ * @author  Paul Meagher
+ * @license PHP v3.0
+ * @version 1.1
  */
 class SingularValueDecomposition
 {
     /**
      *    Internal storage of U.
-     *    @var array
+     *
+     * @var array
      */
-    private $U = array();
+    private $U = [];
 
     /**
      *    Internal storage of V.
-     *    @var array
+     *
+     * @var array
      */
-    private $V = array();
+    private $V = [];
 
     /**
      *    Internal storage of singular values.
-     *    @var array
+     *
+     * @var array
      */
-    private $s = array();
+    private $s = [];
 
     /**
      *    Row dimension.
-     *    @var int
+     *
+     * @var int
      */
     private $m;
 
     /**
      *    Column dimension.
-     *    @var int
+     *
+     * @var int
      */
     private $n;
 
@@ -54,8 +59,8 @@ class SingularValueDecomposition
      *
      *    Derived from LINPACK code.
      *
-     *    @param $A Rectangular matrix
-     *    @return Structure to access U, S and V.
+     * @param  $A Rectangular matrix
+     * @return Structure to access U, S and V.
      */
     public function __construct($Arg)
     {
@@ -64,8 +69,8 @@ class SingularValueDecomposition
         $this->m = $Arg->getRowDimension();
         $this->n = $Arg->getColumnDimension();
         $nu      = min($this->m, $this->n);
-        $e       = array();
-        $work    = array();
+        $e       = [];
+        $work    = [];
         $wantu   = true;
         $wantv   = true;
         $nct = min($this->m - 1, $this->n);
@@ -237,7 +242,7 @@ class SingularValueDecomposition
         // Main iteration loop for the singular values.
         $pp   = $p - 1;
         $iter = 0;
-        $eps  = pow(2.0, -52.0);
+        $eps  = 2.0 ** (-52.0);
 
         while ($p > 0) {
             // Here is where a test for too many iterations would go.
@@ -285,144 +290,144 @@ class SingularValueDecomposition
             // Perform the task indicated by kase.
             switch ($kase) {
                 // Deflate negligible s(p).
-                case 1:
-                    $f = $e[$p-2];
-                    $e[$p-2] = 0.0;
-                    for ($j = $p - 2; $j >= $k; --$j) {
-                        $t  = hypo($this->s[$j], $f);
-                        $cs = $this->s[$j] / $t;
-                        $sn = $f / $t;
-                        $this->s[$j] = $t;
-                        if ($j != $k) {
-                            $f = -$sn * $e[$j-1];
-                            $e[$j-1] = $cs * $e[$j-1];
-                        }
-                        if ($wantv) {
-                            for ($i = 0; $i < $this->n; ++$i) {
-                                $t = $cs * $this->V[$i][$j] + $sn * $this->V[$i][$p-1];
-                                $this->V[$i][$p-1] = -$sn * $this->V[$i][$j] + $cs * $this->V[$i][$p-1];
-                                $this->V[$i][$j] = $t;
-                            }
+            case 1:
+                $f = $e[$p-2];
+                $e[$p-2] = 0.0;
+                for ($j = $p - 2; $j >= $k; --$j) {
+                    $t  = hypo($this->s[$j], $f);
+                    $cs = $this->s[$j] / $t;
+                    $sn = $f / $t;
+                    $this->s[$j] = $t;
+                    if ($j != $k) {
+                        $f = -$sn * $e[$j-1];
+                        $e[$j-1] = $cs * $e[$j-1];
+                    }
+                    if ($wantv) {
+                        for ($i = 0; $i < $this->n; ++$i) {
+                            $t = $cs * $this->V[$i][$j] + $sn * $this->V[$i][$p-1];
+                            $this->V[$i][$p-1] = -$sn * $this->V[$i][$j] + $cs * $this->V[$i][$p-1];
+                            $this->V[$i][$j] = $t;
                         }
                     }
-                    break;
+                }
+                break;
                 // Split at negligible s(k).
-                case 2:
-                    $f = $e[$k-1];
-                    $e[$k-1] = 0.0;
-                    for ($j = $k; $j < $p; ++$j) {
-                        $t = hypo($this->s[$j], $f);
-                        $cs = $this->s[$j] / $t;
-                        $sn = $f / $t;
-                        $this->s[$j] = $t;
-                        $f = -$sn * $e[$j];
-                        $e[$j] = $cs * $e[$j];
-                        if ($wantu) {
-                            for ($i = 0; $i < $this->m; ++$i) {
-                                $t = $cs * $this->U[$i][$j] + $sn * $this->U[$i][$k-1];
-                                $this->U[$i][$k-1] = -$sn * $this->U[$i][$j] + $cs * $this->U[$i][$k-1];
-                                $this->U[$i][$j] = $t;
-                            }
+            case 2:
+                $f = $e[$k-1];
+                $e[$k-1] = 0.0;
+                for ($j = $k; $j < $p; ++$j) {
+                    $t = hypo($this->s[$j], $f);
+                    $cs = $this->s[$j] / $t;
+                    $sn = $f / $t;
+                    $this->s[$j] = $t;
+                    $f = -$sn * $e[$j];
+                    $e[$j] = $cs * $e[$j];
+                    if ($wantu) {
+                        for ($i = 0; $i < $this->m; ++$i) {
+                            $t = $cs * $this->U[$i][$j] + $sn * $this->U[$i][$k-1];
+                            $this->U[$i][$k-1] = -$sn * $this->U[$i][$j] + $cs * $this->U[$i][$k-1];
+                            $this->U[$i][$j] = $t;
                         }
                     }
-                    break;
+                }
+                break;
                 // Perform one qr step.
-                case 3:
-                    // Calculate the shift.
-                    $scale = max(max(max(max(abs($this->s[$p-1]), abs($this->s[$p-2])), abs($e[$p-2])), abs($this->s[$k])), abs($e[$k]));
-                    $sp   = $this->s[$p-1] / $scale;
-                    $spm1 = $this->s[$p-2] / $scale;
-                    $epm1 = $e[$p-2] / $scale;
-                    $sk   = $this->s[$k] / $scale;
-                    $ek   = $e[$k] / $scale;
-                    $b    = (($spm1 + $sp) * ($spm1 - $sp) + $epm1 * $epm1) / 2.0;
-                    $c    = ($sp * $epm1) * ($sp * $epm1);
-                    $shift = 0.0;
-                    if (($b != 0.0) || ($c != 0.0)) {
-                        $shift = sqrt($b * $b + $c);
-                        if ($b < 0.0) {
-                            $shift = -$shift;
-                        }
-                        $shift = $c / ($b + $shift);
+            case 3:
+                // Calculate the shift.
+                $scale = max(max(max(max(abs($this->s[$p-1]), abs($this->s[$p-2])), abs($e[$p-2])), abs($this->s[$k])), abs($e[$k]));
+                $sp   = $this->s[$p-1] / $scale;
+                $spm1 = $this->s[$p-2] / $scale;
+                $epm1 = $e[$p-2] / $scale;
+                $sk   = $this->s[$k] / $scale;
+                $ek   = $e[$k] / $scale;
+                $b    = (($spm1 + $sp) * ($spm1 - $sp) + $epm1 * $epm1) / 2.0;
+                $c    = ($sp * $epm1) * ($sp * $epm1);
+                $shift = 0.0;
+                if (($b != 0.0) || ($c != 0.0)) {
+                    $shift = sqrt($b * $b + $c);
+                    if ($b < 0.0) {
+                        $shift = -$shift;
                     }
-                    $f = ($sk + $sp) * ($sk - $sp) + $shift;
-                    $g = $sk * $ek;
-                    // Chase zeros.
-                    for ($j = $k; $j < $p-1; ++$j) {
-                        $t  = hypo($f, $g);
-                        $cs = $f/$t;
-                        $sn = $g/$t;
-                        if ($j != $k) {
-                            $e[$j-1] = $t;
-                        }
-                        $f = $cs * $this->s[$j] + $sn * $e[$j];
-                        $e[$j] = $cs * $e[$j] - $sn * $this->s[$j];
-                        $g = $sn * $this->s[$j+1];
-                        $this->s[$j+1] = $cs * $this->s[$j+1];
-                        if ($wantv) {
-                            for ($i = 0; $i < $this->n; ++$i) {
-                                $t = $cs * $this->V[$i][$j] + $sn * $this->V[$i][$j+1];
-                                $this->V[$i][$j+1] = -$sn * $this->V[$i][$j] + $cs * $this->V[$i][$j+1];
-                                $this->V[$i][$j] = $t;
-                            }
-                        }
-                        $t = hypo($f, $g);
-                        $cs = $f/$t;
-                        $sn = $g/$t;
-                        $this->s[$j] = $t;
-                        $f = $cs * $e[$j] + $sn * $this->s[$j+1];
-                        $this->s[$j+1] = -$sn * $e[$j] + $cs * $this->s[$j+1];
-                        $g = $sn * $e[$j+1];
-                        $e[$j+1] = $cs * $e[$j+1];
-                        if ($wantu && ($j < $this->m - 1)) {
-                            for ($i = 0; $i < $this->m; ++$i) {
-                                $t = $cs * $this->U[$i][$j] + $sn * $this->U[$i][$j+1];
-                                $this->U[$i][$j+1] = -$sn * $this->U[$i][$j] + $cs * $this->U[$i][$j+1];
-                                $this->U[$i][$j] = $t;
-                            }
+                    $shift = $c / ($b + $shift);
+                }
+                $f = ($sk + $sp) * ($sk - $sp) + $shift;
+                $g = $sk * $ek;
+                // Chase zeros.
+                for ($j = $k; $j < $p-1; ++$j) {
+                    $t  = hypo($f, $g);
+                    $cs = $f/$t;
+                    $sn = $g/$t;
+                    if ($j != $k) {
+                        $e[$j-1] = $t;
+                    }
+                    $f = $cs * $this->s[$j] + $sn * $e[$j];
+                    $e[$j] = $cs * $e[$j] - $sn * $this->s[$j];
+                    $g = $sn * $this->s[$j+1];
+                    $this->s[$j+1] = $cs * $this->s[$j+1];
+                    if ($wantv) {
+                        for ($i = 0; $i < $this->n; ++$i) {
+                            $t = $cs * $this->V[$i][$j] + $sn * $this->V[$i][$j+1];
+                            $this->V[$i][$j+1] = -$sn * $this->V[$i][$j] + $cs * $this->V[$i][$j+1];
+                            $this->V[$i][$j] = $t;
                         }
                     }
-                    $e[$p-2] = $f;
-                    $iter = $iter + 1;
-                    break;
+                    $t = hypo($f, $g);
+                    $cs = $f/$t;
+                    $sn = $g/$t;
+                    $this->s[$j] = $t;
+                    $f = $cs * $e[$j] + $sn * $this->s[$j+1];
+                    $this->s[$j+1] = -$sn * $e[$j] + $cs * $this->s[$j+1];
+                    $g = $sn * $e[$j+1];
+                    $e[$j+1] = $cs * $e[$j+1];
+                    if ($wantu && ($j < $this->m - 1)) {
+                        for ($i = 0; $i < $this->m; ++$i) {
+                            $t = $cs * $this->U[$i][$j] + $sn * $this->U[$i][$j+1];
+                            $this->U[$i][$j+1] = -$sn * $this->U[$i][$j] + $cs * $this->U[$i][$j+1];
+                            $this->U[$i][$j] = $t;
+                        }
+                    }
+                }
+                $e[$p-2] = $f;
+                $iter = $iter + 1;
+                break;
                 // Convergence.
-                case 4:
-                    // Make the singular values positive.
-                    if ($this->s[$k] <= 0.0) {
-                        $this->s[$k] = ($this->s[$k] < 0.0 ? -$this->s[$k] : 0.0);
-                        if ($wantv) {
-                            for ($i = 0; $i <= $pp; ++$i) {
-                                $this->V[$i][$k] = -$this->V[$i][$k];
-                            }
+            case 4:
+                // Make the singular values positive.
+                if ($this->s[$k] <= 0.0) {
+                    $this->s[$k] = ($this->s[$k] < 0.0 ? -$this->s[$k] : 0.0);
+                    if ($wantv) {
+                        for ($i = 0; $i <= $pp; ++$i) {
+                            $this->V[$i][$k] = -$this->V[$i][$k];
                         }
                     }
-                    // Order the singular values.
-                    while ($k < $pp) {
-                        if ($this->s[$k] >= $this->s[$k+1]) {
-                            break;
-                        }
-                        $t = $this->s[$k];
-                        $this->s[$k] = $this->s[$k+1];
-                        $this->s[$k+1] = $t;
-                        if ($wantv and ($k < $this->n - 1)) {
-                            for ($i = 0; $i < $this->n; ++$i) {
-                                $t = $this->V[$i][$k+1];
-                                $this->V[$i][$k+1] = $this->V[$i][$k];
-                                $this->V[$i][$k] = $t;
-                            }
-                        }
-                        if ($wantu and ($k < $this->m-1)) {
-                            for ($i = 0; $i < $this->m; ++$i) {
-                                $t = $this->U[$i][$k+1];
-                                $this->U[$i][$k+1] = $this->U[$i][$k];
-                                $this->U[$i][$k] = $t;
-                            }
-                        }
-                        ++$k;
+                }
+                // Order the singular values.
+                while ($k < $pp) {
+                    if ($this->s[$k] >= $this->s[$k+1]) {
+                        break;
                     }
-                    $iter = 0;
-                    --$p;
-                    break;
+                    $t = $this->s[$k];
+                    $this->s[$k] = $this->s[$k+1];
+                    $this->s[$k+1] = $t;
+                    if ($wantv and ($k < $this->n - 1)) {
+                        for ($i = 0; $i < $this->n; ++$i) {
+                            $t = $this->V[$i][$k+1];
+                            $this->V[$i][$k+1] = $this->V[$i][$k];
+                            $this->V[$i][$k] = $t;
+                        }
+                    }
+                    if ($wantu and ($k < $this->m-1)) {
+                        for ($i = 0; $i < $this->m; ++$i) {
+                            $t = $this->U[$i][$k+1];
+                            $this->U[$i][$k+1] = $this->U[$i][$k];
+                            $this->U[$i][$k] = $t;
+                        }
+                    }
+                    ++$k;
+                }
+                $iter = 0;
+                --$p;
+                break;
             } // end switch
         } // end while
 
@@ -432,8 +437,8 @@ class SingularValueDecomposition
     /**
      *    Return the left singular vectors
      *
-     *    @access public
-     *    @return U
+     * @access public
+     * @return U
      */
     public function getU()
     {
@@ -444,8 +449,8 @@ class SingularValueDecomposition
     /**
      *    Return the right singular vectors
      *
-     *    @access public
-     *    @return V
+     * @access public
+     * @return V
      */
     public function getV()
     {
@@ -456,8 +461,8 @@ class SingularValueDecomposition
     /**
      *    Return the one-dimensional array of singular values
      *
-     *    @access public
-     *    @return diagonal of S.
+     * @access public
+     * @return diagonal of S.
      */
     public function getSingularValues()
     {
@@ -468,8 +473,8 @@ class SingularValueDecomposition
     /**
      *    Return the diagonal matrix of singular values
      *
-     *    @access public
-     *    @return S
+     * @access public
+     * @return S
      */
     public function getS()
     {
@@ -486,8 +491,8 @@ class SingularValueDecomposition
     /**
      *    Two norm
      *
-     *    @access public
-     *    @return max(S)
+     * @access public
+     * @return max(S)
      */
     public function norm2()
     {
@@ -498,8 +503,8 @@ class SingularValueDecomposition
     /**
      *    Two norm condition number
      *
-     *    @access public
-     *    @return max(S)/min(S)
+     * @access public
+     * @return max(S)/min(S)
      */
     public function cond()
     {
@@ -510,12 +515,12 @@ class SingularValueDecomposition
     /**
      *    Effective numerical matrix rank
      *
-     *    @access public
-     *    @return Number of nonnegligible singular values.
+     * @access public
+     * @return Number of nonnegligible singular values.
      */
     public function rank()
     {
-        $eps = pow(2.0, -52.0);
+        $eps = 2.0 ** (-52.0);
         $tol = max($this->m, $this->n) * $this->s[0] * $eps;
         $r = 0;
         for ($i = 0; $i < count($this->s); ++$i) {

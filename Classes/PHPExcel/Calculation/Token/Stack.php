@@ -19,32 +19,32 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Calculation
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Calculation_Token_Stack
 {
     /**
      *  The parser stack for formulae
      *
-     *  @var mixed[]
+     * @var mixed[]
      */
-    private $stack = array();
+    private $stack = [];
 
     /**
      *  Count of entries in the parser stack
      *
-     *  @var integer
+     * @var integer
      */
     private $count = 0;
 
     /**
      * Return the number of entries on the stack
      *
-     * @return  integer
+     * @return integer
      */
     public function count()
     {
@@ -53,18 +53,10 @@ class PHPExcel_Calculation_Token_Stack
 
     /**
      * Push a new entry onto the stack
-     *
-     * @param  mixed  $type
-     * @param  mixed  $value
-     * @param  mixed  $reference
      */
-    public function push($type, $value, $reference = null)
+    public function push(mixed $type, mixed $value, mixed $reference = null)
     {
-        $this->stack[$this->count++] = array(
-            'type'      => $type,
-            'value'     => $value,
-            'reference' => $reference
-        );
+        $this->stack[$this->count++] = ['type'      => $type, 'value'     => $value, 'reference' => $reference];
         if ($type == 'Function') {
             $localeFunction = PHPExcel_Calculation::localeFunc($value);
             if ($localeFunction != $value) {
@@ -76,7 +68,7 @@ class PHPExcel_Calculation_Token_Stack
     /**
      * Pop the last entry from the stack
      *
-     * @return  mixed
+     * @return mixed
      */
     public function pop()
     {
@@ -89,8 +81,8 @@ class PHPExcel_Calculation_Token_Stack
     /**
      * Return an entry from the stack without removing it
      *
-     * @param   integer  $n  number indicating how far back in the stack we want to look
-     * @return  mixed
+     * @param  integer $n number indicating how far back in the stack we want to look
+     * @return mixed
      */
     public function last($n = 1)
     {
@@ -105,7 +97,7 @@ class PHPExcel_Calculation_Token_Stack
      */
     public function clear()
     {
-        $this->stack = array();
+        $this->stack = [];
         $this->count = 0;
     }
 }

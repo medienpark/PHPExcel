@@ -9,15 +9,12 @@ class DataSeriesValuesTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
     }
 
     public function testSetDataType()
     {
-        $dataTypeValues = array(
-            'Number',
-            'String'
-        );
+        $dataTypeValues = ['Number', 'String'];
 
         $testInstance = new PHPExcel_Chart_DataSeriesValues;
 
