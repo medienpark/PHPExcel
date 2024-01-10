@@ -28,20 +28,20 @@
 class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
     /* Border style */
-    const BORDER_NONE             = 'none';
-    const BORDER_DASHDOT          = 'dashDot';
-    const BORDER_DASHDOTDOT       = 'dashDotDot';
-    const BORDER_DASHED           = 'dashed';
-    const BORDER_DOTTED           = 'dotted';
-    const BORDER_DOUBLE           = 'double';
-    const BORDER_HAIR             = 'hair';
-    const BORDER_MEDIUM           = 'medium';
-    const BORDER_MEDIUMDASHDOT    = 'mediumDashDot';
-    const BORDER_MEDIUMDASHDOTDOT = 'mediumDashDotDot';
-    const BORDER_MEDIUMDASHED     = 'mediumDashed';
-    const BORDER_SLANTDASHDOT     = 'slantDashDot';
-    const BORDER_THICK            = 'thick';
-    const BORDER_THIN             = 'thin';
+    final public const BORDER_NONE             = 'none';
+    final public const BORDER_DASHDOT          = 'dashDot';
+    final public const BORDER_DASHDOTDOT       = 'dashDotDot';
+    final public const BORDER_DASHED           = 'dashed';
+    final public const BORDER_DOTTED           = 'dotted';
+    final public const BORDER_DOUBLE           = 'double';
+    final public const BORDER_HAIR             = 'hair';
+    final public const BORDER_MEDIUM           = 'medium';
+    final public const BORDER_MEDIUMDASHDOT    = 'mediumDashDot';
+    final public const BORDER_MEDIUMDASHDOTDOT = 'mediumDashDotDot';
+    final public const BORDER_MEDIUMDASHED     = 'mediumDashed';
+    final public const BORDER_SLANTDASHDOT     = 'slantDashDot';
+    final public const BORDER_THICK            = 'thick';
+    final public const BORDER_THIN             = 'thin';
 
     /**
      * Border style
@@ -154,7 +154,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
                 $key = strtolower('vertical');
                 break;
         }
-        return $this->parent->getStyleArray(array($key => $array));
+        return $this->parent->getStyleArray([$key => $array]);
     }
 
     /**
@@ -224,7 +224,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
             $pValue = PHPExcel_Style_Border::BORDER_MEDIUM;
         }
         if ($this->isSupervisor) {
-            $styleArray = $this->getStyleArray(array('style' => $pValue));
+            $styleArray = $this->getStyleArray(['style' => $pValue]);
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
             $this->borderStyle = $pValue;
@@ -255,7 +255,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
         $color = $pValue->getIsSupervisor() ? $pValue->getSharedComponent() : $pValue;
 
         if ($this->isSupervisor) {
-            $styleArray = $this->getColor()->getStyleArray(array('argb' => $color->getARGB()));
+            $styleArray = $this->getColor()->getStyleArray(['argb' => $color->getARGB()]);
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
             $this->color = $color;
@@ -276,7 +276,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
         return md5(
             $this->borderStyle .
             $this->color->getHashCode() .
-            __CLASS__
+            self::class
         );
     }
 }

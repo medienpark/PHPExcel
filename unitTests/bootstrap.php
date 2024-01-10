@@ -8,7 +8,7 @@
  * @author      Mark Baker
  */
 
-chdir(dirname(__FILE__));
+chdir(__DIR__);
 
 setlocale(LC_ALL, 'en_US.utf8');
 
@@ -17,22 +17,17 @@ date_default_timezone_set('Europe/London');
 
 // Define path to application directory
 defined('APPLICATION_PATH')
-    || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../Classes'));
+    || define('APPLICATION_PATH', realpath(__DIR__ . '/../Classes'));
 
 // Define path to application tests directory
 defined('APPLICATION_TESTS_PATH')
-    || define('APPLICATION_TESTS_PATH', realpath(dirname(__FILE__)));
+    || define('APPLICATION_TESTS_PATH', realpath(__DIR__));
 
 // Define application environment
 defined('APPLICATION_ENV') || define('APPLICATION_ENV', 'ci');
 
 // Ensure library/ is on include_path
-set_include_path(implode(PATH_SEPARATOR, array(
-    realpath(APPLICATION_PATH . '/../Classes'),
-    './',
-    dirname(__FILE__),
-    get_include_path(),
-)));
+set_include_path(implode(PATH_SEPARATOR, [realpath(APPLICATION_PATH . '/../Classes'), './', __DIR__, get_include_path()]));
 
 
 /**
@@ -43,7 +38,7 @@ echo "PHPExcel tests beginning\n";
 
 if (extension_loaded('xdebug')) {
     echo "Xdebug extension loaded and running\n";
-    xdebug_enable();
+    // xdebug_enable();
 } else {
     echo 'Xdebug not found, you should run the following at the command line: echo "zend_extension=/usr/lib64/php/modules/xdebug.so" > /etc/php.d/xdebug.ini' . "\n";
 }

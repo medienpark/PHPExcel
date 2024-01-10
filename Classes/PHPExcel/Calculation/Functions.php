@@ -5,7 +5,7 @@ if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
      */
-    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    define('PHPEXCEL_ROOT', __DIR__ . '/../../');
     require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
 }
 
@@ -52,13 +52,13 @@ class PHPExcel_Calculation_Functions
 {
 
     /** constants */
-    const COMPATIBILITY_EXCEL      = 'Excel';
-    const COMPATIBILITY_GNUMERIC   = 'Gnumeric';
-    const COMPATIBILITY_OPENOFFICE = 'OpenOfficeCalc';
+    final public const COMPATIBILITY_EXCEL      = 'Excel';
+    final public const COMPATIBILITY_GNUMERIC   = 'Gnumeric';
+    final public const COMPATIBILITY_OPENOFFICE = 'OpenOfficeCalc';
 
-    const RETURNDATE_PHP_NUMERIC = 'P';
-    const RETURNDATE_PHP_OBJECT  = 'O';
-    const RETURNDATE_EXCEL       = 'E';
+    final public const RETURNDATE_PHP_NUMERIC = 'P';
+    final public const RETURNDATE_PHP_OBJECT  = 'O';
+    final public const RETURNDATE_EXCEL       = 'E';
 
 
     /**
@@ -83,16 +83,7 @@ class PHPExcel_Calculation_Functions
      * @access    private
      * @var array
      */
-    protected static $errorCodes = array(
-        'null'           => '#NULL!',
-        'divisionbyzero' => '#DIV/0!',
-        'value'          => '#VALUE!',
-        'reference'      => '#REF!',
-        'name'           => '#NAME?',
-        'num'            => '#NUM!',
-        'na'             => '#N/A',
-        'gettingdata'    => '#GETTING_DATA'
-    );
+    protected static $errorCodes = ['null'           => '#NULL!', 'divisionbyzero' => '#DIV/0!', 'value'          => '#VALUE!', 'reference'      => '#REF!', 'name'           => '#NAME?', 'num'            => '#NUM!', 'na'             => '#N/A', 'gettingdata'    => '#GETTING_DATA'];
 
 
     /**
@@ -318,17 +309,17 @@ class PHPExcel_Calculation_Functions
     public static function ifCondition($condition)
     {
         $condition    = PHPExcel_Calculation_Functions::flattenSingleValue($condition);
-        if (!isset($condition{0})) {
+        if (!isset($condition[0])) {
             $condition = '=""';
         }
-        if (!in_array($condition{0}, array('>', '<', '='))) {
+        if (!in_array($condition[0], ['>', '<', '='])) {
             if (!is_numeric($condition)) {
                 $condition = PHPExcel_Calculation::wrapResult(strtoupper($condition));
             }
             return '=' . $condition;
         } else {
             preg_match('/([<>=]+)(.*)/', $condition, $matches);
-            list(, $operator, $operand) = $matches;
+            [, $operator, $operand] = $matches;
 
             if (!is_numeric($operand)) {
                 $operand = str_replace('"', '""', $operand);
@@ -559,7 +550,7 @@ class PHPExcel_Calculation_Functions
                 return (integer) $value;
             case 'string':
                 //    Errors
-                if ((strlen($value) > 0) && ($value{0} == '#')) {
+                if ((strlen($value) > 0) && ($value[0] == '#')) {
                     return $value;
                 }
                 break;
@@ -586,8 +577,7 @@ class PHPExcel_Calculation_Functions
     {
         $value = self::flattenArrayIndexed($value);
         if (is_array($value) && (count($value) > 1)) {
-            end($value);
-            $a = key($value);
+            $a = array_key_last($value);
             //    Range of cells is an error
             if (self::isCellValue($a)) {
                 return 16;
@@ -609,7 +599,7 @@ class PHPExcel_Calculation_Functions
                 return 64;
         } elseif (is_string($value)) {
             //    Errors
-            if ((strlen($value) > 0) && ($value{0} == '#')) {
+            if ((strlen($value) > 0) && ($value[0] == '#')) {
                 return 16;
             }
             return 2;
@@ -630,7 +620,7 @@ class PHPExcel_Calculation_Functions
             return (array) $array;
         }
 
-        $arrayValues = array();
+        $arrayValues = [];
         foreach ($array as $value) {
             if (is_array($value)) {
                 foreach ($value as $val) {
@@ -663,7 +653,7 @@ class PHPExcel_Calculation_Functions
             return (array) $array;
         }
 
-        $arrayValues = array();
+        $arrayValues = [];
         foreach ($array as $k1 => $value) {
             if (is_array($value)) {
                 foreach ($value as $k2 => $val) {
@@ -737,7 +727,7 @@ if ((!function_exists('mb_str_replace')) &&
     function mb_str_replace($search, $replace, $subject)
     {
         if (is_array($subject)) {
-            $ret = array();
+            $ret = [];
             foreach ($subject as $key => $val) {
                 $ret[$key] = mb_str_replace($search, $replace, $val);
             }

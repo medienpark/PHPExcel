@@ -61,14 +61,8 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
     public function save($filename)
     {
         // Initial Setting for saving
-        $this->_BIG_BLOCK_SIZE  = pow(
-            2,
-            (isset($this->_BIG_BLOCK_SIZE))? self::adjust2($this->_BIG_BLOCK_SIZE) : 9
-        );
-        $this->_SMALL_BLOCK_SIZE= pow(
-            2,
-            (isset($this->_SMALL_BLOCK_SIZE))?  self::adjust2($this->_SMALL_BLOCK_SIZE) : 6
-        );
+        $this->_BIG_BLOCK_SIZE  = 2 ** ((isset($this->_BIG_BLOCK_SIZE))? self::adjust2($this->_BIG_BLOCK_SIZE) : 9);
+        $this->_SMALL_BLOCK_SIZE= 2 ** ((isset($this->_SMALL_BLOCK_SIZE))?  self::adjust2($this->_SMALL_BLOCK_SIZE) : 6);
 
         if (is_resource($filename)) {
             $this->_FILEH_ = $filename;
@@ -88,10 +82,10 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
             throw new PHPExcel_Writer_Exception("Can't open $filename. It may be in use or protected.");
         }
         // Make an array of PPS's (for Save)
-        $aList = array();
-        PHPExcel_Shared_OLE_PPS::_savePpsSetPnt($aList, array($this));
+        $aList = [];
+        PHPExcel_Shared_OLE_PPS::_savePpsSetPnt($aList, [$this]);
         // calculate values for header
-        list($iSBDcnt, $iBBcnt, $iPPScnt) = $this->_calcSize($aList); //, $rhInfo);
+        [$iSBDcnt, $iBBcnt, $iPPScnt] = $this->_calcSize($aList); //, $rhInfo);
         // Save Header
         $this->_saveHeader($iSBDcnt, $iBBcnt, $iPPScnt);
 
@@ -122,7 +116,7 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
     public function _calcSize(&$raList)
     {
         // Calculate Basic Setting
-        list($iSBDcnt, $iBBcnt, $iPPScnt) = array(0,0,0);
+        [$iSBDcnt, $iBBcnt, $iPPScnt] = [0, 0, 0];
         $iSmallLen = 0;
         $iSBcnt = 0;
         $iCount = count($raList);
@@ -147,7 +141,7 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
         $iBdCnt = $this->_BIG_BLOCK_SIZE / PHPExcel_Shared_OLE::OLE_PPS_SIZE;
         $iPPScnt = (floor($iCnt/$iBdCnt) + (($iCnt % $iBdCnt)? 1: 0));
 
-        return array($iSBDcnt, $iBBcnt, $iPPScnt);
+        return [$iSBDcnt, $iBBcnt, $iPPScnt];
     }
 
     /**

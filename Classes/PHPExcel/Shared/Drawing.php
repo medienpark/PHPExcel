@@ -190,7 +190,7 @@ class PHPExcel_Shared_Drawing
 
         //    Process the header
         //    Structure: http://www.fastgraph.com/help/bmp_header_format.html
-        if (substr($header, 0, 4)=="424d") {
+        if (str_starts_with($header, "424d")) {
             //    Cut it in parts of 2 bytes
             $header_parts = str_split($header, 2);
 

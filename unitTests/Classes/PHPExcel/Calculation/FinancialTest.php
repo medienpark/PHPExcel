@@ -1,12 +1,12 @@
 <?php
 
 
-require_once 'testDataFileIterator.php';
+require_once __DIR__ . '/../../../testDataFileIterator.php';
 
-class FinancialTest extends PHPUnit_Framework_TestCase
+class FinancialTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    protected function setUp(): void
     {
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
@@ -23,8 +23,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','ACCRINT'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'ACCRINT'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerACCRINT()
@@ -39,8 +39,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','ACCRINTM'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'ACCRINTM'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerACCRINTM()
@@ -55,8 +55,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','AMORDEGRC'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'AMORDEGRC'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerAMORDEGRC()
@@ -71,8 +71,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','AMORLINC'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'AMORLINC'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerAMORLINC()
@@ -87,8 +87,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','COUPDAYBS'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'COUPDAYBS'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCOUPDAYBS()
@@ -103,8 +103,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','COUPDAYS'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'COUPDAYS'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCOUPDAYS()
@@ -119,8 +119,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','COUPDAYSNC'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'COUPDAYSNC'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCOUPDAYSNC()
@@ -135,8 +135,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','COUPNCD'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'COUPNCD'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCOUPNCD()
@@ -151,8 +151,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','COUPNUM'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'COUPNUM'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCOUPNUM()
@@ -167,8 +167,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','COUPPCD'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'COUPPCD'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCOUPPCD()
@@ -183,8 +183,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','CUMIPMT'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'CUMIPMT'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCUMIPMT()
@@ -199,8 +199,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','CUMPRINC'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'CUMPRINC'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerCUMPRINC()
@@ -215,8 +215,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','DB'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'DB'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerDB()
@@ -231,8 +231,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','DDB'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'DDB'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerDDB()
@@ -247,8 +247,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','DISC'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'DISC'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerDISC()
@@ -263,8 +263,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','DOLLARDE'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'DOLLARDE'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerDOLLARDE()
@@ -279,8 +279,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','DOLLARFR'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'DOLLARFR'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerDOLLARFR()
@@ -295,8 +295,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','EFFECT'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'EFFECT'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerEFFECT()
@@ -311,8 +311,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','FV'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'FV'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerFV()
@@ -327,8 +327,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','FVSCHEDULE'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'FVSCHEDULE'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerFVSCHEDULE()
@@ -343,8 +343,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','INTRATE'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'INTRATE'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerINTRATE()
@@ -359,8 +359,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','IPMT'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'IPMT'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerIPMT()
@@ -375,8 +375,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','IRR'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'IRR'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerIRR()
@@ -391,8 +391,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','ISPMT'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'ISPMT'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerISPMT()
@@ -407,8 +407,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','MIRR'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'MIRR'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerMIRR()
@@ -423,8 +423,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','NOMINAL'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'NOMINAL'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerNOMINAL()
@@ -439,8 +439,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','NPER'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'NPER'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerNPER()
@@ -455,8 +455,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','NPV'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'NPV'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerNPV()
@@ -471,8 +471,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','PRICE'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'PRICE'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerPRICE()
@@ -487,8 +487,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','RATE'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'RATE'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerRATE()
@@ -503,8 +503,8 @@ class FinancialTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_Financial','XIRR'), $args);
-        $this->assertEquals($expectedResult, $result, null, 1E-8);
+        $result = call_user_func_array(['PHPExcel_Calculation_Financial', 'XIRR'], $args);
+        $this->assertEquals($expectedResult, $result);
     }
 
     public function providerXIRR()

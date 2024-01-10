@@ -369,22 +369,7 @@ class PHPExcel_Writer_Excel5_Xf
      * @static    array of int
      *
      */
-    private static $mapBorderStyles = array(
-        PHPExcel_Style_Border::BORDER_NONE             => 0x00,
-        PHPExcel_Style_Border::BORDER_THIN             => 0x01,
-        PHPExcel_Style_Border::BORDER_MEDIUM           => 0x02,
-        PHPExcel_Style_Border::BORDER_DASHED           => 0x03,
-        PHPExcel_Style_Border::BORDER_DOTTED           => 0x04,
-        PHPExcel_Style_Border::BORDER_THICK            => 0x05,
-        PHPExcel_Style_Border::BORDER_DOUBLE           => 0x06,
-        PHPExcel_Style_Border::BORDER_HAIR             => 0x07,
-        PHPExcel_Style_Border::BORDER_MEDIUMDASHED     => 0x08,
-        PHPExcel_Style_Border::BORDER_DASHDOT          => 0x09,
-        PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT    => 0x0A,
-        PHPExcel_Style_Border::BORDER_DASHDOTDOT       => 0x0B,
-        PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT => 0x0C,
-        PHPExcel_Style_Border::BORDER_SLANTDASHDOT     => 0x0D,
-    );
+    private static $mapBorderStyles = [PHPExcel_Style_Border::BORDER_NONE             => 0x00, PHPExcel_Style_Border::BORDER_THIN             => 0x01, PHPExcel_Style_Border::BORDER_MEDIUM           => 0x02, PHPExcel_Style_Border::BORDER_DASHED           => 0x03, PHPExcel_Style_Border::BORDER_DOTTED           => 0x04, PHPExcel_Style_Border::BORDER_THICK            => 0x05, PHPExcel_Style_Border::BORDER_DOUBLE           => 0x06, PHPExcel_Style_Border::BORDER_HAIR             => 0x07, PHPExcel_Style_Border::BORDER_MEDIUMDASHED     => 0x08, PHPExcel_Style_Border::BORDER_DASHDOT          => 0x09, PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT    => 0x0A, PHPExcel_Style_Border::BORDER_DASHDOTDOT       => 0x0B, PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT => 0x0C, PHPExcel_Style_Border::BORDER_SLANTDASHDOT     => 0x0D];
 
     /**
      * Map border style
@@ -394,10 +379,7 @@ class PHPExcel_Writer_Excel5_Xf
      */
     private static function mapBorderStyle($borderStyle)
     {
-        if (isset(self::$mapBorderStyles[$borderStyle])) {
-            return self::$mapBorderStyles[$borderStyle];
-        }
-        return 0x00;
+        return self::$mapBorderStyles[$borderStyle] ?? 0x00;
     }
 
     /**
@@ -405,7 +387,7 @@ class PHPExcel_Writer_Excel5_Xf
      * @static    array of int
      *
      */
-    private static $mapFillTypes = array(
+    private static $mapFillTypes = [
         PHPExcel_Style_Fill::FILL_NONE                    => 0x00,
         PHPExcel_Style_Fill::FILL_SOLID                   => 0x01,
         PHPExcel_Style_Fill::FILL_PATTERN_MEDIUMGRAY      => 0x02,
@@ -425,9 +407,10 @@ class PHPExcel_Writer_Excel5_Xf
         PHPExcel_Style_Fill::FILL_PATTERN_LIGHTTRELLIS    => 0x10,
         PHPExcel_Style_Fill::FILL_PATTERN_GRAY125         => 0x11,
         PHPExcel_Style_Fill::FILL_PATTERN_GRAY0625        => 0x12,
-        PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR         => 0x00,    // does not exist in BIFF8
-        PHPExcel_Style_Fill::FILL_GRADIENT_PATH           => 0x00,    // does not exist in BIFF8
-    );
+        PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR         => 0x00,
+        // does not exist in BIFF8
+        PHPExcel_Style_Fill::FILL_GRADIENT_PATH           => 0x00,
+    ];
 
     /**
      * Map fill type
@@ -437,10 +420,7 @@ class PHPExcel_Writer_Excel5_Xf
      */
     private static function mapFillType($fillType)
     {
-        if (isset(self::$mapFillTypes[$fillType])) {
-            return self::$mapFillTypes[$fillType];
-        }
-        return 0x00;
+        return self::$mapFillTypes[$fillType] ?? 0x00;
     }
 
     /**
@@ -448,15 +428,7 @@ class PHPExcel_Writer_Excel5_Xf
      * @static    array of int
      *
      */
-    private static $mapHAlignments = array(
-        PHPExcel_Style_Alignment::HORIZONTAL_GENERAL           => 0,
-        PHPExcel_Style_Alignment::HORIZONTAL_LEFT              => 1,
-        PHPExcel_Style_Alignment::HORIZONTAL_CENTER            => 2,
-        PHPExcel_Style_Alignment::HORIZONTAL_RIGHT             => 3,
-        PHPExcel_Style_Alignment::HORIZONTAL_FILL              => 4,
-        PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY           => 5,
-        PHPExcel_Style_Alignment::HORIZONTAL_CENTER_CONTINUOUS => 6,
-    );
+    private static $mapHAlignments = [PHPExcel_Style_Alignment::HORIZONTAL_GENERAL           => 0, PHPExcel_Style_Alignment::HORIZONTAL_LEFT              => 1, PHPExcel_Style_Alignment::HORIZONTAL_CENTER            => 2, PHPExcel_Style_Alignment::HORIZONTAL_RIGHT             => 3, PHPExcel_Style_Alignment::HORIZONTAL_FILL              => 4, PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY           => 5, PHPExcel_Style_Alignment::HORIZONTAL_CENTER_CONTINUOUS => 6];
 
     /**
      * Map to BIFF2-BIFF8 codes for horizontal alignment
@@ -466,10 +438,7 @@ class PHPExcel_Writer_Excel5_Xf
      */
     private function mapHAlign($hAlign)
     {
-        if (isset(self::$mapHAlignments[$hAlign])) {
-            return self::$mapHAlignments[$hAlign];
-        }
-        return 0;
+        return self::$mapHAlignments[$hAlign] ?? 0;
     }
 
     /**
@@ -477,12 +446,7 @@ class PHPExcel_Writer_Excel5_Xf
      * @static    array of int
      *
      */
-    private static $mapVAlignments = array(
-        PHPExcel_Style_Alignment::VERTICAL_TOP     => 0,
-        PHPExcel_Style_Alignment::VERTICAL_CENTER  => 1,
-        PHPExcel_Style_Alignment::VERTICAL_BOTTOM  => 2,
-        PHPExcel_Style_Alignment::VERTICAL_JUSTIFY => 3,
-    );
+    private static $mapVAlignments = [PHPExcel_Style_Alignment::VERTICAL_TOP     => 0, PHPExcel_Style_Alignment::VERTICAL_CENTER  => 1, PHPExcel_Style_Alignment::VERTICAL_BOTTOM  => 2, PHPExcel_Style_Alignment::VERTICAL_JUSTIFY => 3];
 
     /**
      * Map to BIFF2-BIFF8 codes for vertical alignment
@@ -492,10 +456,7 @@ class PHPExcel_Writer_Excel5_Xf
      */
     private static function mapVAlign($vAlign)
     {
-        if (isset(self::$mapVAlignments[$vAlign])) {
-            return self::$mapVAlignments[$vAlign];
-        }
-        return 2;
+        return self::$mapVAlignments[$vAlign] ?? 2;
     }
 
     /**
