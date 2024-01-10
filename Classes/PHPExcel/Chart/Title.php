@@ -29,26 +29,20 @@ class PHPExcel_Chart_Title
 {
 
     /**
-     * Title Caption
-     *
-     * @var string
-     */
-    private $caption = null;
-
-    /**
-     * Title Layout
-     *
-     * @var PHPExcel_Chart_Layout
-     */
-    private $layout = null;
-
-    /**
      * Create a new PHPExcel_Chart_Title
+     * @param string $caption
      */
-    public function __construct($caption = null, PHPExcel_Chart_Layout $layout = null)
+    public function __construct(
+        /**
+         * Title Caption
+         */
+        private $caption = null,
+        /**
+         * Title Layout
+         */
+        private ?\PHPExcel_Chart_Layout $layout = null
+    )
     {
-        $this->caption = $caption;
-        $this->layout = $layout;
     }
 
     /**

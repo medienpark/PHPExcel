@@ -1,12 +1,12 @@
 <?php
 
 
-require_once 'testDataFileIterator.php';
+require_once __DIR__ . '/../../../testDataFileIterator.php';
 
-class LookupRefTest extends PHPUnit_Framework_TestCase
+class LookupRefTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    protected function setUp(): void
     {
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
@@ -23,7 +23,7 @@ class LookupRefTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_LookupRef','HLOOKUP'), $args);
+        $result = call_user_func_array(['PHPExcel_Calculation_LookupRef', 'HLOOKUP'], $args);
         $this->assertEquals($expectedResult, $result);
     }
 
@@ -39,7 +39,7 @@ class LookupRefTest extends PHPUnit_Framework_TestCase
     {
         $args = func_get_args();
         $expectedResult = array_pop($args);
-        $result = call_user_func_array(array('PHPExcel_Calculation_LookupRef','VLOOKUP'), $args);
+        $result = call_user_func_array(['PHPExcel_Calculation_LookupRef', 'VLOOKUP'], $args);
         $this->assertEquals($expectedResult, $result);
     }
 

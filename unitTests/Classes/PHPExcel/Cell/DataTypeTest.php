@@ -1,10 +1,10 @@
 <?php
 
 
-class DataTypeTest extends PHPUnit_Framework_TestCase
+class DataTypeTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    protected function setUp(): void
     {
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
@@ -14,7 +14,7 @@ class DataTypeTest extends PHPUnit_Framework_TestCase
 
     public function testGetErrorCodes()
     {
-        $result = call_user_func(array('PHPExcel_Cell_DataType','getErrorCodes'));
+        $result = call_user_func(['PHPExcel_Cell_DataType', 'getErrorCodes']);
         $this->assertInternalType('array', $result);
         $this->assertGreaterThan(0, count($result));
         $this->assertArrayHasKey('#NULL!', $result);

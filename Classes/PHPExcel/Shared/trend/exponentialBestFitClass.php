@@ -45,7 +45,7 @@ class PHPExcel_Exponential_Best_Fit extends PHPExcel_Best_Fit
      **/
     public function getValueOfYForX($xValue)
     {
-        return $this->getIntersect() * pow($this->getSlope(), ($xValue - $this->xOffset));
+        return $this->getIntersect() * $this->getSlope() ** ($xValue - $this->xOffset);
     }
 
     /**
@@ -129,7 +129,7 @@ class PHPExcel_Exponential_Best_Fit extends PHPExcel_Best_Fit
      * @param    float[]        $xValues    The set of X-values for this regression
      * @param    boolean        $const
      */
-    public function __construct($yValues, $xValues = array(), $const = true)
+    public function __construct($yValues, $xValues = [], $const = true)
     {
         if (parent::__construct($yValues, $xValues) !== false) {
             $this->exponentialRegression($yValues, $xValues, $const);

@@ -354,8 +354,8 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
             $range = PHPExcel_Cell::splitRange($autoFilterRange);
             $range = $range[0];
             //    Strip any worksheet ref so we can make the cell ref absolute
-            if (strpos($range[0], '!') !== false) {
-                list($ws, $range[0]) = explode('!', $range[0]);
+            if (str_contains($range[0], '!')) {
+                [$ws, $range[0]] = explode('!', $range[0]);
             }
 
             $range[0] = PHPExcel_Cell::absoluteCoordinate($range[0]);
@@ -433,7 +433,7 @@ class PHPExcel_Writer_Excel2007_Workbook extends PHPExcel_Writer_Excel2007_Write
             // Print area
             $printArea = PHPExcel_Cell::splitRange($pSheet->getPageSetup()->getPrintArea());
 
-            $chunks = array();
+            $chunks = [];
             foreach ($printArea as $printAreaRect) {
                 $printAreaRect[0] = PHPExcel_Cell::absoluteReference($printAreaRect[0]);
                 $printAreaRect[1] = PHPExcel_Cell::absoluteReference($printAreaRect[1]);

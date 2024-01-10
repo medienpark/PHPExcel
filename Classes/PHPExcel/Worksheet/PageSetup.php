@@ -107,81 +107,81 @@
 class PHPExcel_Worksheet_PageSetup
 {
     /* Paper size */
-    const PAPERSIZE_LETTER                          = 1;
-    const PAPERSIZE_LETTER_SMALL                    = 2;
-    const PAPERSIZE_TABLOID                         = 3;
-    const PAPERSIZE_LEDGER                          = 4;
-    const PAPERSIZE_LEGAL                           = 5;
-    const PAPERSIZE_STATEMENT                       = 6;
-    const PAPERSIZE_EXECUTIVE                       = 7;
-    const PAPERSIZE_A3                              = 8;
-    const PAPERSIZE_A4                              = 9;
-    const PAPERSIZE_A4_SMALL                        = 10;
-    const PAPERSIZE_A5                              = 11;
-    const PAPERSIZE_B4                              = 12;
-    const PAPERSIZE_B5                              = 13;
-    const PAPERSIZE_FOLIO                           = 14;
-    const PAPERSIZE_QUARTO                          = 15;
-    const PAPERSIZE_STANDARD_1                      = 16;
-    const PAPERSIZE_STANDARD_2                      = 17;
-    const PAPERSIZE_NOTE                            = 18;
-    const PAPERSIZE_NO9_ENVELOPE                    = 19;
-    const PAPERSIZE_NO10_ENVELOPE                   = 20;
-    const PAPERSIZE_NO11_ENVELOPE                   = 21;
-    const PAPERSIZE_NO12_ENVELOPE                   = 22;
-    const PAPERSIZE_NO14_ENVELOPE                   = 23;
-    const PAPERSIZE_C                               = 24;
-    const PAPERSIZE_D                               = 25;
-    const PAPERSIZE_E                               = 26;
-    const PAPERSIZE_DL_ENVELOPE                     = 27;
-    const PAPERSIZE_C5_ENVELOPE                     = 28;
-    const PAPERSIZE_C3_ENVELOPE                     = 29;
-    const PAPERSIZE_C4_ENVELOPE                     = 30;
-    const PAPERSIZE_C6_ENVELOPE                     = 31;
-    const PAPERSIZE_C65_ENVELOPE                    = 32;
-    const PAPERSIZE_B4_ENVELOPE                     = 33;
-    const PAPERSIZE_B5_ENVELOPE                     = 34;
-    const PAPERSIZE_B6_ENVELOPE                     = 35;
-    const PAPERSIZE_ITALY_ENVELOPE                  = 36;
-    const PAPERSIZE_MONARCH_ENVELOPE                = 37;
-    const PAPERSIZE_6_3_4_ENVELOPE                  = 38;
-    const PAPERSIZE_US_STANDARD_FANFOLD             = 39;
-    const PAPERSIZE_GERMAN_STANDARD_FANFOLD         = 40;
-    const PAPERSIZE_GERMAN_LEGAL_FANFOLD            = 41;
-    const PAPERSIZE_ISO_B4                          = 42;
-    const PAPERSIZE_JAPANESE_DOUBLE_POSTCARD        = 43;
-    const PAPERSIZE_STANDARD_PAPER_1                = 44;
-    const PAPERSIZE_STANDARD_PAPER_2                = 45;
-    const PAPERSIZE_STANDARD_PAPER_3                = 46;
-    const PAPERSIZE_INVITE_ENVELOPE                 = 47;
-    const PAPERSIZE_LETTER_EXTRA_PAPER              = 48;
-    const PAPERSIZE_LEGAL_EXTRA_PAPER               = 49;
-    const PAPERSIZE_TABLOID_EXTRA_PAPER             = 50;
-    const PAPERSIZE_A4_EXTRA_PAPER                  = 51;
-    const PAPERSIZE_LETTER_TRANSVERSE_PAPER         = 52;
-    const PAPERSIZE_A4_TRANSVERSE_PAPER             = 53;
-    const PAPERSIZE_LETTER_EXTRA_TRANSVERSE_PAPER   = 54;
-    const PAPERSIZE_SUPERA_SUPERA_A4_PAPER          = 55;
-    const PAPERSIZE_SUPERB_SUPERB_A3_PAPER          = 56;
-    const PAPERSIZE_LETTER_PLUS_PAPER               = 57;
-    const PAPERSIZE_A4_PLUS_PAPER                   = 58;
-    const PAPERSIZE_A5_TRANSVERSE_PAPER             = 59;
-    const PAPERSIZE_JIS_B5_TRANSVERSE_PAPER         = 60;
-    const PAPERSIZE_A3_EXTRA_PAPER                  = 61;
-    const PAPERSIZE_A5_EXTRA_PAPER                  = 62;
-    const PAPERSIZE_ISO_B5_EXTRA_PAPER              = 63;
-    const PAPERSIZE_A2_PAPER                        = 64;
-    const PAPERSIZE_A3_TRANSVERSE_PAPER             = 65;
-    const PAPERSIZE_A3_EXTRA_TRANSVERSE_PAPER       = 66;
+    final public const PAPERSIZE_LETTER                          = 1;
+    final public const PAPERSIZE_LETTER_SMALL                    = 2;
+    final public const PAPERSIZE_TABLOID                         = 3;
+    final public const PAPERSIZE_LEDGER                          = 4;
+    final public const PAPERSIZE_LEGAL                           = 5;
+    final public const PAPERSIZE_STATEMENT                       = 6;
+    final public const PAPERSIZE_EXECUTIVE                       = 7;
+    final public const PAPERSIZE_A3                              = 8;
+    final public const PAPERSIZE_A4                              = 9;
+    final public const PAPERSIZE_A4_SMALL                        = 10;
+    final public const PAPERSIZE_A5                              = 11;
+    final public const PAPERSIZE_B4                              = 12;
+    final public const PAPERSIZE_B5                              = 13;
+    final public const PAPERSIZE_FOLIO                           = 14;
+    final public const PAPERSIZE_QUARTO                          = 15;
+    final public const PAPERSIZE_STANDARD_1                      = 16;
+    final public const PAPERSIZE_STANDARD_2                      = 17;
+    final public const PAPERSIZE_NOTE                            = 18;
+    final public const PAPERSIZE_NO9_ENVELOPE                    = 19;
+    final public const PAPERSIZE_NO10_ENVELOPE                   = 20;
+    final public const PAPERSIZE_NO11_ENVELOPE                   = 21;
+    final public const PAPERSIZE_NO12_ENVELOPE                   = 22;
+    final public const PAPERSIZE_NO14_ENVELOPE                   = 23;
+    final public const PAPERSIZE_C                               = 24;
+    final public const PAPERSIZE_D                               = 25;
+    final public const PAPERSIZE_E                               = 26;
+    final public const PAPERSIZE_DL_ENVELOPE                     = 27;
+    final public const PAPERSIZE_C5_ENVELOPE                     = 28;
+    final public const PAPERSIZE_C3_ENVELOPE                     = 29;
+    final public const PAPERSIZE_C4_ENVELOPE                     = 30;
+    final public const PAPERSIZE_C6_ENVELOPE                     = 31;
+    final public const PAPERSIZE_C65_ENVELOPE                    = 32;
+    final public const PAPERSIZE_B4_ENVELOPE                     = 33;
+    final public const PAPERSIZE_B5_ENVELOPE                     = 34;
+    final public const PAPERSIZE_B6_ENVELOPE                     = 35;
+    final public const PAPERSIZE_ITALY_ENVELOPE                  = 36;
+    final public const PAPERSIZE_MONARCH_ENVELOPE                = 37;
+    final public const PAPERSIZE_6_3_4_ENVELOPE                  = 38;
+    final public const PAPERSIZE_US_STANDARD_FANFOLD             = 39;
+    final public const PAPERSIZE_GERMAN_STANDARD_FANFOLD         = 40;
+    final public const PAPERSIZE_GERMAN_LEGAL_FANFOLD            = 41;
+    final public const PAPERSIZE_ISO_B4                          = 42;
+    final public const PAPERSIZE_JAPANESE_DOUBLE_POSTCARD        = 43;
+    final public const PAPERSIZE_STANDARD_PAPER_1                = 44;
+    final public const PAPERSIZE_STANDARD_PAPER_2                = 45;
+    final public const PAPERSIZE_STANDARD_PAPER_3                = 46;
+    final public const PAPERSIZE_INVITE_ENVELOPE                 = 47;
+    final public const PAPERSIZE_LETTER_EXTRA_PAPER              = 48;
+    final public const PAPERSIZE_LEGAL_EXTRA_PAPER               = 49;
+    final public const PAPERSIZE_TABLOID_EXTRA_PAPER             = 50;
+    final public const PAPERSIZE_A4_EXTRA_PAPER                  = 51;
+    final public const PAPERSIZE_LETTER_TRANSVERSE_PAPER         = 52;
+    final public const PAPERSIZE_A4_TRANSVERSE_PAPER             = 53;
+    final public const PAPERSIZE_LETTER_EXTRA_TRANSVERSE_PAPER   = 54;
+    final public const PAPERSIZE_SUPERA_SUPERA_A4_PAPER          = 55;
+    final public const PAPERSIZE_SUPERB_SUPERB_A3_PAPER          = 56;
+    final public const PAPERSIZE_LETTER_PLUS_PAPER               = 57;
+    final public const PAPERSIZE_A4_PLUS_PAPER                   = 58;
+    final public const PAPERSIZE_A5_TRANSVERSE_PAPER             = 59;
+    final public const PAPERSIZE_JIS_B5_TRANSVERSE_PAPER         = 60;
+    final public const PAPERSIZE_A3_EXTRA_PAPER                  = 61;
+    final public const PAPERSIZE_A5_EXTRA_PAPER                  = 62;
+    final public const PAPERSIZE_ISO_B5_EXTRA_PAPER              = 63;
+    final public const PAPERSIZE_A2_PAPER                        = 64;
+    final public const PAPERSIZE_A3_TRANSVERSE_PAPER             = 65;
+    final public const PAPERSIZE_A3_EXTRA_TRANSVERSE_PAPER       = 66;
 
     /* Page orientation */
-    const ORIENTATION_DEFAULT                       = 'default';
-    const ORIENTATION_LANDSCAPE                     = 'landscape';
-    const ORIENTATION_PORTRAIT                      = 'portrait';
+    final public const ORIENTATION_DEFAULT                       = 'default';
+    final public const ORIENTATION_LANDSCAPE                     = 'landscape';
+    final public const ORIENTATION_PORTRAIT                      = 'portrait';
 
     /* Print Range Set Method */
-    const SETPRINTRANGE_OVERWRITE                   = 'O';
-    const SETPRINTRANGE_INSERT                      = 'I';
+    final public const SETPRINTRANGE_OVERWRITE                   = 'O';
+    final public const SETPRINTRANGE_INSERT                      = 'I';
 
 
     /**
@@ -237,14 +237,14 @@ class PHPExcel_Worksheet_PageSetup
      *
      * @var array Containing start column and end column, empty array if option unset
      */
-    private $columnsToRepeatAtLeft = array('', '');
+    private $columnsToRepeatAtLeft = ['', ''];
 
     /**
      * Rows to repeat at top
      *
      * @var array Containing start row number and end row number, empty array if option unset
      */
-    private $rowsToRepeatAtTop = array(0, 0);
+    private $rowsToRepeatAtTop = [0, 0];
 
     /**
      * Center page horizontally
@@ -484,7 +484,7 @@ class PHPExcel_Worksheet_PageSetup
      */
     public function setColumnsToRepeatAtLeftByStartAndEnd($pStart = 'A', $pEnd = 'A')
     {
-        $this->columnsToRepeatAtLeft = array($pStart, $pEnd);
+        $this->columnsToRepeatAtLeft = [$pStart, $pEnd];
         return $this;
     }
 
@@ -537,7 +537,7 @@ class PHPExcel_Worksheet_PageSetup
      */
     public function setRowsToRepeatAtTopByStartAndEnd($pStart = 1, $pEnd = 1)
     {
-        $this->rowsToRepeatAtTop = array($pStart, $pEnd);
+        $this->rowsToRepeatAtTop = [$pStart, $pEnd];
         return $this;
     }
 
@@ -671,11 +671,11 @@ class PHPExcel_Worksheet_PageSetup
      */
     public function setPrintArea($value, $index = 0, $method = self::SETPRINTRANGE_OVERWRITE)
     {
-        if (strpos($value, '!') !== false) {
+        if (str_contains($value, '!')) {
             throw new PHPExcel_Exception('Cell coordinate must not specify a worksheet.');
-        } elseif (strpos($value, ':') === false) {
+        } elseif (!str_contains($value, ':')) {
             throw new PHPExcel_Exception('Cell coordinate must be a range of cells.');
-        } elseif (strpos($value, '$') !== false) {
+        } elseif (str_contains($value, '$')) {
             throw new PHPExcel_Exception('Cell coordinate must not be absolute.');
         }
         $value = strtoupper($value);
@@ -705,7 +705,7 @@ class PHPExcel_Worksheet_PageSetup
                 if ($index > count($printAreas)) {
                     throw new PHPExcel_Exception('Invalid index for setting print range.');
                 }
-                $printAreas = array_merge(array_slice($printAreas, 0, $index), array($value), array_slice($printAreas, $index));
+                $printAreas = array_merge(array_slice($printAreas, 0, $index), [$value], array_slice($printAreas, $index));
                 $this->printArea = implode(',', $printAreas);
             }
         } else {

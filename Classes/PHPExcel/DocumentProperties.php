@@ -28,12 +28,12 @@
 class PHPExcel_DocumentProperties
 {
     /** constants */
-    const PROPERTY_TYPE_BOOLEAN = 'b';
-    const PROPERTY_TYPE_INTEGER = 'i';
-    const PROPERTY_TYPE_FLOAT   = 'f';
-    const PROPERTY_TYPE_DATE    = 'd';
-    const PROPERTY_TYPE_STRING  = 's';
-    const PROPERTY_TYPE_UNKNOWN = 'u';
+    final public const PROPERTY_TYPE_BOOLEAN = 'b';
+    final public const PROPERTY_TYPE_INTEGER = 'i';
+    final public const PROPERTY_TYPE_FLOAT   = 'f';
+    final public const PROPERTY_TYPE_DATE    = 'd';
+    final public const PROPERTY_TYPE_STRING  = 's';
+    final public const PROPERTY_TYPE_UNKNOWN = 'u';
 
     /**
      * Creator
@@ -117,7 +117,7 @@ class PHPExcel_DocumentProperties
      *
      * @var string
      */
-    private $customProperties = array();
+    private $customProperties = [];
 
 
     /**
@@ -457,11 +457,7 @@ class PHPExcel_DocumentProperties
      */
     public function setCustomProperty($propertyName, $propertyValue = '', $propertyType = null)
     {
-        if (($propertyType === null) || (!in_array($propertyType, array(self::PROPERTY_TYPE_INTEGER,
-                                                                        self::PROPERTY_TYPE_FLOAT,
-                                                                        self::PROPERTY_TYPE_STRING,
-                                                                        self::PROPERTY_TYPE_DATE,
-                                                                        self::PROPERTY_TYPE_BOOLEAN)))) {
+        if (($propertyType === null) || (!in_array($propertyType, [self::PROPERTY_TYPE_INTEGER, self::PROPERTY_TYPE_FLOAT, self::PROPERTY_TYPE_STRING, self::PROPERTY_TYPE_DATE, self::PROPERTY_TYPE_BOOLEAN]))) {
             if ($propertyValue === null) {
                 $propertyType = self::PROPERTY_TYPE_STRING;
             } elseif (is_float($propertyValue)) {
@@ -475,10 +471,7 @@ class PHPExcel_DocumentProperties
             }
         }
 
-        $this->customProperties[$propertyName] = array(
-            'value' => $propertyValue,
-            'type' => $propertyType
-        );
+        $this->customProperties[$propertyName] = ['value' => $propertyValue, 'type' => $propertyType];
         return $this;
     }
 

@@ -29,15 +29,11 @@ class PHPExcel_Worksheet_SheetView
 {
 
     /* Sheet View types */
-    const SHEETVIEW_NORMAL             = 'normal';
-    const SHEETVIEW_PAGE_LAYOUT        = 'pageLayout';
-    const SHEETVIEW_PAGE_BREAK_PREVIEW = 'pageBreakPreview';
+    final public const SHEETVIEW_NORMAL             = 'normal';
+    final public const SHEETVIEW_PAGE_LAYOUT        = 'pageLayout';
+    final public const SHEETVIEW_PAGE_BREAK_PREVIEW = 'pageBreakPreview';
 
-    private static $sheetViewTypes = array(
-        self::SHEETVIEW_NORMAL,
-        self::SHEETVIEW_PAGE_LAYOUT,
-        self::SHEETVIEW_PAGE_BREAK_PREVIEW,
-    );
+    private static $sheetViewTypes = [self::SHEETVIEW_NORMAL, self::SHEETVIEW_PAGE_LAYOUT, self::SHEETVIEW_PAGE_BREAK_PREVIEW];
 
     /**
      * ZoomScale

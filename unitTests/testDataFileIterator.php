@@ -8,7 +8,7 @@ class testDataFileIterator implements Iterator
 
     public function __construct($file)
     {
-        $this->file = fopen($file, 'r');
+        $this->file = fopen(__DIR__ . '/' . $file, 'r');
     }
 
     public function __destruct()
@@ -50,10 +50,10 @@ class testDataFileIterator implements Iterator
         do {
             //    Only take lines that contain test data and that aren't commented out
             $testDataRow = trim(fgets($this->file));
-        } while (($testDataRow > '') && ($testDataRow{0} === '#'));
+        } while (($testDataRow > '') && ($testDataRow[0] === '#'));
 
         //    Discard any comments at the end of the line
-        list($testData) = explode('//', $testDataRow);
+        [$testData] = explode('//', $testDataRow);
 
         //    Split data into an array of individual values and a result
         $dataSet = $this->_getcsv($testData, ',', "'");
@@ -78,7 +78,7 @@ class testDataFileIterator implements Iterator
         fclose($temp);
 
         if ($data === false) {
-            $data = array(null);
+            $data = [null];
         }
 
         return $data;
@@ -99,7 +99,7 @@ class testDataFileIterator implements Iterator
             } elseif (($dataValue[0] == '{') && ($dataValue[strlen($dataValue)-1] == '}')) {
                 $dataValue = explode(';', substr($dataValue, 1, -1));
                 foreach ($dataValue as &$dataRow) {
-                    if (strpos($dataRow, '|') !== false) {
+                    if (str_contains($dataRow, '|')) {
                         $dataRow = explode('|', $dataRow);
                         foreach ($dataRow as &$dataCell) {
                             $dataCell = $this->_parseDataValue($dataCell);
@@ -124,7 +124,7 @@ class testDataFileIterator implements Iterator
                 }
             }
         } else {
-            if (strpos($dataValue, '.') !== false) {
+            if (str_contains($dataValue, '.')) {
                 $dataValue = (float) $dataValue;
             } else {
                 $dataValue = (int) $dataValue;

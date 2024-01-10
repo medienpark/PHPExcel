@@ -28,13 +28,6 @@
 class PHPExcel_WorksheetIterator implements Iterator
 {
     /**
-     * Spreadsheet to iterate
-     *
-     * @var PHPExcel
-     */
-    private $subject;
-
-    /**
      * Current iterator position
      *
      * @var int
@@ -46,10 +39,13 @@ class PHPExcel_WorksheetIterator implements Iterator
      *
      * @param PHPExcel         $subject
      */
-    public function __construct(PHPExcel $subject = null)
+    public function __construct(
+        /**
+         * Spreadsheet to iterate
+         */
+        private ?\PHPExcel $subject = null
+    )
     {
-        // Set subject
-        $this->subject = $subject;
     }
 
     /**
