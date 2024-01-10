@@ -1,10 +1,10 @@
 <?php
 /**
- * @package JAMA
+ *    @package JAMA
  *
  *    Error handling
- * @author  Michael Bommarito
- * @version 01292005
+ *    @author Michael Bommarito
+ *    @version 01292005
  */
 
 //Language constant
@@ -14,7 +14,7 @@ define('JAMALANG', 'EN');
 //All errors may be defined by the following format:
 //define('ExceptionName', N);
 //$error['lang'][ExceptionName] = 'Error message';
-$error = [];
+$error = array();
 
 /*
 I've used Babelfish and a little poor knowledge of Romance/Germanic languages for the translations here.
@@ -65,8 +65,7 @@ $error['EN'][ROW_LENGTH_EXCEPTION] = "All rows must have the same length.";
 
 /**
  *    Custom error handler
- *
- * @param int $num Error number
+ *    @param int $num Error number
  */
 function JAMAError($errorNumber = null)
 {

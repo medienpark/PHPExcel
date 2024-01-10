@@ -19,30 +19,38 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel_Cell
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category   PHPExcel
+ * @package    PHPExcel_Cell
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    ##VERSION##, ##DATE##
  */
 class PHPExcel_Cell_DataType
 {
     /* Data types */
-    final public const TYPE_STRING2  = 'str';
-    final public const TYPE_STRING   = 's';
-    final public const TYPE_FORMULA  = 'f';
-    final public const TYPE_NUMERIC  = 'n';
-    final public const TYPE_BOOL     = 'b';
-    final public const TYPE_NULL     = 'null';
-    final public const TYPE_INLINE   = 'inlineStr';
-    final public const TYPE_ERROR    = 'e';
+    const TYPE_STRING2  = 'str';
+    const TYPE_STRING   = 's';
+    const TYPE_FORMULA  = 'f';
+    const TYPE_NUMERIC  = 'n';
+    const TYPE_BOOL     = 'b';
+    const TYPE_NULL     = 'null';
+    const TYPE_INLINE   = 'inlineStr';
+    const TYPE_ERROR    = 'e';
 
     /**
      * List of error codes
      *
      * @var array
      */
-    private static $errorCodes = ['#NULL!'  => 0, '#DIV/0!' => 1, '#VALUE!' => 2, '#REF!'   => 3, '#NAME?'  => 4, '#NUM!'   => 5, '#N/A'    => 6];
+    private static $errorCodes = array(
+        '#NULL!'  => 0,
+        '#DIV/0!' => 1,
+        '#VALUE!' => 2,
+        '#REF!'   => 3,
+        '#NAME?'  => 4,
+        '#NUM!'   => 5,
+        '#N/A'    => 6
+    );
 
     /**
      * Get list of error codes
@@ -57,10 +65,11 @@ class PHPExcel_Cell_DataType
     /**
      * DataType for value
      *
-     * @deprecated Replaced by PHPExcel_Cell_IValueBinder infrastructure, will be removed in version 1.8.0
-     * @return     string
+     * @deprecated  Replaced by PHPExcel_Cell_IValueBinder infrastructure, will be removed in version 1.8.0
+     * @param       mixed  $pValue
+     * @return      string
      */
-    public static function dataTypeForValue(mixed $pValue = null)
+    public static function dataTypeForValue($pValue = null)
     {
         return PHPExcel_Cell_DefaultValueBinder::dataTypeForValue($pValue);
     }
@@ -82,7 +91,7 @@ class PHPExcel_Cell_DataType
         $pValue = PHPExcel_Shared_String::Substring($pValue, 0, 32767);
 
         // we require that newline is represented as "\n" in core, not as "\r\n" or "\r"
-        $pValue = str_replace(["\r\n", "\r"], "\n", $pValue);
+        $pValue = str_replace(array("\r\n", "\r"), "\n", $pValue);
 
         return $pValue;
     }

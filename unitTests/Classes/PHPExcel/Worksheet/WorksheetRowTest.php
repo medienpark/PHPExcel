@@ -10,14 +10,14 @@ class WorksheetRowTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
+        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
         
         $this->mockWorksheet = $this->getMockBuilder('PHPExcel_Worksheet')
             ->disableOriginalConstructor()
             ->getMock();
         $this->mockWorksheet->expects($this->any())
-            ->method('getHighestColumn')
-            ->will($this->returnValue('E'));
+                 ->method('getHighestColumn')
+                 ->will($this->returnValue('E'));
     }
 
 

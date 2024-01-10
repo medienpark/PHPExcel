@@ -18,23 +18,37 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel_Reader_Excel2007
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category   PHPExcel
+ * @package    PHPExcel_Reader_Excel2007
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    ##VERSION##, ##DATE##
  */
 
 
 /**
  * PHPExcel_Reader_Excel2007_Theme
  *
- * @category  PHPExcel
- * @package   PHPExcel_Reader_Excel2007
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @category   PHPExcel
+ * @package    PHPExcel_Reader_Excel2007
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Reader_Excel2007_Theme
 {
+    /**
+     * Theme Name
+     *
+     * @var string
+     */
+    private $themeName;
+
+    /**
+     * Colour Scheme Name
+     *
+     * @var string
+     */
+    private $colourSchemeName;
+
     /**
      * Colour Map indexed by position
      *
@@ -44,28 +58,23 @@ class PHPExcel_Reader_Excel2007_Theme
 
 
     /**
-     * Create a new PHPExcel_Theme
-     * @param string $themeName
-     * @param string $colourSchemeName
-     * @param mixed[] $colourMap
+     * Colour Map
+     *
+     * @var array of string
      */
-    public function __construct(
-        /**
-         * Theme Name
-         */
-        private $themeName,
-        /**
-         * Colour Scheme Name
-         */
-        private $colourSchemeName,
-        /**
-         * Colour Map
-         *
-         * @var array of string
-         */
-        private $colourMap
-    )
+    private $colourMap;
+
+
+    /**
+     * Create a new PHPExcel_Theme
+     *
+     */
+    public function __construct($themeName, $colourSchemeName, $colourMap)
     {
+        // Initialise values
+        $this->themeName        = $themeName;
+        $this->colourSchemeName = $colourSchemeName;
+        $this->colourMap        = $colourMap;
     }
 
     /**
@@ -95,7 +104,10 @@ class PHPExcel_Reader_Excel2007_Theme
      */
     public function getColourByIndex($index = 0)
     {
-        return $this->colourMap[$index] ?? null;
+        if (isset($this->colourMap[$index])) {
+            return $this->colourMap[$index];
+        }
+        return null;
     }
 
     /**

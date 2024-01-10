@@ -19,31 +19,35 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel_Chart
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category    PHPExcel
+ * @package        PHPExcel_Chart
+ * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version        ##VERSION##, ##DATE##
  */
 class PHPExcel_Chart_PlotArea
 {
     /**
-     * Create a new PHPExcel_Chart_PlotArea
-     * @param mixed[] $plotSeries
+     * PlotArea Layout
+     *
+     * @var PHPExcel_Chart_Layout
      */
-    public function __construct(
-        /**
-         * PlotArea Layout
-         */
-        private readonly ?\PHPExcel_Chart_Layout $layout = null,
-        /**
-         * Plot Series
-         *
-         * @var array of PHPExcel_Chart_DataSeries
-         */
-        private $plotSeries = []
-    )
+    private $layout = null;
+
+    /**
+     * Plot Series
+     *
+     * @var array of PHPExcel_Chart_DataSeries
+     */
+    private $plotSeries = array();
+
+    /**
+     * Create a new PHPExcel_Chart_PlotArea
+     */
+    public function __construct(PHPExcel_Chart_Layout $layout = null, $plotSeries = array())
     {
+        $this->layout = $layout;
+        $this->plotSeries = $plotSeries;
     }
 
     /**
@@ -103,10 +107,10 @@ class PHPExcel_Chart_PlotArea
     /**
      * Set Plot Series
      *
-     * @param  [PHPExcel_Chart_DataSeries]
+     * @param [PHPExcel_Chart_DataSeries]
      * @return PHPExcel_Chart_PlotArea
      */
-    public function setPlotSeries($plotSeries = [])
+    public function setPlotSeries($plotSeries = array())
     {
         $this->plotSeries = $plotSeries;
         

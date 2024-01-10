@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel_Reader_Excel5
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt        LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category   PHPExcel
+ * @package    PHPExcel_Reader_Excel5
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt        LGPL
+ * @version    ##VERSION##, ##DATE##
  */
 class PHPExcel_Reader_Excel5_MD5
 {
@@ -60,7 +60,7 @@ class PHPExcel_Reader_Excel5_MD5
     public function getContext()
     {
         $s = '';
-        foreach (['a', 'b', 'c', 'd'] as $i) {
+        foreach (array('a', 'b', 'c', 'd') as $i) {
             $v = $this->{$i};
             $s .= chr($v & 0xff);
             $s .= chr(($v >> 8) & 0xff);
@@ -85,10 +85,10 @@ class PHPExcel_Reader_Excel5_MD5
         $C = $this->c;
         $D = $this->d;
 
-        $F = ['PHPExcel_Reader_Excel5_MD5', 'f'];
-        $G = ['PHPExcel_Reader_Excel5_MD5', 'g'];
-        $H = ['PHPExcel_Reader_Excel5_MD5', 'h'];
-        $I = ['PHPExcel_Reader_Excel5_MD5', 'i'];
+        $F = array('PHPExcel_Reader_Excel5_MD5','f');
+        $G = array('PHPExcel_Reader_Excel5_MD5','g');
+        $H = array('PHPExcel_Reader_Excel5_MD5','h');
+        $I = array('PHPExcel_Reader_Excel5_MD5','i');
 
         /* ROUND 1 */
         self::step($F, $A, $B, $C, $D, $words[0], 7, 0xd76aa478);

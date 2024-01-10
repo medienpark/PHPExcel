@@ -9,7 +9,7 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
+        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
     }
 
     public function testAutoloaderNonPHPExcelClass()

@@ -19,14 +19,21 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel_Worksheet
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category   PHPExcel
+ * @package    PHPExcel_Worksheet
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    ##VERSION##, ##DATE##
  */
 class PHPExcel_Worksheet_ColumnDimension extends PHPExcel_Worksheet_Dimension
 {
+    /**
+     * Column index
+     *
+     * @var int
+     */
+    private $columnIndex;
+
     /**
      * Column width
      *
@@ -46,13 +53,13 @@ class PHPExcel_Worksheet_ColumnDimension extends PHPExcel_Worksheet_Dimension
     /**
      * Create a new PHPExcel_Worksheet_ColumnDimension
      *
-     * @param string $columnIndex Character column index
+     * @param string $pIndex Character column index
      */
-    public function __construct(/**
-     * Column index
-     */
-    private $columnIndex = 'A')
+    public function __construct($pIndex = 'A')
     {
+        // Initialise values
+        $this->columnIndex = $pIndex;
+
         // set dimension as unformatted by default
         parent::__construct(0);
     }
@@ -70,7 +77,7 @@ class PHPExcel_Worksheet_ColumnDimension extends PHPExcel_Worksheet_Dimension
     /**
      * Set ColumnIndex
      *
-     * @param  string $pValue
+     * @param string $pValue
      * @return PHPExcel_Worksheet_ColumnDimension
      */
     public function setColumnIndex($pValue)
@@ -92,7 +99,7 @@ class PHPExcel_Worksheet_ColumnDimension extends PHPExcel_Worksheet_Dimension
     /**
      * Set Width
      *
-     * @param  double $pValue
+     * @param double $pValue
      * @return PHPExcel_Worksheet_ColumnDimension
      */
     public function setWidth($pValue = -1)
@@ -114,7 +121,7 @@ class PHPExcel_Worksheet_ColumnDimension extends PHPExcel_Worksheet_Dimension
     /**
      * Set Auto Size
      *
-     * @param  bool $pValue
+     * @param bool $pValue
      * @return PHPExcel_Worksheet_ColumnDimension
      */
     public function setAutoSize($pValue = false)
