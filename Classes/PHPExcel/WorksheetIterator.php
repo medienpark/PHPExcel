@@ -19,14 +19,21 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category   PHPExcel
+ * @package    PHPExcel
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    ##VERSION##, ##DATE##
  */
 class PHPExcel_WorksheetIterator implements Iterator
 {
+    /**
+     * Spreadsheet to iterate
+     *
+     * @var PHPExcel
+     */
+    private $subject;
+
     /**
      * Current iterator position
      *
@@ -37,15 +44,12 @@ class PHPExcel_WorksheetIterator implements Iterator
     /**
      * Create a new worksheet iterator
      *
-     * @param PHPExcel $subject
+     * @param PHPExcel         $subject
      */
-    public function __construct(
-        /**
-         * Spreadsheet to iterate
-         */
-        private ?\PHPExcel $subject = null
-    )
+    public function __construct(PHPExcel $subject = null)
     {
+        // Set subject
+        $this->subject = $subject;
     }
 
     /**

@@ -19,36 +19,36 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel_Style
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category   PHPExcel
+ * @package    PHPExcel_Style
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    ##VERSION##, ##DATE##
  */
 class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
     /* Fill types */
-    final public const FILL_NONE                    = 'none';
-    final public const FILL_SOLID                   = 'solid';
-    final public const FILL_GRADIENT_LINEAR         = 'linear';
-    final public const FILL_GRADIENT_PATH           = 'path';
-    final public const FILL_PATTERN_DARKDOWN        = 'darkDown';
-    final public const FILL_PATTERN_DARKGRAY        = 'darkGray';
-    final public const FILL_PATTERN_DARKGRID        = 'darkGrid';
-    final public const FILL_PATTERN_DARKHORIZONTAL  = 'darkHorizontal';
-    final public const FILL_PATTERN_DARKTRELLIS     = 'darkTrellis';
-    final public const FILL_PATTERN_DARKUP          = 'darkUp';
-    final public const FILL_PATTERN_DARKVERTICAL    = 'darkVertical';
-    final public const FILL_PATTERN_GRAY0625        = 'gray0625';
-    final public const FILL_PATTERN_GRAY125         = 'gray125';
-    final public const FILL_PATTERN_LIGHTDOWN       = 'lightDown';
-    final public const FILL_PATTERN_LIGHTGRAY       = 'lightGray';
-    final public const FILL_PATTERN_LIGHTGRID       = 'lightGrid';
-    final public const FILL_PATTERN_LIGHTHORIZONTAL = 'lightHorizontal';
-    final public const FILL_PATTERN_LIGHTTRELLIS    = 'lightTrellis';
-    final public const FILL_PATTERN_LIGHTUP         = 'lightUp';
-    final public const FILL_PATTERN_LIGHTVERTICAL   = 'lightVertical';
-    final public const FILL_PATTERN_MEDIUMGRAY      = 'mediumGray';
+    const FILL_NONE                    = 'none';
+    const FILL_SOLID                   = 'solid';
+    const FILL_GRADIENT_LINEAR         = 'linear';
+    const FILL_GRADIENT_PATH           = 'path';
+    const FILL_PATTERN_DARKDOWN        = 'darkDown';
+    const FILL_PATTERN_DARKGRAY        = 'darkGray';
+    const FILL_PATTERN_DARKGRID        = 'darkGrid';
+    const FILL_PATTERN_DARKHORIZONTAL  = 'darkHorizontal';
+    const FILL_PATTERN_DARKTRELLIS     = 'darkTrellis';
+    const FILL_PATTERN_DARKUP          = 'darkUp';
+    const FILL_PATTERN_DARKVERTICAL    = 'darkVertical';
+    const FILL_PATTERN_GRAY0625        = 'gray0625';
+    const FILL_PATTERN_GRAY125         = 'gray125';
+    const FILL_PATTERN_LIGHTDOWN       = 'lightDown';
+    const FILL_PATTERN_LIGHTGRAY       = 'lightGray';
+    const FILL_PATTERN_LIGHTGRID       = 'lightGrid';
+    const FILL_PATTERN_LIGHTHORIZONTAL = 'lightHorizontal';
+    const FILL_PATTERN_LIGHTTRELLIS    = 'lightTrellis';
+    const FILL_PATTERN_LIGHTUP         = 'lightUp';
+    const FILL_PATTERN_LIGHTVERTICAL   = 'lightVertical';
+    const FILL_PATTERN_MEDIUMGRAY      = 'mediumGray';
 
     /**
      * Fill type
@@ -81,12 +81,12 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
     /**
      * Create a new PHPExcel_Style_Fill
      *
-     * @param boolean $isSupervisor  Flag indicating if this is a supervisor or not
-     *                               Leave this value at default unless you
-     *                               understand exactly what its ramifications are
-     * @param boolean $isConditional Flag indicating if this is a conditional style or not
-     *                               Leave this value at default unless you understand
-     *                               exactly what its ramifications are
+     * @param    boolean    $isSupervisor    Flag indicating if this is a supervisor or not
+     *                                    Leave this value at default unless you understand exactly what
+     *                                        its ramifications are
+     * @param    boolean    $isConditional    Flag indicating if this is a conditional style or not
+     *                                    Leave this value at default unless you understand exactly what
+     *                                        its ramifications are
      */
     public function __construct($isSupervisor = false, $isConditional = false)
     {
@@ -121,12 +121,12 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
     /**
      * Build style array from subcomponents
      *
-     * @param  array $array
+     * @param array $array
      * @return array
      */
     public function getStyleArray($array)
     {
-        return ['fill' => $array];
+        return array('fill' => $array);
     }
 
     /**
@@ -147,8 +147,8 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
      * );
      * </code>
      *
-     * @param  array $pStyles Array containing style information
-     * @throws PHPExcel_Exception
+     * @param    array    $pStyles    Array containing style information
+     * @throws    PHPExcel_Exception
      * @return PHPExcel_Style_Fill
      */
     public function applyFromArray($pStyles = null)
@@ -195,13 +195,13 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
     /**
      * Set Fill Type
      *
-     * @param  string $pValue PHPExcel_Style_Fill fill type
+     * @param string $pValue    PHPExcel_Style_Fill fill type
      * @return PHPExcel_Style_Fill
      */
     public function setFillType($pValue = PHPExcel_Style_Fill::FILL_NONE)
     {
         if ($this->isSupervisor) {
-            $styleArray = $this->getStyleArray(['type' => $pValue]);
+            $styleArray = $this->getStyleArray(array('type' => $pValue));
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
             $this->fillType = $pValue;
@@ -225,13 +225,13 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
     /**
      * Set Rotation
      *
-     * @param  double $pValue
+     * @param double $pValue
      * @return PHPExcel_Style_Fill
      */
     public function setRotation($pValue = 0)
     {
         if ($this->isSupervisor) {
-            $styleArray = $this->getStyleArray(['rotation' => $pValue]);
+            $styleArray = $this->getStyleArray(array('rotation' => $pValue));
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
             $this->rotation = $pValue;
@@ -252,7 +252,8 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
     /**
      * Set Start Color
      *
-     * @throws PHPExcel_Exception
+     * @param    PHPExcel_Style_Color $pValue
+     * @throws    PHPExcel_Exception
      * @return PHPExcel_Style_Fill
      */
     public function setStartColor(PHPExcel_Style_Color $pValue = null)
@@ -261,7 +262,7 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
         $color = $pValue->getIsSupervisor() ? $pValue->getSharedComponent() : $pValue;
 
         if ($this->isSupervisor) {
-            $styleArray = $this->getStartColor()->getStyleArray(['argb' => $color->getARGB()]);
+            $styleArray = $this->getStartColor()->getStyleArray(array('argb' => $color->getARGB()));
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
             $this->startColor = $color;
@@ -282,7 +283,8 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
     /**
      * Set End Color
      *
-     * @throws PHPExcel_Exception
+     * @param    PHPExcel_Style_Color $pValue
+     * @throws    PHPExcel_Exception
      * @return PHPExcel_Style_Fill
      */
     public function setEndColor(PHPExcel_Style_Color $pValue = null)
@@ -291,7 +293,7 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
         $color = $pValue->getIsSupervisor() ? $pValue->getSharedComponent() : $pValue;
 
         if ($this->isSupervisor) {
-            $styleArray = $this->getEndColor()->getStyleArray(['argb' => $color->getARGB()]);
+            $styleArray = $this->getEndColor()->getStyleArray(array('argb' => $color->getARGB()));
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
             $this->endColor = $color;
@@ -314,7 +316,7 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
             $this->getRotation() .
             $this->getStartColor()->getHashCode() .
             $this->getEndColor()->getHashCode() .
-            self::class
+            __CLASS__
         );
     }
 }

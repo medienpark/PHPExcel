@@ -9,12 +9,18 @@ class LegendTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
+        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
     }
 
     public function testSetPosition()
     {
-        $positionValues = [PHPExcel_Chart_Legend::POSITION_RIGHT, PHPExcel_Chart_Legend::POSITION_LEFT, PHPExcel_Chart_Legend::POSITION_TOP, PHPExcel_Chart_Legend::POSITION_BOTTOM, PHPExcel_Chart_Legend::POSITION_TOPRIGHT];
+        $positionValues = array(
+            PHPExcel_Chart_Legend::POSITION_RIGHT,
+            PHPExcel_Chart_Legend::POSITION_LEFT,
+            PHPExcel_Chart_Legend::POSITION_TOP,
+            PHPExcel_Chart_Legend::POSITION_BOTTOM,
+            PHPExcel_Chart_Legend::POSITION_TOPRIGHT,
+        );
 
         $testInstance = new PHPExcel_Chart_Legend;
 
@@ -48,7 +54,14 @@ class LegendTest extends PHPUnit_Framework_TestCase
 
     public function testSetPositionXL()
     {
-        $positionValues = [PHPExcel_Chart_Legend::xlLegendPositionBottom, PHPExcel_Chart_Legend::xlLegendPositionCorner, PHPExcel_Chart_Legend::xlLegendPositionCustom, PHPExcel_Chart_Legend::xlLegendPositionLeft, PHPExcel_Chart_Legend::xlLegendPositionRight, PHPExcel_Chart_Legend::xlLegendPositionTop];
+        $positionValues = array(
+            PHPExcel_Chart_Legend::xlLegendPositionBottom,
+            PHPExcel_Chart_Legend::xlLegendPositionCorner,
+            PHPExcel_Chart_Legend::xlLegendPositionCustom,
+            PHPExcel_Chart_Legend::xlLegendPositionLeft,
+            PHPExcel_Chart_Legend::xlLegendPositionRight,
+            PHPExcel_Chart_Legend::xlLegendPositionTop,
+        );
 
         $testInstance = new PHPExcel_Chart_Legend;
 
@@ -82,7 +95,10 @@ class LegendTest extends PHPUnit_Framework_TestCase
 
     public function testSetOverlay()
     {
-        $overlayValues = [true, false];
+        $overlayValues = array(
+            true,
+            false,
+        );
 
         $testInstance = new PHPExcel_Chart_Legend;
 

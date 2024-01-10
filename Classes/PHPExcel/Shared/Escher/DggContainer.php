@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category  PHPExcel
- * @package   PHPExcel_Shared_Escher
- * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version   ##VERSION##, ##DATE##
+ * @category   PHPExcel
+ * @package    PHPExcel_Shared_Escher
+ * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    ##VERSION##, ##DATE##
  */
 class PHPExcel_Shared_Escher_DggContainer
 {
@@ -60,14 +60,14 @@ class PHPExcel_Shared_Escher_DggContainer
      *
      * @var array
      */
-    private $OPT = [];
+    private $OPT = array();
 
     /**
      * Array of identifier clusters containg information about the maximum shape identifiers
      *
      * @var array
      */
-    private $IDCLs = [];
+    private $IDCLs = array();
 
     /**
      * Get maximum shape index of all shapes in all drawings (plus one)
@@ -152,9 +152,10 @@ class PHPExcel_Shared_Escher_DggContainer
     /**
      * Set an option for the drawing group
      *
-     * @param int   $property The number specifies the option
+     * @param int $property The number specifies the option
+     * @param mixed $value
      */
-    public function setOPT($property, mixed $value)
+    public function setOPT($property, $value)
     {
         $this->OPT[$property] = $value;
     }
@@ -162,12 +163,15 @@ class PHPExcel_Shared_Escher_DggContainer
     /**
      * Get an option for the drawing group
      *
-     * @param  int $property The number specifies the option
+     * @param int $property The number specifies the option
      * @return mixed
      */
     public function getOPT($property)
     {
-        return $this->OPT[$property] ?? null;
+        if (isset($this->OPT[$property])) {
+            return $this->OPT[$property];
+        }
+        return null;
     }
 
     /**

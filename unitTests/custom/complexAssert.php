@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/Complex.php';
+include_once dirname(__FILE__).'/Complex.php';
 
 class complexAssert
 {
@@ -8,7 +8,7 @@ class complexAssert
 
     public function assertComplexEquals($expected, $actual, $delta = 0)
     {
-        if ($expected[0] === '#') {
+        if ($expected{0} === '#') {
             //    Expecting an error, so we do a straight string comparison
             if ($expected === $actual) {
                 return true;
@@ -28,16 +28,14 @@ class complexAssert
             return true;
         }
 
-        if ($actualComplex->getReal() < ($expectedComplex->getReal() - $delta) 
-            || $actualComplex->getReal() > ($expectedComplex->getReal() + $delta)
-        ) {
+        if ($actualComplex->getReal() < ($expectedComplex->getReal() - $delta) ||
+            $actualComplex->getReal() > ($expectedComplex->getReal() + $delta)) {
             $this->_errorMessage = 'Mismatched Real part: ' . $actualComplex->getReal() . ' != ' . $expectedComplex->getReal();
             return false;
         }
 
-        if ($actualComplex->getImaginary() < ($expectedComplex->getImaginary() - $delta) 
-            || $actualComplex->getImaginary() > ($expectedComplex->getImaginary() + $delta)
-        ) {
+        if ($actualComplex->getImaginary() < ($expectedComplex->getImaginary() - $delta) ||
+            $actualComplex->getImaginary() > ($expectedComplex->getImaginary() + $delta)) {
             $this->_errorMessage = 'Mismatched Imaginary part: ' . $actualComplex->getImaginary() . ' != ' . $expectedComplex->getImaginary();
             return false;
         }

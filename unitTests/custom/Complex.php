@@ -1,6 +1,6 @@
 <?php
 
-class Complex implements \Stringable
+class Complex
 {
     private $realPart = 0;
     private $imaginaryPart = 0;
@@ -10,17 +10,17 @@ class Complex implements \Stringable
     {
         //    Test for real number, with no imaginary part
         if (is_numeric($complexNumber)) {
-            return [$complexNumber, 0, null];
+            return array($complexNumber, 0, null);
         }
 
         //    Fix silly human errors
-        if (str_contains($complexNumber, '+-')) {
+        if (strpos($complexNumber, '+-') !== false) {
             $complexNumber = str_replace('+-', '-', $complexNumber);
         }
-        if (str_contains($complexNumber, '++')) {
+        if (strpos($complexNumber, '++') !== false) {
             $complexNumber = str_replace('++', '+', $complexNumber);
         }
-        if (str_contains($complexNumber, '--')) {
+        if (strpos($complexNumber, '--') !== false) {
             $complexNumber = str_replace('--', '-', $complexNumber);
         }
 
@@ -38,7 +38,7 @@ class Complex implements \Stringable
             if ($complexParts[1] === '-') {
                 $imaginary = 0 - $imaginary;
             }
-            return [0, $imaginary, $complexParts[2]];
+            return array(0, $imaginary, $complexParts[2]);
         }
 
         //    If we don't have an imaginary part, identify whether it should be +1 or -1...
@@ -48,7 +48,7 @@ class Complex implements \Stringable
                 if ($complexParts[8] === '-') {
                     $complexParts[4] = -1;
                 }
-                //    ... or if we have only the real and no imaginary part (in which case our real should be the imaginary)
+            //    ... or if we have only the real and no imaginary part (in which case our real should be the imaginary)
             } else {
                 $complexParts[4] = $complexParts[1];
                 $complexParts[1] = 0;
@@ -56,7 +56,7 @@ class Complex implements \Stringable
         }
 
         //    Return real and imaginary parts and suffix as an array, and set a default suffix if user input lazily
-        return [$complexParts[1], $complexParts[4], !empty($complexParts[9]) ? $complexParts[9] : 'i'];
+        return array($complexParts[1], $complexParts[4], !empty($complexParts[9]) ? $complexParts[9] : 'i');
     }    //    function _parseComplex()
 
 
@@ -65,10 +65,10 @@ class Complex implements \Stringable
         if ($imaginaryPart === null) {
             if (is_array($realPart)) {
                 //    We have an array of (potentially) real and imaginary parts, and any suffix
-                [$realPart, $imaginaryPart, $suffix] = array_values($realPart) + [0.0, 0.0, 'i'];
+                list ($realPart, $imaginaryPart, $suffix) = array_values($realPart) + array(0.0, 0.0, 'i');
             } elseif ((is_string($realPart)) || (is_numeric($realPart))) {
                 //    We've been given a string to parse to extract the real and imaginary parts, and any suffix
-                [$realPart, $imaginaryPart, $suffix] = self::_parseComplex($realPart);
+                list ($realPart, $imaginaryPart, $suffix) = self::_parseComplex($realPart);
             }
         }
 
@@ -93,7 +93,7 @@ class Complex implements \Stringable
         return $this->suffix;
     }
 
-    public function __toString(): string
+    public function __toString()
     {
         $str = "";
         if ($this->imaginaryPart != 0.0) {

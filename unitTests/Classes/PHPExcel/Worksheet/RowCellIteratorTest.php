@@ -10,7 +10,7 @@ class RowCellIteratorTest extends PHPUnit_Framework_TestCase
         if (!defined('PHPEXCEL_ROOT')) {
             define('PHPEXCEL_ROOT', APPLICATION_PATH . '/');
         }
-        include_once PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
+        require_once(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
         
         $this->mockCell = $this->getMockBuilder('PHPExcel_Cell')
             ->disableOriginalConstructor()
@@ -21,11 +21,11 @@ class RowCellIteratorTest extends PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->mockWorksheet->expects($this->any())
-            ->method('getHighestColumn')
-            ->will($this->returnValue('E'));
+                 ->method('getHighestColumn')
+                 ->will($this->returnValue('E'));
         $this->mockWorksheet->expects($this->any())
-            ->method('getCellByColumnAndRow')
-            ->will($this->returnValue($this->mockCell));
+                 ->method('getCellByColumnAndRow')
+                 ->will($this->returnValue($this->mockCell));
     }
 
 

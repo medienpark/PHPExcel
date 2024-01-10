@@ -23,10 +23,6 @@
 **************************************************************************************
 
 
-2024-01-08 (v1.8.3)
-- Feature:  (fberke)                            - Make code PHP 8.3 compatible, using phpcbf and rector
-
-
 Planned for 1.8.2
 - Bugfix:   (MBaker)                            - Fix to getCell() method when cell reference includes a worksheet reference
 - Bugfix:   (ncrypthic)       Work Item GH-570  - Ignore inlineStr type if formula element exists
