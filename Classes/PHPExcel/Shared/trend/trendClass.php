@@ -67,7 +67,7 @@ class trendClass
     private static $trendCache = [];
 
 
-    public static function calculate($trendType = self::TREND_BEST_FIT, $yValues, $xValues = [], $const = true)
+    public static function calculate($trendType, $yValues, $xValues = [], $const = true)
     {
         //    Calculate number of points in each dataset
         $nY = count($yValues);
@@ -79,7 +79,7 @@ class trendClass
             $nX = $nY;
         } elseif ($nY != $nX) {
             //    Ensure both arrays of points are the same size
-            trigger_error("trend(): Number of elements in coordinate arrays do not match.", E_USER_ERROR);
+            throw new PHPExcel_Exception('trend(): Number of elements in coordinate arrays do not match.');
         }
 
         $key = md5($trendType.$const.serialize($yValues).serialize($xValues));

@@ -353,7 +353,7 @@ class PHPExcel_Calculation_TextData
         }
 
         if (function_exists('mb_substr')) {
-            return mb_substr($value, 0, $chars, 'UTF-8');
+            return mb_substr((string) $value, 0, $chars, 'UTF-8');
         } else {
             return substr($value, 0, $chars);
         }
@@ -383,7 +383,7 @@ class PHPExcel_Calculation_TextData
         }
 
         if (function_exists('mb_substr')) {
-            return mb_substr($value, --$start, $chars, 'UTF-8');
+            return mb_substr((string) $value, --$start, $chars, 'UTF-8');
         } else {
             return substr($value, --$start, $chars);
         }
@@ -411,7 +411,7 @@ class PHPExcel_Calculation_TextData
         }
 
         if ((function_exists('mb_substr')) && (function_exists('mb_strlen'))) {
-            return mb_substr($value, mb_strlen($value, 'UTF-8') - $chars, $chars, 'UTF-8');
+            return mb_substr((string) $value, mb_strlen((string) $value, 'UTF-8') - $chars, $chars, 'UTF-8');
         } else {
             return substr($value, strlen($value) - $chars);
         }
@@ -433,7 +433,7 @@ class PHPExcel_Calculation_TextData
         }
 
         if (function_exists('mb_strlen')) {
-            return mb_strlen($value, 'UTF-8');
+            return mb_strlen((string) $value, 'UTF-8');
         } else {
             return strlen($value);
         }
@@ -509,7 +509,7 @@ class PHPExcel_Calculation_TextData
      * @param    string    $newText    String to replace in defined position
      * @return    string
      */
-    public static function REPLACE($oldText = '', $start = 1, $chars = null, $newText)
+    public static function REPLACE($oldText, $start, $chars, $newText)
     {
         $oldText = PHPExcel_Calculation_Functions::flattenSingleValue($oldText);
         $start   = PHPExcel_Calculation_Functions::flattenSingleValue($start);

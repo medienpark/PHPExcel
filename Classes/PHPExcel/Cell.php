@@ -115,7 +115,7 @@ class PHPExcel_Cell implements \Stringable
     public function __construct(/**
      *    Value of the cell
      */
-    private $value = null, $pDataType = null, PHPExcel_Worksheet $pSheet = null)
+    private $value = null, $pDataType = null, ?PHPExcel_Worksheet $pSheet = null)
     {
         // Set worksheet cache
         $this->parent = $pSheet->getCellCacheController();
@@ -403,7 +403,7 @@ class PHPExcel_Cell implements \Stringable
      *    @return    PHPExcel_Cell
      *    @throws    PHPExcel_Exception
      */
-    public function setDataValidation(PHPExcel_Cell_DataValidation $pDataValidation = null)
+    public function setDataValidation(?PHPExcel_Cell_DataValidation $pDataValidation = null)
     {
         if (!isset($this->parent)) {
             throw new PHPExcel_Exception('Cannot set data validation for cell that is not bound to a worksheet');
@@ -451,7 +451,7 @@ class PHPExcel_Cell implements \Stringable
      *    @return    PHPExcel_Cell
      *    @throws    PHPExcel_Exception
      */
-    public function setHyperlink(PHPExcel_Cell_Hyperlink $pHyperlink = null)
+    public function setHyperlink(?PHPExcel_Cell_Hyperlink $pHyperlink = null)
     {
         if (!isset($this->parent)) {
             throw new PHPExcel_Exception('Cannot set hyperlink for cell that is not bound to a worksheet');
@@ -489,7 +489,7 @@ class PHPExcel_Cell implements \Stringable
      */
     public function isInMergeRange()
     {
-        return (boolean) $this->getMergeRange();
+        return (bool) $this->getMergeRange();
     }
 
     /**
@@ -609,7 +609,7 @@ class PHPExcel_Cell implements \Stringable
             }
 
             // Create absolute coordinate
-            if (ctype_digit($pCoordinateString)) {
+            if (ctype_digit((string) $pCoordinateString)) {
                 return $worksheet . '$' . $pCoordinateString;
             } elseif (ctype_alpha($pCoordinateString)) {
                 return $worksheet . '$' . strtoupper($pCoordinateString);
@@ -830,11 +830,11 @@ class PHPExcel_Cell implements \Stringable
             if ($pColumnIndex < 26) {
                 $_indexCache[$pColumnIndex] = chr(65 + $pColumnIndex);
             } elseif ($pColumnIndex < 702) {
-                $_indexCache[$pColumnIndex] = chr(64 + ($pColumnIndex / 26)) .
+                $_indexCache[$pColumnIndex] = chr(64 + intdiv($pColumnIndex, 26)) .
                                               chr(65 + $pColumnIndex % 26);
             } else {
-                $_indexCache[$pColumnIndex] = chr(64 + (($pColumnIndex - 26) / 676)) .
-                                              chr(65 + ((($pColumnIndex - 26) % 676) / 26)) .
+                $_indexCache[$pColumnIndex] = chr(64 + intdiv($pColumnIndex - 26, 676)) .
+                                              chr(65 + intdiv(($pColumnIndex - 26) % 676, 26)) .
                                               chr(65 + $pColumnIndex % 26);
             }
         }
@@ -874,7 +874,7 @@ class PHPExcel_Cell implements \Stringable
                 [$rangeStart, $rangeEnd]    = $range;
                 sscanf($rangeStart, '%[A-Z]%d', $startCol, $startRow);
                 sscanf($rangeEnd, '%[A-Z]%d', $endCol, $endRow);
-                ++$endCol;
+                $endCol = str_increment($endCol);
 
                 // Current data
                 $currentCol = $startCol;
@@ -886,7 +886,7 @@ class PHPExcel_Cell implements \Stringable
                         $returnValue[] = $currentCol.$currentRow;
                         ++$currentRow;
                     }
-                    ++$currentCol;
+                    $currentCol = str_increment($currentCol);
                     $currentRow = $startRow;
                 }
             }
@@ -944,7 +944,7 @@ class PHPExcel_Cell implements \Stringable
      * @param PHPExcel_Cell_IValueBinder $binder
      * @throws PHPExcel_Exception
      */
-    public static function setValueBinder(PHPExcel_Cell_IValueBinder $binder = null)
+    public static function setValueBinder(?PHPExcel_Cell_IValueBinder $binder = null)
     {
         if ($binder === null) {
             throw new PHPExcel_Exception("A PHPExcel_Cell_IValueBinder is required for PHPExcel to function correctly.");

@@ -182,7 +182,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     public function __construct(/**
      * Workbook
      */
-    private ?\PHPExcel $phpExcel = null, &$str_total, &$str_unique, &$str_table, &$colors, /**
+    private ?\PHPExcel $phpExcel, &$str_total, &$str_unique, &$str_table, &$colors, /**
      * Formula parser
      */
     private $parser)
@@ -757,7 +757,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
      * @param    boolean      $isHidden
      * @return    string    Complete binary record data
      * */
-    private function writeShortNameBiff8($name, $sheetIndex = 0, $rangeBounds, $isHidden = false)
+    private function writeShortNameBiff8($name, $sheetIndex, $rangeBounds, $isHidden = false)
     {
         $record = 0x0018;
 
@@ -1364,7 +1364,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
      *
      * @param PHPExcel_Shared_Escher $pValue
      */
-    public function setEscher(PHPExcel_Shared_Escher $pValue = null)
+    public function setEscher(?PHPExcel_Shared_Escher $pValue = null)
     {
         $this->escher = $pValue;
     }

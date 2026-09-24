@@ -591,7 +591,7 @@ class PHPExcel_Style extends PHPExcel_Style_Supervisor implements PHPExcel_IComp
             $styleArray = ['quotePrefix' => $pValue];
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
-            $this->quotePrefix = (boolean) $pValue;
+            $this->quotePrefix = (bool) $pValue;
         }
         return $this;
     }

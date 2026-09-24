@@ -65,7 +65,7 @@ class PHPExcel_NamedRange
      * @param PHPExcel_Worksheet|null $pScope    Scope. Only applies when $pLocalOnly = true. Null for global scope.
      * @throws PHPExcel_Exception
      */
-    public function __construct($pName = null, PHPExcel_Worksheet $pWorksheet, $pRange = 'A1', /**
+    public function __construct($pName, PHPExcel_Worksheet $pWorksheet, $pRange = 'A1', /**
      * Is the named range local? (i.e. can only be used on $this->worksheet)
      */
     private $localOnly = false, $pScope = null)
@@ -137,7 +137,7 @@ class PHPExcel_NamedRange
      * @param PHPExcel_Worksheet $value
      * @return PHPExcel_NamedRange
      */
-    public function setWorksheet(PHPExcel_Worksheet $value = null)
+    public function setWorksheet(?PHPExcel_Worksheet $value = null)
     {
         if ($value !== null) {
             $this->worksheet = $value;
@@ -208,7 +208,7 @@ class PHPExcel_NamedRange
      * @param PHPExcel_Worksheet|null $value
      * @return PHPExcel_NamedRange
      */
-    public function setScope(PHPExcel_Worksheet $value = null)
+    public function setScope(?PHPExcel_Worksheet $value = null)
     {
         $this->scope = $value;
         $this->localOnly = ($value == null) ? false : true;
@@ -222,7 +222,7 @@ class PHPExcel_NamedRange
      * @param PHPExcel_Worksheet|null $pSheet Scope. Use null for global scope
      * @return PHPExcel_NamedRange
      */
-    public static function resolveRange($pNamedRange = '', PHPExcel_Worksheet $pSheet)
+    public static function resolveRange($pNamedRange, PHPExcel_Worksheet $pSheet)
     {
         return $pSheet->getParent()->getNamedRange($pNamedRange, $pSheet);
     }

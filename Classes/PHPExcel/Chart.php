@@ -168,7 +168,7 @@ class PHPExcel_Chart
      * @throws    PHPExcel_Chart_Exception
      * @return PHPExcel_Chart
      */
-    public function setWorksheet(PHPExcel_Worksheet $pValue = null)
+    public function setWorksheet(?PHPExcel_Worksheet $pValue = null)
     {
         $this->worksheet = $pValue;
 
