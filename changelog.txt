@@ -22,6 +22,8 @@
 * @version    ##VERSION##, ##DATE##
 **************************************************************************************
 
+2026-09-24 (v1.8.4)
+- Feature:  (fberke)                            - Make code PHP 8.5 compatible using claude AI, including some Bugfixes and Refactoring where required
 
 2024-01-08 (v1.8.3)
 - Feature:  (fberke)                            - Make code PHP 8.3 compatible using rector
