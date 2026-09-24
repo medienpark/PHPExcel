@@ -24,13 +24,13 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-mbstring": "*",
         "ext-xml": "*",
         "ext-xmlwriter": "*"
     },
     "require-dev": {
-        "rector/rector": "^0.19.0",
+        "rector/rector": "^2.6",
         "phpunit/phpunit": "^10"
     },
     "recommend": {

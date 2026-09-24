@@ -147,6 +147,9 @@ class PHPExcel_Calculation_Engineering
     private static function nbrConversionFormat($xVal, $places)
     {
         if (!is_null($places)) {
+            if (is_numeric($places)) {
+                $places = (int) $places;
+            }
             if (strlen($xVal) <= $places) {
                 return substr(str_pad($xVal, $places, '0', STR_PAD_LEFT), -10);
             } else {

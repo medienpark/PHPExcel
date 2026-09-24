@@ -119,7 +119,7 @@ class PHPExcel_Calculation_LookupRef
         if (is_array($cellAddress)) {
             foreach ($cellAddress as $columnKey => $value) {
                 $columnKey = preg_replace('/[^a-z]/i', '', $columnKey);
-                return (integer) PHPExcel_Cell::columnIndexFromString($columnKey);
+                return (int) PHPExcel_Cell::columnIndexFromString($columnKey);
             }
         } else {
             if (str_contains($cellAddress, '!')) {
@@ -131,12 +131,14 @@ class PHPExcel_Calculation_LookupRef
                 $endAddress = preg_replace('/[^a-z]/i', '', $endAddress);
                 $returnValue = [];
                 do {
-                    $returnValue[] = (integer) PHPExcel_Cell::columnIndexFromString($startAddress);
-                } while ($startAddress++ != $endAddress);
+                    $returnValue[] = (int) PHPExcel_Cell::columnIndexFromString($startAddress);
+                    $previousAddress = $startAddress;
+                    $startAddress = PHPExcel_Cell::incrementColumn($startAddress);
+                } while ($previousAddress != $endAddress);
                 return $returnValue;
             } else {
                 $cellAddress = preg_replace('/[^a-z]/i', '', $cellAddress);
-                return (integer) PHPExcel_Cell::columnIndexFromString($cellAddress);
+                return (int) PHPExcel_Cell::columnIndexFromString($cellAddress);
             }
         }
     }
@@ -194,7 +196,7 @@ class PHPExcel_Calculation_LookupRef
         if (is_array($cellAddress)) {
             foreach ($cellAddress as $columnKey => $rowValue) {
                 foreach ($rowValue as $rowKey => $cellValue) {
-                    return (integer) preg_replace('/[^0-9]/i', '', $rowKey);
+                    return (int) preg_replace('/[^0-9]/i', '', $rowKey);
                 }
             }
         } else {
@@ -207,12 +209,12 @@ class PHPExcel_Calculation_LookupRef
                 $endAddress = preg_replace('/[^0-9]/', '', $endAddress);
                 $returnValue = [];
                 do {
-                    $returnValue[][] = (integer) $startAddress;
+                    $returnValue[][] = (int) $startAddress;
                 } while ($startAddress++ != $endAddress);
                 return $returnValue;
             } else {
                 [$cellAddress] = explode(':', $cellAddress);
-                return (integer) preg_replace('/[^0-9]/', '', $cellAddress);
+                return (int) preg_replace('/[^0-9]/', '', $cellAddress);
             }
         }
     }
@@ -260,7 +262,7 @@ class PHPExcel_Calculation_LookupRef
      * @param    PHPExcel_Cell    $pCell            The cell to set the hyperlink in
      * @return    mixed    The value of $displayName (or $linkURL if $displayName was blank)
      */
-    public static function HYPERLINK($linkURL = '', $displayName = null, PHPExcel_Cell $pCell = null)
+    public static function HYPERLINK($linkURL = '', $displayName = null, ?PHPExcel_Cell $pCell = null)
     {
         $args = func_get_args();
         $pCell = array_pop($args);
@@ -301,7 +303,7 @@ class PHPExcel_Calculation_LookupRef
      * @todo    Support for the optional a1 parameter introduced in Excel 2010
      *
      */
-    public static function INDIRECT($cellAddress = null, PHPExcel_Cell $pCell = null)
+    public static function INDIRECT($cellAddress = null, ?PHPExcel_Cell $pCell = null)
     {
         $cellAddress    = PHPExcel_Calculation_Functions::flattenSingleValue($cellAddress);
         if (is_null($cellAddress) || $cellAddress === '') {
@@ -713,7 +715,7 @@ class PHPExcel_Calculation_LookupRef
         }
 
         if (!$not_exact_match) {
-            uasort($lookup_array, ['self', 'vlookupSort']);
+            uasort($lookup_array, [self::class, 'vlookupSort']);
         }
 
         $rowNumber = $rowValue = false;
@@ -853,7 +855,7 @@ class PHPExcel_Calculation_LookupRef
                 if (is_array($value)) {
                     $k = array_keys($value);
                     $key1 = $key2 = array_shift($k);
-                    $key2++;
+                    $key2 = PHPExcel_Cell::incrementColumn($key2);
                     $dataValue1 = $value[$key1];
                 } else {
                     $key1 = 0;

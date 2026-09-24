@@ -536,7 +536,7 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
 //                        echo '<b>Setting column width for '.$columnID.' to '.$columnWidth.'</b><br />';
                         $objPHPExcel->getActiveSheet()->getColumnDimension($columnID)->setWidth($columnWidth / 5.4);
                     }
-                    ++$columnID;
+                    $columnID = PHPExcel_Cell::incrementColumn($columnID);
                 }
             }
 
@@ -547,7 +547,7 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
                     $rowHasData = false;
                     $row_ss = $rowData->attributes($namespaces['ss']);
                     if (isset($row_ss['Index'])) {
-                        $rowID = (integer) $row_ss['Index'];
+                        $rowID = (int) $row_ss['Index'];
                     }
 //                    echo '<b>Row '.$rowID.'</b><br />';
 
@@ -614,7 +614,7 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
                                         $type = PHPExcel_Cell_DataType::TYPE_NUMERIC;
                                         $cellValue = (float) $cellValue;
                                         if (floor($cellValue) == $cellValue) {
-                                            $cellValue = (integer) $cellValue;
+                                            $cellValue = (int) $cellValue;
                                         }
                                         break;
                                     case 'Boolean':
@@ -731,9 +731,9 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
                                 $objPHPExcel->getActiveSheet()->getStyle($cellRange)->applyFromArray($this->styles[$style]);
                             }
                         }
-                        ++$columnID;
+                        $columnID = PHPExcel_Cell::incrementColumn($columnID);
                         while ($additionalMergedCells > 0) {
-                            ++$columnID;
+                            $columnID = PHPExcel_Cell::incrementColumn($columnID);
                             $additionalMergedCells--;
                         }
                     }

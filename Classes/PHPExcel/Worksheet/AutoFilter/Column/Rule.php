@@ -346,7 +346,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
      * @param PHPExcel_Worksheet_AutoFilter_Column
      * @return PHPExcel_Worksheet_AutoFilter_Column_Rule
      */
-    public function setParent(PHPExcel_Worksheet_AutoFilter_Column $pParent = null)
+    public function setParent(?PHPExcel_Worksheet_AutoFilter_Column $pParent = null)
     {
         $this->parent = $pParent;
 

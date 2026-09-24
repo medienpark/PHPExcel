@@ -376,7 +376,7 @@ class PHPExcel_ReferenceHelper
      * @param   PHPExcel_Worksheet  $pSheet     The worksheet that we're editing
      * @throws  PHPExcel_Exception
      */
-    public function insertNewBefore($pBefore = 'A1', $pNumCols = 0, $pNumRows = 0, PHPExcel_Worksheet $pSheet = null)
+    public function insertNewBefore($pBefore = 'A1', $pNumCols = 0, $pNumRows = 0, ?PHPExcel_Worksheet $pSheet = null)
     {
         $remove = ($pNumCols < 0 || $pNumRows < 0);
         $aCellCollection = $pSheet->getCellCollection();
@@ -584,8 +584,8 @@ class PHPExcel_ReferenceHelper
                             $endColID = PHPExcel_Cell::stringFromColumnIndex($rangeEnd[0]);
                             do {
                                 $autoFilter->shiftColumn($startColID, $toColID);
-                                ++$startColID;
-                                ++$toColID;
+                                $startColID = PHPExcel_Cell::incrementColumn($startColID);
+                                $toColID = PHPExcel_Cell::incrementColumn($toColID);
                             } while ($startColID != $endColID);
                         }
                     }

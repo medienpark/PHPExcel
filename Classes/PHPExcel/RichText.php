@@ -40,7 +40,7 @@ class PHPExcel_RichText implements PHPExcel_IComparable, \Stringable
      * @param PHPExcel_Cell $pCell
      * @throws PHPExcel_Exception
      */
-    public function __construct(PHPExcel_Cell $pCell = null)
+    public function __construct(?PHPExcel_Cell $pCell = null)
     {
         // Initialise variables
         $this->richTextElements = [];
@@ -66,7 +66,7 @@ class PHPExcel_RichText implements PHPExcel_IComparable, \Stringable
      * @throws PHPExcel_Exception
      * @return PHPExcel_RichText
      */
-    public function addText(PHPExcel_RichText_ITextElement $pText = null)
+    public function addText(?PHPExcel_RichText_ITextElement $pText = null)
     {
         $this->richTextElements[] = $pText;
         return $this;

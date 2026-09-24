@@ -427,7 +427,8 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
                         $endCol = PHPExcel_Cell::stringFromColumnIndex($endCol-1);
                         $objPHPExcel->getActiveSheet()->getColumnDimension($startCol)->setWidth($columnWidth);
                         do {
-                            $objPHPExcel->getActiveSheet()->getColumnDimension(++$startCol)->setWidth($columnWidth);
+                            $startCol = PHPExcel_Cell::incrementColumn($startCol);
+                            $objPHPExcel->getActiveSheet()->getColumnDimension($startCol)->setWidth($columnWidth);
                         } while ($startCol != $endCol);
                     }
                 }
