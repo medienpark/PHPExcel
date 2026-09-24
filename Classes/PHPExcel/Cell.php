@@ -874,7 +874,7 @@ class PHPExcel_Cell implements \Stringable
                 [$rangeStart, $rangeEnd]    = $range;
                 sscanf($rangeStart, '%[A-Z]%d', $startCol, $startRow);
                 sscanf($rangeEnd, '%[A-Z]%d', $endCol, $endRow);
-                $endCol = str_increment($endCol);
+                ++$endCol;
 
                 // Current data
                 $currentCol = $startCol;
@@ -886,7 +886,7 @@ class PHPExcel_Cell implements \Stringable
                         $returnValue[] = $currentCol.$currentRow;
                         ++$currentRow;
                     }
-                    $currentCol = str_increment($currentCol);
+                    ++$currentCol;
                     $currentRow = $startRow;
                 }
             }

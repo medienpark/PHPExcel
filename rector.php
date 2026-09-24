@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\SetList;
 use Rector\Set\ValueObject\LevelSetList;
-use Rector\Php80\Rector\FunctionLike\MixedTypeRector;
 use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
 use Rector\Php80\Rector\Switch_\ChangeSwitchToMatchRector;
 use Rector\Php73\Rector\FuncCall\StringifyStrNeedlesRector;
@@ -29,8 +28,6 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         // Only suitable for plain and simple switch statements
         ChangeSwitchToMatchRector::class,
-        // Unsure if this rector gets it always right in this project
-        MixedTypeRector::class,
         // Replace null with '' in function calls - more pain than gain
         NullToStrictStringFuncCallArgRector::class,
         // Re-arranges function parameters but does not update the function call
@@ -49,6 +46,6 @@ return static function (RectorConfig $rectorConfig): void {
         // SetList::CODE_QUALITY,
         // SetList::DEAD_CODE,
         // SetList::CODING_STYLE,
-        LevelSetList::UP_TO_PHP_82
+        LevelSetList::UP_TO_PHP_85
     ]);
 };
