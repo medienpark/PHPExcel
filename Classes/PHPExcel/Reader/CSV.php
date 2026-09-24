@@ -290,7 +290,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
                     // Set cell value
                     $sheet->getCell($columnLetter . $currentRow)->setValue($rowDatum);
                 }
-                ++$columnLetter;
+                $columnLetter = PHPExcel_Cell::incrementColumn($columnLetter);
             }
             ++$currentRow;
         }

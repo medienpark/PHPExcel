@@ -536,7 +536,7 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
 //                        echo '<b>Setting column width for '.$columnID.' to '.$columnWidth.'</b><br />';
                         $objPHPExcel->getActiveSheet()->getColumnDimension($columnID)->setWidth($columnWidth / 5.4);
                     }
-                    ++$columnID;
+                    $columnID = PHPExcel_Cell::incrementColumn($columnID);
                 }
             }
 
@@ -731,9 +731,9 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
                                 $objPHPExcel->getActiveSheet()->getStyle($cellRange)->applyFromArray($this->styles[$style]);
                             }
                         }
-                        ++$columnID;
+                        $columnID = PHPExcel_Cell::incrementColumn($columnID);
                         while ($additionalMergedCells > 0) {
-                            ++$columnID;
+                            $columnID = PHPExcel_Cell::incrementColumn($columnID);
                             $additionalMergedCells--;
                         }
                     }

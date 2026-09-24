@@ -626,7 +626,7 @@ class PHPExcel_Reader_OOCalc extends PHPExcel_Reader_Abstract implements PHPExce
                                 if ($type !== null) {
                                     for ($i = 0; $i < $colRepeats; ++$i) {
                                         if ($i > 0) {
-                                            ++$columnID;
+                                            $columnID = PHPExcel_Cell::incrementColumn($columnID);
                                         }
                                         if ($type !== PHPExcel_Cell_DataType::TYPE_NULL) {
                                             for ($rowAdjust = 0; $rowAdjust < $rowRepeats; ++$rowAdjust) {
@@ -665,7 +665,7 @@ class PHPExcel_Reader_OOCalc extends PHPExcel_Reader_Abstract implements PHPExce
                                     }
                                 }
 
-                                ++$columnID;
+                                $columnID = PHPExcel_Cell::incrementColumn($columnID);
                             }
                             $rowID += $rowRepeats;
                             break;

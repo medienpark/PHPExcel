@@ -4447,9 +4447,9 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
         if ($this->getReadFilter() !== null) {
             $includeCellRange = false;
             $rangeBoundaries = PHPExcel_Cell::getRangeBoundaries($cellRangeAddress);
-            $rangeBoundaries[1][0]++;
+            $rangeBoundaries[1][0] = PHPExcel_Cell::incrementColumn($rangeBoundaries[1][0]);
             for ($row = $rangeBoundaries[0][1]; $row <= $rangeBoundaries[1][1]; $row++) {
-                for ($column = $rangeBoundaries[0][0]; $column != $rangeBoundaries[1][0]; $column++) {
+                for ($column = $rangeBoundaries[0][0]; $column != $rangeBoundaries[1][0]; $column = PHPExcel_Cell::incrementColumn($column)) {
                     if ($this->getReadFilter()->readCell($column, $row, $this->phpSheet->getTitle())) {
                         $includeCellRange = true;
                         break 2;

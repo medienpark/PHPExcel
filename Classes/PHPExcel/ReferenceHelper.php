@@ -584,8 +584,8 @@ class PHPExcel_ReferenceHelper
                             $endColID = PHPExcel_Cell::stringFromColumnIndex($rangeEnd[0]);
                             do {
                                 $autoFilter->shiftColumn($startColID, $toColID);
-                                ++$startColID;
-                                ++$toColID;
+                                $startColID = PHPExcel_Cell::incrementColumn($startColID);
+                                $toColID = PHPExcel_Cell::incrementColumn($toColID);
                             } while ($startColID != $endColID);
                         }
                     }

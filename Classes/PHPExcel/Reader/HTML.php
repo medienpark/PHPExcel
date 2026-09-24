@@ -344,7 +344,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 //                        echo 'END OF TABLE LEVEL ' , $this->tableLevel , '<br />';
                         $column = $this->releaseTableStartColumn();
                         if ($this->tableLevel > 1) {
-                            ++$column;
+                            $column = PHPExcel_Cell::incrementColumn($column);
                         } else {
                             ++$row;
                         }
@@ -368,7 +368,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 //                        echo 'END OF TABLE ' , $this->tableLevel , ' CELL<br />';
 
                         while (isset($this->rowspan[$column . $row])) {
-                            ++$column;
+                            $column = PHPExcel_Cell::incrementColumn($column);
                         }
 
                         $this->flushCell($sheet, $column, $row, $cellContent);
@@ -385,7 +385,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
                             //create merging rowspan and colspan
                             $columnTo = $column;
                             for ($i = 0; $i < $attributeArray['colspan'] - 1; $i++) {
-                                ++$columnTo;
+                                $columnTo = PHPExcel_Cell::incrementColumn($columnTo);
                             }
                             $range = $column . $row . ':' . $columnTo . ($row + $attributeArray['rowspan'] - 1);
                             foreach (\PHPExcel_Cell::extractAllCellReferencesInRange($range) as $value) {
@@ -404,12 +404,12 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
                             //create merging colspan
                             $columnTo = $column;
                             for ($i = 0; $i < $attributeArray['colspan'] - 1; $i++) {
-                                ++$columnTo;
+                                $columnTo = PHPExcel_Cell::incrementColumn($columnTo);
                             }
                             $sheet->mergeCells($column . $row . ':' . $columnTo . $row);
                             $column = $columnTo;
                         }
-                        ++$column;
+                        $column = PHPExcel_Cell::incrementColumn($column);
                         break;
                     case 'body':
                         $row = 1;

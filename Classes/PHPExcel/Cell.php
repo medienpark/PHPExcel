@@ -813,6 +813,22 @@ class PHPExcel_Cell implements \Stringable
     }
 
     /**
+     * Increments a column string like ++ does, avoiding the PHP 8.5 deprecation of ++ on letter strings.
+     * Anything str_increment() rejects (null, '', numeric or non-alphanumeric strings) keeps the plain ++ behaviour.
+     *
+     * @param mixed $pColumn
+     * @return mixed
+     */
+    public static function incrementColumn($pColumn)
+    {
+        if (is_string($pColumn) && ctype_alnum($pColumn) && !is_numeric($pColumn)) {
+            return str_increment($pColumn);
+        }
+
+        return ++$pColumn;
+    }
+
+    /**
      *    String from columnindex
      *
      *    @param    int $pColumnIndex Column index (base 0 !!!)
@@ -874,7 +890,7 @@ class PHPExcel_Cell implements \Stringable
                 [$rangeStart, $rangeEnd]    = $range;
                 sscanf($rangeStart, '%[A-Z]%d', $startCol, $startRow);
                 sscanf($rangeEnd, '%[A-Z]%d', $endCol, $endRow);
-                ++$endCol;
+                $endCol = self::incrementColumn($endCol);
 
                 // Current data
                 $currentCol = $startCol;
@@ -886,7 +902,7 @@ class PHPExcel_Cell implements \Stringable
                         $returnValue[] = $currentCol.$currentRow;
                         ++$currentRow;
                     }
-                    ++$currentCol;
+                    $currentCol = self::incrementColumn($currentCol);
                     $currentRow = $startRow;
                 }
             }

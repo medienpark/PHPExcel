@@ -132,7 +132,9 @@ class PHPExcel_Calculation_LookupRef
                 $returnValue = [];
                 do {
                     $returnValue[] = (int) PHPExcel_Cell::columnIndexFromString($startAddress);
-                } while ($startAddress++ != $endAddress);
+                    $previousAddress = $startAddress;
+                    $startAddress = PHPExcel_Cell::incrementColumn($startAddress);
+                } while ($previousAddress != $endAddress);
                 return $returnValue;
             } else {
                 $cellAddress = preg_replace('/[^a-z]/i', '', $cellAddress);
@@ -853,7 +855,7 @@ class PHPExcel_Calculation_LookupRef
                 if (is_array($value)) {
                     $k = array_keys($value);
                     $key1 = $key2 = array_shift($k);
-                    $key2++;
+                    $key2 = PHPExcel_Cell::incrementColumn($key2);
                     $dataValue1 = $value[$key1];
                 } else {
                     $key1 = 0;
